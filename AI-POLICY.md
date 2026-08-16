@@ -189,6 +189,5 @@ gate. The local checks and explicit Git approvals are the pre-commit controls.
 
 | Version | Date       | Change                                                                                                        |
 | ------- | ---------- | ------------------------------------------------------------------------------------------------------------- |
-| v0.1.1  | 2026-08-15 | Remove `CITATION.cff` since it is no longer used in the project. Improve markdown format.                      |
+| v0.1.1  | 2026-08-15 | Remove `CITATION.cff` since it is no longer used in the project. Improve markdown format.                     |
 | v0.1.0  | 2026-08-15 | Initial public-repository policy; direct-to-`main` workflow with explicit staging, commit, and push approval. |
-git 
