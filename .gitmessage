@@ -1,0 +1,36 @@
+<type>(<scope>): <subject>
+
+<what changed>
+
+Why: TODO (maintainer)
+
+# Types:
+#   docs, fix, feat, refactor, style, ci, chore
+#
+# Scopes:
+#   guideline
+#   policy
+#   disclosure
+#   agents
+#   readme
+#   editorial
+#   templates
+#   policy-template
+#   agents-template
+#   disclosure-template
+#   readme-template
+#   contributing-template
+#   scripts
+#   checks
+#   issues
+#   git
+#   citation
+#   license
+#
+# The vocabulary is preferred, not mechanically enforced.
+#
+# Repository-mechanics trailers only:
+# Assisted-by: <tool>, <model name and version> (<role>)
+# Verified-by: <check actually run>
+#
+# Prose editing carries no per-commit trailer; see AI-DISCLOSURE.md.

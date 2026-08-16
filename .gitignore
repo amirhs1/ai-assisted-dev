@@ -1,0 +1,8 @@
+.DS_Store
+*.swp
+.vscode/
+.idea/
+*.pdf
+
+# Per-machine Claude Code settings.
+.claude/settings.local.json
