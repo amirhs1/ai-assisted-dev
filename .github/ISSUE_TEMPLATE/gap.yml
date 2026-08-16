@@ -1,0 +1,34 @@
+name: Gap or open question
+description: Something the guideline does not cover, covers wrongly, or makes hard to use.
+labels: ["gap"]
+body:
+  - type: textarea
+    id: location
+    attributes:
+      label: Relevant file or section
+      description: Point to the guideline section or template if possible.
+    validations:
+      required: true
+  - type: textarea
+    id: gap
+    attributes:
+      label: What is missing or wrong?
+      description: Describe the gap, open question, error, or template-usability problem.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or source
+      description: Optional link or citation. A source is checked before its claims are adopted.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - Gap — not yet covered
+        - Open question — no settled answer
+        - Error — covered, but wrong
+        - Template usability
+    validations:
+      required: true
