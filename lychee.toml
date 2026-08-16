@@ -7,10 +7,18 @@
 exclude_path = [".git", "templates"]
 
 # GitHub's ../../issues shorthand resolves on github.com rather than on disk.
-exclude = ["^\\.\\./\\.\\./issues$"]
+#
+# acm.org refuses non-browser clients (403) regardless of user agent, and the
+# refusal escalates under repeated automated requests, so ACM links cannot be
+# verified mechanically. They are checked by hand instead; the exclusion records
+# that rather than accepting 403 everywhere.
+exclude = ["^\\.\\./\\.\\./issues$", "^https://(www|dl)\\.acm\\.org/"]
 
 max_retries = 3
 timeout = 20
 
-# 429 is tolerated because some cited sites rate-limit automated checkers.
-accept = ["200", "206", "429"]
+# An explicit accept list replaces lychee's default 2xx range rather than adding
+# to it, so the success range is restated here: some cited sites answer 202
+# (accepted, rendered asynchronously). 429 is tolerated because some of them
+# rate-limit automated checkers.
+accept = ["200..=299", "429"]
