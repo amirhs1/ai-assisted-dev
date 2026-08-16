@@ -7,7 +7,9 @@ prepared-by: <YOUR NAME>
 orcid: <https://orcid.org/0000-0000-0000-0000>
 accountable-for-content: <YOUR NAME>
 governed-by: AI-POLICY.md v<X.Y.Z> # or an n/a form — see the note below
-tools: [<tool> <model id>, <tool> <model id>]
+tools:
+  - <tool> — <model id> (<YYYY-MM-DD>)
+  - <tool> — <model id> (<YYYY-MM-DD>)
 supersedes: <previous disclosure version | n/a>
 ---
 
@@ -43,15 +45,19 @@ what it covers, who is accountable, and what was used.
                            option and say so plainly rather than naming a file
                            to fill the field. Any of these is a legal value,
                            not an unfilled placeholder.
-  tools                    Tool AND model name and version (e.g. `Claude
-                           Code, <model id>`). A product name alone is not
-                           enough: the same name ships different models over
-                           time. A provider/deployment model identifier is
-                           preferred where known because it is more specific
-                           than a product name; identifiers themselves can also
-                           change or be retired. If it was not logged, write
-                           `not recorded` here and repeat that under section 5 —
-                           do not guess.
+  tools                    One entry per tool: tool, model identifier, and a
+                           date on which that identifier was in use. Separate
+                           tool from identifier with an em dash, never a
+                           comma. The date is an as-of anchor, not a start
+                           date — it keeps a marketing name resolvable after
+                           the model is retired; write `from <date>` only
+                           where use genuinely began then. A product name
+                           alone is not enough: the same name ships different
+                           models over time. Periods, roles, and any
+                           `not recorded` qualification belong in section 2,
+                           which is authoritative. Where no identifier was
+                           logged, write the product name and record
+                           `not recorded` in section 2; do not guess.
   supersedes               The disclosure this one replaces, so the chain is
                            reconstructable. `n/a` for a first release.
 
