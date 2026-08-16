@@ -1,0 +1,16 @@
+# Link checker configuration.
+#
+# templates/ is excluded intentionally. Template links often target files that
+# exist only after instantiation in an adopting repository, so local resolution
+# here would produce false failures.
+
+exclude_path = [".git", "templates"]
+
+# GitHub's ../../issues shorthand resolves on github.com rather than on disk.
+exclude = ["^\\.\\./\\.\\./issues$"]
+
+max_retries = 3
+timeout = 20
+
+# 429 is tolerated because some cited sites rate-limit automated checkers.
+accept = ["200", "206", "429"]
