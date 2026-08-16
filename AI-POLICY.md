@@ -29,33 +29,33 @@ Two forms of AI assistance are intentionally separated:
   conversation. External evidence, substantive claims, and final normative
   decisions remain mine.
 
-Direct commits to `main` are permitted. A pull request is not part of the normal
-maintenance workflow. Human control is placed at the mutation boundary instead:
-a coding agent must obtain explicit approval before staging, committing, and
-pushing.
+Direct commits to `main` are permitted. A pull request is not part of the
+normal maintenance workflow. Human control is placed at the mutation boundary
+instead: a coding agent must obtain explicit approval before staging,
+committing, and pushing.
 
 **Default posture:** T2 (Supervised), with path-specific overrides below.
 
 ## 2. Tier assignments and write scope
 
-| Path / subsystem | Tier | Position |
-| --- | --- | --- |
-| `AI-ASSISTED-DEVELOPMENT.md`, `templates/` | T3 | Core contribution. I originate the substantive text; AI editing is limited by [DOM-1] and [EDIT-1]. |
-| `AI-POLICY.md`, `AI-DISCLOSURE.md`, `AGENTS.md`, `CLAUDE.md`, `README.md`, `.claude/skills/` | T2 | Repository governance/supporting prose may be AI-drafted or revised, but I read and accept every line. |
-| `scripts/`, `.github/workflows/` | T2 | Mechanically checkable repository infrastructure; diffs are read line by line and checks are run. |
-| `.gitignore`, `.gitmessage`, `.github/ISSUE_TEMPLATE/` | T1 | Low-consequence repository chores. |
+| Path / subsystem                                                                             | Tier | Position                                                                                               |
+| -------------------------------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------ |
+| `AI-ASSISTED-DEVELOPMENT.md`, `templates/`                                                   | T3   | Core contribution. I originate the substantive text; AI editing is limited by [DOM-1] and [EDIT-1].    |
+| `AI-POLICY.md`, `AI-DISCLOSURE.md`, `AGENTS.md`, `CLAUDE.md`, `README.md`, `.claude/skills/` | T2   | Repository governance/supporting prose may be AI-drafted or revised, but I read and accept every line. |
+| `scripts/`, `.github/workflows/`                                                             | T2   | Mechanically checkable repository infrastructure; diffs are read line by line and checks are run.      |
+| `.gitignore`, `.gitmessage`, `.github/ISSUE_TEMPLATE/`                                       | T1   | Low-consequence repository chores.                                                                     |
 
 **[TIER-1]** If a tier is unclear, assign T2. A subsystem that appears to be
 two tiers at once is treated as two subsystems.
 
 ### 2.1 Agent path scope
 
-| ID | Paths | Coding-agent access |
-| --- | --- | --- |
-| **[SCOPE-1]** | `scripts/`, `.gitignore`, `.gitmessage`, `.github/ISSUE_TEMPLATE/` | Read/write, subject to the Git approval rules in section 3.1. |
-| **[SCOPE-2]** | `AI-ASSISTED-DEVELOPMENT.md`, `templates/` | Read only. May be moved, renamed, staged, committed, or pushed only on my explicit instruction; never edited by the coding agent. |
-| **[SCOPE-3]** | `AI-POLICY.md`, `AI-DISCLOSURE.md`, `AGENTS.md`, `CLAUDE.md`, `README.md`, `.claude/skills/` | Read only to the coding agent. Chat-based tools may draft or revise these in conversation; I apply and accept the final text. |
-| **[SCOPE-4]** | `.github/workflows/`, `.claude/settings.json`, `LICENSE`, `CITATION.cff`, GitHub rulesets/settings | No coding-agent write access. A tool may draft a proposed change in conversation; I apply it. |
+| ID            | Paths                                                                                        | Coding-agent access                                                                                                               |
+| ------------- | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **[SCOPE-1]** | `scripts/`, `.gitignore`, `.gitmessage`, `.github/ISSUE_TEMPLATE/`                           | Read/write, subject to the Git approval rules in section 3.1.                                                                     |
+| **[SCOPE-2]** | `AI-ASSISTED-DEVELOPMENT.md`, `templates/`                                                   | Read only. May be moved, renamed, staged, committed, or pushed only on my explicit instruction; never edited by the coding agent. |
+| **[SCOPE-3]** | `AI-POLICY.md`, `AI-DISCLOSURE.md`, `AGENTS.md`, `CLAUDE.md`, `README.md`, `.claude/skills/` | Read only to the coding agent. Chat-based tools may draft or revise these in conversation; I apply and accept the final text.     |
+| **[SCOPE-4]** | `.github/workflows/`, `.claude/settings.json`, `LICENSE`, GitHub rulesets/settings           | No coding-agent write access. A tool may draft a proposed change in conversation; I apply it.                                     |
 
 ## 3. Permitted AI assistance
 
@@ -64,8 +64,8 @@ two tiers at once is treated as two subsystems.
 - **[PERM-2]** Edit low-consequence repository chores under [SCOPE-1].
 - **[PERM-5]** Review prose adversarially: identify ambiguity, contradiction,
   unsupported claims, excessive length, or portability problems.
-- **[PERM-8]** Draft commit subjects, what-changed text, issue text, and release
-  notes, subject to [WHY-1].
+- **[PERM-8]** Draft commit subjects, what-changed text, issue text, and
+  release notes, subject to [WHY-1].
 - **[PERM-10]** Perform Git and GitHub mechanics subject to section 3.1.
 - **[PERM-11]** Chat-based editing tools may revise maintainer-written
   guideline/template prose when explicitly asked. New ideas may be proposed in
@@ -143,14 +143,14 @@ security settings.
 
 ## 5. Review requirements
 
-| ID | Tier | Minimum before commit/publication |
-| --- | --- | --- |
-| **[REV-1]** | T1 | Intended path set inspected; relevant functional check run if one exists. |
-| **[REV-2]** | T2 | Diff read line by line; applicable checks actually run; no check weakened in the same change. |
-| **[REV-3]** | T3 | As T2, plus I can restate the change without rereading it; citation/reference integrity is rechecked when affected. |
+| ID          | Tier | Minimum before commit/publication                                                                                   |
+| ----------- | ---- | ------------------------------------------------------------------------------------------------------------------- |
+| **[REV-1]** | T1   | Intended path set inspected; relevant functional check run if one exists.                                           |
+| **[REV-2]** | T2   | Diff read line by line; applicable checks actually run; no check weakened in the same change.                       |
+| **[REV-3]** | T3   | As T2, plus I can restate the change without rereading it; citation/reference integrity is rechecked when affected. |
 
-**[REV-4] All tiers:** mutating Git operations follow [GIT-2]–[GIT-4].
-A successful check does not replace human review.
+**[REV-4] All tiers:** mutating Git operations follow [GIT-2]–[GIT-4]. A
+successful check does not replace human review.
 
 ## 6. Provenance
 
@@ -165,8 +165,8 @@ Verified-by: <check actually run>
 drafted repository mechanics such as scripts, issue forms, workflow proposals,
 or Git/commit text. `Verified-by:` records only checks actually run.
 
-**[PROV-2]** Do not backfill unknown model identifiers or historical
-provenance from memory. Record `not recorded` where that is the truth.
+**[PROV-2]** Do not backfill unknown model identifiers or historical provenance
+from memory. Record `not recorded` where that is the truth.
 
 **[PROV-3]** Prose editing assistance is recorded at file/release level in
 `AI-DISCLOSURE.md`, not by per-commit trailer. This avoids false sentence- or
@@ -174,19 +174,21 @@ commit-level precision across multiple editing tools.
 
 ## 7. Enforcement
 
-| ID | Checkable proposition | Mechanism |
-| --- | --- | --- |
-| **[ENF-4]** | `main` permits ordinary direct pushes but rejects force-push and deletion. | GitHub ruleset. No PR requirement. Configure/verify this setting in GitHub before the first public release. |
-| **[ENF-6]** | Rule IDs cited by repository pointer files exist in this policy. | `python3 scripts/check_rule_ids.py`. |
-| **[ENF-7]** | Repository links are checked, with template paths excluded because they target adopting repositories. | `lychee --config lychee.toml .`. |
-| **[ENF-8]** | Claude Code cannot write protected paths and must ask before staging, committing, or pushing. | `.claude/settings.json`. |
-| **[ENF-9]** | The two repository checks rerun after a push to `main`. | `.github/workflows/checks.yml`. |
+| ID          | Checkable proposition                                                                                 | Mechanism                                                                                                   |
+| ----------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **[ENF-4]** | `main` permits ordinary direct pushes but rejects force-push and deletion.                            | GitHub ruleset. No PR requirement. Configure/verify this setting in GitHub before the first public release. |
+| **[ENF-6]** | Rule IDs cited by repository pointer files exist in this policy.                                      | `python3 scripts/check_rule_ids.py`.                                                                        |
+| **[ENF-7]** | Repository links are checked, with template paths excluded because they target adopting repositories. | `lychee --config lychee.toml .`.                                                                            |
+| **[ENF-8]** | Claude Code cannot write protected paths and must ask before staging, committing, or pushing.         | `.claude/settings.json`.                                                                                    |
+| **[ENF-9]** | The two repository checks rerun after a push to `main`.                                               | `.github/workflows/checks.yml`.                                                                             |
 
 The GitHub workflow is verification after publication to `main`, not a merge
 gate. The local checks and explicit Git approvals are the pre-commit controls.
 
 ## 8. Revision history
 
-| Version | Date | Change |
-| --- | --- | --- |
-| v0.1.0 | 2026-08-15 | Initial public-repository policy; direct-to-`main` workflow with explicit staging, commit, and push approval. |
+| Version | Date       | Change                                                                                                        |
+| ------- | ---------- | ------------------------------------------------------------------------------------------------------------- |
+| v0.1.1  | 2026-08-15 | Remove `CITATION.cff` since it is no longer used in the project. Improve markdown format.                      |
+| v0.1.0  | 2026-08-15 | Initial public-repository policy; direct-to-`main` workflow with explicit staging, commit, and push approval. |
+git 

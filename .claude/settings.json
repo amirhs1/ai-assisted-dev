@@ -35,8 +35,6 @@
       "Write(.github/workflows/**)",
       "Edit(LICENSE)",
       "Write(LICENSE)",
-      "Edit(CITATION.cff)",
-      "Write(CITATION.cff)",
       "Bash(git push *--force*)",
       "Bash(git push * -f *)",
       "Bash(git push -f *)"
