@@ -1,6 +1,6 @@
 ---
 title: AI Use Policy — AI-Assisted Development Guideline
-version: v0.1.0
+version: v0.1.1
 date: 2026-08-15
 status: Active
 owner: Amir Sadeghi
