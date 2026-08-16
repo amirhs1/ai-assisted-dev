@@ -1,7 +1,7 @@
 ---
 title: AI Use Policy — AI-Assisted Development Guideline
-version: v0.1.1
-date: 2026-08-15
+version: v0.1.2
+date: 2026-08-16
 status: Active
 owner: Amir Sadeghi
 governs: this repository
@@ -174,20 +174,22 @@ commit-level precision across multiple editing tools.
 
 ## 7. Enforcement
 
-| ID          | Checkable proposition                                                                                 | Mechanism                                                                                                   |
-| ----------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| **[ENF-4]** | `main` permits ordinary direct pushes but rejects force-push and deletion.                            | GitHub ruleset. No PR requirement. Configure/verify this setting in GitHub before the first public release. |
-| **[ENF-6]** | Rule IDs cited by repository pointer files exist in this policy.                                      | `python3 scripts/check_rule_ids.py`.                                                                        |
-| **[ENF-7]** | Repository links are checked, with template paths excluded because they target adopting repositories. | `lychee --config lychee.toml .`.                                                                            |
-| **[ENF-8]** | Claude Code cannot write protected paths and must ask before staging, committing, or pushing.         | `.claude/settings.json`.                                                                                    |
-| **[ENF-9]** | The two repository checks rerun after a push to `main`.                                               | `.github/workflows/checks.yml`.                                                                             |
+| ID           | Checkable proposition                                                                                                                                                                          | Mechanism                                                                                                   |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **[ENF-4]**  | `main` permits ordinary direct pushes but rejects force-push and deletion.                                                                                                                     | GitHub ruleset. No PR requirement. Configure/verify this setting in GitHub before the first public release. |
+| **[ENF-6]**  | Rule IDs cited by repository pointer files exist in this policy.                                                                                                                               | `python3 scripts/check_rule_ids.py`.                                                                        |
+| **[ENF-7]**  | Repository links are checked, with template paths excluded because they target adopting repositories.                                                                                          | `lychee --config lychee.toml .`.                                                                            |
+| **[ENF-8]**  | Claude Code cannot write protected paths and must ask before staging, committing, or pushing.                                                                                                  | `.claude/settings.json`.                                                                                    |
+| **[ENF-9]**  | The two repository checks rerun after a push to `main`.                                                                                                                                        | `.github/workflows/checks.yml`.                                                                             |
+| **[ENF-10]** | Other coding agents in use — currently OpenAI Codex — are bound by the same scope and Git-approval rules by instruction only; no mechanical equivalent to `.claude/settings.json` is in place. | `AGENTS.md`, plus maintainer review of every diff before staging, committing, and pushing.                  |
 
 The GitHub workflow is verification after publication to `main`, not a merge
 gate. The local checks and explicit Git approvals are the pre-commit controls.
 
 ## 8. Revision history
 
-| Version | Date       | Change                                                                                                        |
-| ------- | ---------- | ------------------------------------------------------------------------------------------------------------- |
-| v0.1.1  | 2026-08-15 | Remove `CITATION.cff` since it is no longer used in the project. Improve markdown format.                     |
-| v0.1.0  | 2026-08-15 | Initial public-repository policy; direct-to-`main` workflow with explicit staging, commit, and push approval. |
+| Version | Date       | Change                                                                                                                 |
+| ------- | ---------- | ---------------------------------------------------------------------------------------------------------------------- |
+| v0.1.2  | 2026-08-16 | Record OpenAI Codex as a second coding agent under [ENF-10]; note that mechanical enforcement covers Claude Code only. |
+| v0.1.1  | 2026-08-15 | Remove `CITATION.cff` since it is no longer used in the project. Improve markdown format.                              |
+| v0.1.0  | 2026-08-15 | Initial public-repository policy; direct-to-`main` workflow with explicit staging, commit, and push approval.          |
