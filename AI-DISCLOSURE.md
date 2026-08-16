@@ -1,19 +1,17 @@
 ---
 title: AI Use Disclosure — AI-Assisted Development Guideline
-version: v0.1.1
+version: v0.1.2
 date: 2026-08-16
 covers: v0.1.0 (initial public release)
 prepared-by: Amir Sadeghi
 accountable-for-content: Amir Sadeghi
-governed-by: AI-POLICY.md v0.1.1
+governed-by: AI-POLICY.md v0.1.2
 tools:
-  [
-    Claude Code — Fable 5 / Opus 5 / Sonnet 5 as of 2026-08-16,
-    OpenAI Codex — GPT-5.6 Sol as of 2026-08-15,
-    Claude — Fable 5 / Opus 5 / Sonnet 5 as of 2026-08-16,
-    OpenAI ChatGPT — GPT-5.6 Sol / Terra / Tuna as of 2026-08-15,
-    Grammarly,
-  ]
+  - Claude Code — Fable 5 / Opus 5 / Sonnet 5 (2026-08-16)
+  - OpenAI Codex — GPT-5.6 Sol (2026-08-15)
+  - Claude — Fable 5 / Opus 5 / Sonnet 5 (2026-08-16)
+  - OpenAI ChatGPT — GPT-5.6 Sol / Terra / Tuna (2026-08-15)
+  - Grammarly
 supersedes: n/a
 ---
 
@@ -112,5 +110,6 @@ record.
 
 | Version | Date       | Change                                                                                                                                           |
 | ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| v0.1.2  | 2026-08-16 | Restate `tools:` as a list of tool, model identifier, and as-of date; section 2 is authoritative for periods, roles, and qualifications.         |
 | v0.1.1  | 2026-08-16 | Record current chat and coding-agent models (Claude Code, OpenAI Codex, Claude, OpenAI ChatGPT); correct `governed-by` to `AI-POLICY.md v0.1.1`. |
 | v0.1.0  | 2026-08-15 | Initial disclosure for the first public release.                                                                                                 |
