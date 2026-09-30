@@ -19,7 +19,8 @@
 #
 # AI PROVENANCE, IF YOUR PROJECT USES IT
 # Add each applicable trailer as an uncommented line at the end, after a blank
-# line. Repeat Assisted-by for multiple materially involved tools or models.
+# line. Repeat Assisted-by for multiple materially involved tools or models. Do
+# not infer or reconstruct trailers from memory; record only known provenance.
 #
 # Assisted-by: <tool>, <model identifier or not recorded> (<role or extent>)
 # Checks-run: <check actually run> — <observed result>
