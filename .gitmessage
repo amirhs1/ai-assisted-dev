@@ -1,6 +1,7 @@
 # <type>(<scope>): <imperative subject, 50 characters or fewer>
 #
-# Describe what changed in a short paragraph or bullets.
+# Describe the changes using concise imperative bullet points.
+#
 # Why: <maintainer-supplied reason; omit for a trivial change>
 #
 # Types: docs, fix, update, style, ci.
