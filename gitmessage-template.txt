@@ -1,0 +1,31 @@
+# <type>(<scope>): <imperative subject>
+#
+# Describe what changed in a short paragraph or bullets.
+# Why: <reason supplied by a person; omit for a trivial change>
+#
+# HOW TO USE
+# Copy this file to .gitmessage in your project, then run:
+#   git config commit.template .gitmessage
+# The template opens for editor-based commits. git commit -m bypasses it.
+# Git removes these comment lines from an edited commit message by default.
+#
+# TYPES AND SCOPES
+# Choose names that suit your project. For example:
+#   Types: docs, fix, feat, refactor, style, chore, ci
+#   Scopes: readme, src, tests, docs, ci, license
+# Pick one dominant scope or omit it. The vocabulary is not enforced.
+# For a breaking change, add ! after the type or scope and explain it in the body.
+#
+# AI PROVENANCE, IF YOUR PROJECT USES IT
+# Add each applicable trailer as an uncommented line at the end, after a blank
+# line. Repeat Assisted-by for multiple materially involved tools or models.
+#
+# Assisted-by: <tool>, <model identifier or not recorded> (<role or extent>)
+# Checks-run: <check actually run> — <observed result>
+# Ground-truth-source: <independent source of an added or changed reference value>
+#
+# Roles: plan, partial implementation, full implementation, review, refactor.
+# Omit Checks-run when no check ran; omit Ground-truth-source when no reference
+# value changed. A property test does not need a Ground-truth-source trailer.
+# Decide how to record prose assistance and document gaps in the history.
+# Review the final commit message after rebasing or squash merging.

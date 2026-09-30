@@ -1,0 +1,25 @@
+# <type>(<scope>): <imperative subject, 50 characters or fewer>
+#
+# Describe what changed in a short paragraph or bullets.
+# Why: <reason supplied by the maintainer; omit for a trivial change>
+#
+# Types: docs, fix, update, style, ci; others when useful: chore, feat, refactor.
+# Scopes: readme, policy-template, agents-template, disclosure-template,
+# readme-template, contributing-template, pull-request-template,
+# gitmessage-template, git, github, license.
+# Pick one dominant scope or omit it. The vocabulary is preferred, not enforced.
+# For a breaking change, add ! after the type or scope and explain it in the body.
+#
+# Add each applicable trailer as an uncommented line at the end, after a blank
+# line. Repeat Assisted-by for multiple materially involved tools or models.
+# Assisted-by: <tool>, <model identifier or not recorded> (<role or extent>)
+# Checks-run: <check actually run> — <observed result>
+# Ground-truth-source: <independent source of an added or changed reference value>
+# Roles: plan, partial implementation, full implementation, review, refactor.
+# Omit Checks-run when no check ran; omit Ground-truth-source when no reference
+# value changed. A property test does not need a Ground-truth-source trailer.
+#
+# Record agent-made commits with Assisted-by, including edits to prose.
+# Author-edited prose is disclosed at file or release level in the README.
+# Git uses this file only for editor-based commits after commit.template is set;
+# git commit -m bypasses it. Review the final message, including squash commits.
