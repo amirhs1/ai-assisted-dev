@@ -45,10 +45,12 @@ ai-assisted-dev/
 Every file here is normative prose. The maintainer originates its judgement;
 approving a diff you drafted is not the same as originating it.
 
-| Path                                                        | Your role                                                                                                                                                             |
-| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Stored templates, `README.md`, `.gitmessage`                | On a branch, apply wording the maintainer supplied, or propose candidate wording marked as a proposal in the pull request. Fix typos, links, and formatting directly. |
-| `AGENTS.md`, `CLAUDE.md`, `.claude/`, `LICENSE`, `.github/` | Never edit. Draft the change in the pull request description or a comment instead.                                                                                    |
+| Path                                            | Tier         | Your role                                                                                                                                                             |
+| ----------------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Stored templates, `README.md`                   | Instrumented | On a branch, apply wording the maintainer supplied, or propose candidate wording marked as a proposal in the pull request. Fix typos, links, and formatting directly. |
+| Issues, pull requests, commit messages          | Instrumented | Draft when the maintainer asks.                                                                                                                                       |
+| `.gitmessage`, `.gitignore`, `.github/`         | Instrumented | Write when the maintainer asks, on a branch.                                                                                                                          |
+| `AGENTS.md`, `CLAUDE.md`, `.claude/`, `LICENSE` | —            | Never edit. Draft the change in the pull request description or a comment instead.                                                                                    |
 
 - A path not listed is treated like the stored templates.
 - The gate is the pull request: a ruleset on `main` requires one, and only the

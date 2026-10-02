@@ -27,11 +27,25 @@ To use a copied `.gitmessage` for editor-based commits, run
 `git config commit.template .gitmessage` in that project. Git does not apply it
 to `git commit -m`; check the final message for completed provenance trailers.
 
-## AI disclosure
+## AI-assisted development
 
-The author sets the substantive guidance and is responsible for the published
-wording. AI tools have assisted with editing and drafting revisions to these
-files.
+I use AI tools in this project. Each part has a tier, set by whether I can
+evaluate AI output there. The table records the checks or human review applied
+to each part:
+
+- **Instrumented** — I could write it myself. AI is used for review,
+  refactoring, and alternative implementations, not first drafts of core logic.
+
+| Part                                    | Tier         | Checks or human review                                                                                 |
+| --------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+| Stored templates, `README.md`           | Instrumented | I design and write the first draft of each file; AI revises; I review every line and finalize wording. |
+| Issues, pull requests, commit messages  | Instrumented | AI drafts at my request; I review each before it is posted or merged.                                  |
+| `.gitmessage`, `.gitignore`, `.github/` | Instrumented | AI writes at my request; I review the diff in a pull request.                                          |
+
+Where a tier is unclear, I treat the part as Supervised. Tiers last reviewed:
+2026-10-02.
+
+Instructions for AI agents: [`AGENTS.md`](AGENTS.md).
 
 ## Licence
 
