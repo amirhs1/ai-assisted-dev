@@ -35,6 +35,10 @@ to each part:
 
 - **Instrumented** — I could write it myself. AI is used for review,
   refactoring, and alternative implementations, not first drafts of core logic.
+- **Supervised** — AI drafts; I read every line and set the acceptance criteria
+  and test values.
+- **Delegated** — AI generates; I can't fully evaluate it. It is covered by
+  tests, kept isolated and low-risk, and not presented as my work.
 
 | Part                                    | Tier         | Checks or human review                                                                                 |
 | --------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------ |
