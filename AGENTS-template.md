@@ -160,6 +160,8 @@ Ground-truth-source: <independent source of a reference value>
   verification.>
 - Record the assistance once. If your tool adds `Co-authored-by:`
   automatically, <remove it | keep it and skip `Assisted-by:`>.
+- If the `commit-msg` hook rejects a commit, fix the message. Never use
+  `--no-verify`.
 
 ## When stuck
 
