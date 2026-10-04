@@ -12,7 +12,8 @@ Design rules:
   3. Executable over descriptive. Commands beat prose.
   4. Self-contained. Every rule the agent must follow is written here in full.
      Other files may be named as further reading, never as the only place a
-     rule lives.
+     rule lives. A procedure that applies only when one task runs may live in
+     a skill, loaded when that task starts.
   5. One real file. If other AI-coding agent files (e.g., CLAUDE.md) exist,
      they import this one (`@AGENTS.md`) and add only tool-specific facts.
 -->
@@ -46,6 +47,7 @@ not make obvious. -->
 <root>/
   <dir>/    <what it owns; what it must not depend on>
   <dir>/    <>
+  .agents/skills/  <name>/SKILL.md per task; .claude/skills is a symlink to it
 ```
 
 - `<A>` may depend on `<B>`; the reverse is a bug.
