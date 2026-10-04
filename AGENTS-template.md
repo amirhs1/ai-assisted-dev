@@ -65,6 +65,14 @@ not make obvious. -->
 
 - <e.g. units are <unit> everywhere; conversion happens only at <boundary>>
 
+<!-- Optional. -->
+
+## Settled decisions
+
+Do not reopen these or report them as findings:
+
+- <decision> — <where it was decided>
+
 ## Where you may write
 
 <!-- Repeats the tier table in the README's AI section, with the agent's role
@@ -89,12 +97,14 @@ in each tier. Change both in the same commit. -->
 
 ## How to work here
 
-1. Read the relevant code and say what it does before proposing a change.
-2. Plan first when the change spans files or the approach is uncertain: name
+1. Check the branch, the working tree, and `HEAD` yourself; a snapshot given at
+   session start can be stale.
+2. Read the relevant code and say what it does before proposing a change.
+3. Plan first when the change spans files or the approach is uncertain: name
    the files that will change and what could break.
-3. Implement only against acceptance criteria the maintainer has approved. You
+4. Implement only against acceptance criteria the maintainer has approved. You
    may propose criteria or ask; do not decide them.
-4. Change only what was asked. Propose unrelated improvements separately.
+5. Change only what was asked. Propose unrelated improvements separately.
 
 ## Do not
 
@@ -129,6 +139,9 @@ in each tier. Change both in the same commit. -->
 - <Which git actions need the maintainer's approval here — e.g. "ask before
   staging, committing, and pushing", or "you may commit and push to a topic
   branch; never to `<main>`".>
+- <Or, in place of the bullet above:> Authorizing a task covers the branch,
+  commits, push, a draft pull request, and the routine label. Actions only the
+  maintainer may take: <list>.
 - Show any history-rewriting command (rebase, amend, squash) before running it.
 - Each commit lands on `<main>` unchanged; keep it coherent.
 - Never force-push, delete tags or releases, or change branch protection,
