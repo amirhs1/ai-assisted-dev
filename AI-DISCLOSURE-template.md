@@ -130,10 +130,16 @@ Where assistance was recorded by commit trailer, query the range identified
 above:
 
 ```bash
-git log --format='%h %s%n%(trailers:key=Assisted-by)%n%(trailers:key=Ground-truth-source)' <range>
+git log --no-merges --grep='^Assisted-by:' --format='%h %ad %s' --date=short <range>
+git log --no-merges --format='%h %s%n%B' <range> |
+  grep -E '^[0-9a-f]{7,} |^(Assisted-by|Ground-truth-source|Checks-run):'
 ```
 
-This query reads trailers in commits that remain in the selected history. An
+The first command lists every commit with an `Assisted-by:` line, wherever it
+sits in the message. The second prints each commit's hash and subject, then its
+provenance lines. `--no-merges` keeps the merge commit, which repeats the pull
+request description in a repository that merges with merge commits, from being
+counted twice. Both read only commits that remain in the selected history. An
 absent trailer alone does not establish that no AI was used. Prose or other
 non-code assistance may instead be recorded by file and release; describe that
 record and its limits here.
