@@ -1,6 +1,6 @@
 ---
 name: report-back
-description: Report back in chat at the end of a task, in the short or the full form. Use at the end of every task.
+description: Report back in chat at the end of a task, in the short or the full form. Use at the end of every task and whenever you stop for a decision.
 ---
 
 # Report back

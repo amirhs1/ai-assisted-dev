@@ -70,6 +70,7 @@ diff you drafted is not the same as originating it.
 3. Change only what was asked. Propose unrelated improvements separately.
 4. Keep templates short. Length is the failure mode here, not the goal: every
    addition is one line unless it replaces something.
+5. When a task matches a skill in `.agents/skills/`, load it before you start.
 
 ## Do not
 
