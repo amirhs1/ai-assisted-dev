@@ -81,9 +81,11 @@ in each tier. Change both in the same commit. -->
   says.
 - Apply only wording the maintainer supplies: `AI-POLICY.md`,
   `<other governing prose>`.
+- Change `.github/workflows/` and `CODEOWNERS` only with explicit approval for
+  that change from the maintainer or the person running you. The tier table
+  then sets how closely the change is reviewed.
 - Never edit these; draft a change for the maintainer instead:
-  `.github/workflows/`, `CODEOWNERS`, `<generated or vendored paths>`,
-  `<lockfiles>`.
+  `<generated or vendored paths>`, `<lockfiles>`.
 
 ## How to work here
 
@@ -99,15 +101,18 @@ in each tier. Change both in the same commit. -->
 - Invent a reference value, expected output, or domain invariant that certifies
   your own implementation. Reference values come from a derivation, the
   literature, measured data, or an independent implementation. If none exists,
-  test a property (symmetry, conservation, invariance) and say that is what you
-  did.
+  test <a property the result must satisfy in this field> and say that is what
+  you did.
 - Weaken or delete a test to make a suite pass. Report the failure instead.
 - Report a number that does not trace back to code that actually ran or to a
   source the maintainer checked.
 - Present a citation as verified. A reference you suggest is a lead until the
   maintainer has checked it.
 - Invent the reason for a change in a commit, pull request, or changelog.
-  Describe what changed; copy-edit a reason only if the maintainer gave one.
+  Take it from the linked issue, from the maintainer (in the pull request, or
+  during the session, recorded as `Why:`), or from an outside report the change
+  answers, such as a bug report, security alert, or CI failure. Copy,
+  copy-edit, or link it; otherwise describe only what changed.
 - Decide <domain choices, e.g. observables, estimators, fitting ranges>.
   Propose options; the maintainer decides.
 - Add or upgrade a dependency without asking.
@@ -125,13 +130,14 @@ in each tier. Change both in the same commit. -->
 - Each commit lands on `<main>` unchanged; keep it coherent.
 - Never force-push, delete tags or releases, or change branch protection,
   repository settings, or secrets.
-- Open issues or pull requests, or post comments, only when the maintainer
-  asks.
+- You may open issues and pull requests, write commits, and post comments.
+  The person running you is responsible for what you submit.
 
 ## Commit format
 
-Use the `.gitmessage` as commit template if it is defined in the repo;
-otherwise, use the following:
+Every AI-assisted commit follows this format and ends with `Assisted-by:`,
+whether or not the repository has a `.gitmessage`. <`.gitmessage` is the
+template for commits written in an editor.>
 
 <!-- Adjust the first line to the project's commit convention. -->
 
@@ -142,7 +148,7 @@ otherwise, use the following:
 
 Why: <reason supplied by the maintainer; omit for a trivial change>
 
-Assisted-by: <tool>, <model identifier or not recorded> (<role or extent>)
+Assisted-by: <tool>, <model identifier or not recorded> (<role>)
 Checks-run: <check actually run> — <observed result>
 Ground-truth-source: <independent source of a reference value>
 ```
@@ -151,9 +157,13 @@ Ground-truth-source: <independent source of a reference value>
   gave you one; otherwise leave it out or ask. Never write a placeholder.
 - All trailers sit in one final paragraph, one per line, with no blank line
   between them and nothing after them. `Why:` stays in the body above it.
-- `Assisted-by:` names your actual model and role. Use `(full implementation)`
-  when you wrote essentially all of it. If you don't know the model, write
-  `not recorded`; never guess or fill it in later from memory.
+- `Assisted-by:` names your actual model and one role, with no free detail:
+  `plan`, `partial implementation`, `full implementation`, `review`,
+  `refactor`, or `transcription` (a person wrote the content; you entered,
+  formatted, or committed it without adding content). The body carries the
+  detail. Use `(full implementation)` when you wrote essentially all of it. If
+  you don't know the model, write `not recorded`; never guess or fill it in
+  later from memory.
 - Add `Ground-truth-source:` only when the commit adds or changes a reference
   value. Omit it for a property test without a reference value.
 - <Optional: `Checks-run: <check> — <result>` for checks actually run that CI

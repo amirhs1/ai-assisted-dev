@@ -19,11 +19,12 @@
 # after them; Why: stays in the body above that paragraph. Repeat Assisted-by
 # for multiple materially involved tools or models.
 #
-# Assisted-by: <tool>, <model identifier or not recorded> (<role or extent>)
+# Assisted-by: <tool>, <model identifier or not recorded> (<role>)
 # Checks-run: <check actually run> — <observed result>
 # Ground-truth-source: <independent source for an added or changed reference value>
 #
-# Roles: plan, partial implementation, full implementation, review, refactor.
+# Roles: plan, partial implementation, full implementation, review, refactor,
+# transcription.
 #
 # Omit Checks-run when no check ran.
 # Omit Ground-truth-source when no reference value changed.

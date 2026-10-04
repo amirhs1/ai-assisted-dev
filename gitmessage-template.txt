@@ -25,11 +25,12 @@
 # for multiple materially involved tools or models. Do not infer or
 # reconstruct trailers from memory; record only known provenance.
 #
-# Assisted-by: <tool>, <model identifier or not recorded> (<role or extent>)
+# Assisted-by: <tool>, <model identifier or not recorded> (<role>)
 # Checks-run: <check actually run> — <observed result>
 # Ground-truth-source: <independent source of an added or changed reference value>
 #
-# Roles: plan, partial implementation, full implementation, review, refactor.
+# Roles: plan, partial implementation, full implementation, review, refactor,
+# transcription.
 #
 # Omit Checks-run when no check ran.
 # Omit Ground-truth-source when no reference value changed.
