@@ -10,11 +10,11 @@ available.
 
 | File                                                                         | Use in an adopting project                                                         |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [`agents-template.md`](agents-template.md)                                   | Adapt as `AGENTS.md` for coding agents.                                            |
-| [`ai-policy-template.md`](ai-policy-template.md)                             | Adapt as `AI-POLICY.md` for contributors.                                          |
-| [`ai-disclosure-template.md`](ai-disclosure-template.md)                     | Adapt as a disclosure for a specific research output.                              |
-| [`readme-ai-section-template.md`](readme-ai-section-template.md)             | Add an AI section to the project's `README.md`.                                    |
-| [`contributing-ai-section-template.md`](contributing-ai-section-template.md) | Add a section to `CONTRIBUTING.md`; its second block fits an existing PR template. |
+| [`AGENTS-template.md`](AGENTS-template.md)                                   | Adapt as `AGENTS.md` for coding agents.                                            |
+| [`AI-POLICY-template.md`](AI-POLICY-template.md)                             | Adapt as `AI-POLICY.md` for contributors.                                          |
+| [`AI-DISCLOSURE-template.md`](AI-DISCLOSURE-template.md)                     | Adapt as a disclosure for a specific research output.                              |
+| [`README-ai-section-template.md`](README-ai-section-template.md)             | Add an AI section to the project's `README.md`.                                    |
+| [`CONTRIBUTING-ai-section-template.md`](CONTRIBUTING-ai-section-template.md) | Add a section to `CONTRIBUTING.md`; its second block fits an existing PR template. |
 | [`pull-request-template.md`](pull-request-template.md)                       | Use as a complete `.github/pull_request_template.md` when needed.                  |
 | [`gitmessage-template.txt`](gitmessage-template.txt)                         | Copy to `.gitmessage` and adapt the commit convention.                             |
 
