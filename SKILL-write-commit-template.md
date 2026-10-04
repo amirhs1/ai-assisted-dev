@@ -22,8 +22,8 @@ The rules live in AGENTS.md, "Commit format"; this skill is the procedure.
 5. End with one trailer block, with no blank line in it and nothing after it:
    `Assisted-by: <tool>, <model id or not recorded> (<role>)`, then
    `Checks-run:` for each check you ran, then `Ground-truth-source:` if a
-   reference value changed. One role: `plan`, `partial implementation`,
-   `full implementation`, `review`, `refactor`, or `transcription`.
+   reference value changed. Pick the role as AGENTS.md, "Commit format",
+   defines it.
 6. Commit from a file: `git commit -F <message file>`. Never add an AI
    `Co-authored-by:` line, and never use `--no-verify`.
 7. Check that git reads every trailer: `git log -1 --format='%(trailers)'`.

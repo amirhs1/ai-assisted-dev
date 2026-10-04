@@ -23,8 +23,15 @@
 # Checks-run: <check actually run> — <observed result>
 # Ground-truth-source: <independent source for an added or changed reference value>
 #
-# Roles: plan, partial implementation, full implementation, review, refactor,
-# transcription.
+# Roles: pick the first that fits.
+#   full implementation: the tool wrote essentially all of the committed content.
+#   partial implementation: the tool wrote part of it; a person wrote the rest.
+#   refactor: the tool restructured existing content without changing what it
+#     does or says.
+#   plan: the tool proposed the approach or steps; a person wrote the content.
+#   review: the tool reviewed or tested a person's work and wrote none of it.
+#   transcription: a person wrote the content; the tool entered, formatted, or
+#     committed it without adding content.
 #
 # Omit Checks-run when no check ran.
 # Omit Ground-truth-source when no reference value changed.
