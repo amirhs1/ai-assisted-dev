@@ -16,6 +16,7 @@ added here when available.
 | [`README-ai-section-template.md`](README-ai-section-template.md)             | Add an AI section to the project's `README.md`.                                    |
 | [`CONTRIBUTING-ai-section-template.md`](CONTRIBUTING-ai-section-template.md) | Add a section to `CONTRIBUTING.md`; its second block fits an existing PR template. |
 | [`pull-request-template.md`](pull-request-template.md)                       | Use as a complete `.github/pull_request_template.md` when needed.                  |
+| [`chat-report-template.md`](chat-report-template.md)                         | Give agents the short and full forms of their report in chat.                      |
 | [`gitmessage-template.txt`](gitmessage-template.txt)                         | Copy to `.gitmessage` and adapt the commit convention.                             |
 | [`claude-settings-template.json`](claude-settings-template.json)             | Copy to `.claude/settings.json` for Claude Code.                                   |
 
