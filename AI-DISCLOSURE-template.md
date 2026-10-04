@@ -88,8 +88,8 @@ State plainly which of the following hold.
       than values. Affected tests: `<list>`.
 - [ ] Every numerical result reported in `<manuscript / report>` is traceable
       to a recorded computation or source that the author checked and accepted.
-- [ ] Domain-level and methodological decisions — <observable definitions,
-      error estimators, aggregation semantics, model choices> — were explicitly
+- [ ] Domain-level and methodological decisions — <what to measure, which
+      method or model to use, which data to include> — were explicitly
       approved by the author rather than delegated to an AI system.
 - [ ] Every external reference cited in `<paths>` was opened by the author and
       checked against the claim it supports before citation.
