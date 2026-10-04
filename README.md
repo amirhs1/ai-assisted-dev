@@ -61,14 +61,10 @@ Instructions for AI agents: [`AGENTS.md`](AGENTS.md).
 
 ## Licence
 
-Everything in this repository except the tools is licensed under
-[Creative Commons Attribution 4.0 International](LICENSE) (CC BY 4.0), the
-templates included. The tools in `scripts/`, `.githooks/`, and `tests/` are
-licensed under the [MIT License](LICENSE-MIT). When redistributing an adapted
-template, credit its source, link to the licence, and indicate that you changed
-it. An adopting project's README or attribution notice can carry this
-information without adding source notes to every instruction file. The
-separately published article carries its own CC BY 4.0 notice on the website.
+This repository, the templates and tools included, is licensed under the
+[MIT License](LICENSE). Keep its copyright and permission notice with copies of
+a template or tool, as the licence requires. The AI-Assisted Development
+Guideline is published separately under CC BY 4.0.
 
 ## Status
 

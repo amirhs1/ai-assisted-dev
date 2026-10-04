@@ -1,10 +1,10 @@
 # AGENTS.md — ai-assisted-dev
 
-Public templates (CC BY 4.0) for projects that use AI in software development
-or research: an `AGENTS.md`, an AI policy, a disclosure, README and
-CONTRIBUTING sections, a pull request template, a chat report, five agent
-skills, a commit-message template, and a Claude Code settings file. They
-accompany a guideline published separately; adopters copy and adapt them.
+Public templates (MIT) for projects that use AI in software development or
+research: an `AGENTS.md`, an AI policy, a disclosure, README and CONTRIBUTING
+sections, a pull request template, a chat report, five agent skills, a
+commit-message template, and a Claude Code settings file. They accompany a
+guideline published separately; adopters copy and adapt them.
 
 ## Commands
 
@@ -32,7 +32,7 @@ ai-assisted-dev/
   .gitmessage                     this repository's own commit template
   AGENTS.md, CLAUDE.md, .claude/  this repository's own agent files
   .agents/skills/                 this repository's own skills
-  LICENSE                         CC BY 4.0
+  LICENSE                         MIT
 ```
 
 ## Vocabulary
@@ -49,13 +49,13 @@ Every file here is normative prose, except the tools in `scripts/`,
 `.githooks/`, and `tests/`. The maintainer originates its judgement; approving a
 diff you drafted is not the same as originating it.
 
-| Path                                                           | Tier         | Your role                                                                                                                                                             |
-| -------------------------------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Stored templates, `README.md`                                  | Instrumented | On a branch, apply wording the maintainer supplied, or propose candidate wording marked as a proposal in the pull request. Fix typos, links, and formatting directly. |
-| Issues, pull requests, commit messages                         | Instrumented | Draft when the maintainer asks.                                                                                                                                       |
-| `.gitmessage`, `.gitignore`, `.github/`                        | Instrumented | Write when the maintainer asks, on a branch.                                                                                                                          |
-| `scripts/`, `.githooks/`, `tests/`                             | Supervised   | Draft against the acceptance criteria in the issue; expect every line read. Every script is POSIX `sh`, passes ShellCheck, and has passing and failing fixtures.      |
-| `AGENTS.md`, `CLAUDE.md`, `.claude/`, `LICENSE`, `LICENSE-MIT` | —            | Never edit. Draft the change in the pull request description or a comment instead.                                                                                    |
+| Path                                            | Tier         | Your role                                                                                                                                                             |
+| ----------------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Stored templates, `README.md`                   | Instrumented | On a branch, apply wording the maintainer supplied, or propose candidate wording marked as a proposal in the pull request. Fix typos, links, and formatting directly. |
+| Issues, pull requests, commit messages          | Instrumented | Draft when the maintainer asks.                                                                                                                                       |
+| `.gitmessage`, `.gitignore`, `.github/`         | Instrumented | Write when the maintainer asks, on a branch.                                                                                                                          |
+| `scripts/`, `.githooks/`, `tests/`              | Supervised   | Draft against the acceptance criteria in the issue; expect every line read. Every script is POSIX `sh`, passes ShellCheck, and has passing and failing fixtures.      |
+| `AGENTS.md`, `CLAUDE.md`, `.claude/`, `LICENSE` | —            | Never edit. Draft the change in the pull request description or a comment instead.                                                                                    |
 
 - A path not listed is treated like the stored templates.
 - The gate is the pull request: a ruleset on `main` requires one, and only the
