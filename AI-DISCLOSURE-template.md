@@ -133,13 +133,15 @@ above:
 git log --format='%h %s%n%(trailers:key=Assisted-by)%n%(trailers:key=Ground-truth-source)' <range>
 ```
 
-This query reads trailers in commits that remain in the selected history. A
-squash merge creates a new commit: inspect its final message and retain or
-restore the relevant trailers there. If individual commit details were lost,
-identify the pull request or another surviving record in section 3 and explain
-the gap in section 5. An absent trailer alone does not establish that no AI was
-used. Prose or other non-code assistance may instead be recorded by file and
-release; describe that record and its limits here.
+This query reads trailers in commits that remain in the selected history. An
+absent trailer alone does not establish that no AI was used. Prose or other
+non-code assistance may instead be recorded by file and release; describe that
+record and its limits here.
+
+<Only for a project that squash-merges:> A squash merge creates a new commit:
+inspect its final message and retain or restore the relevant trailers there.
+If individual commit details were lost, identify the pull request or another
+surviving record in section 3 and explain the gap in section 5.
 
 ## 7. Revision history
 

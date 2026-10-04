@@ -32,5 +32,7 @@
 # Record materially agent-assisted commits with Assisted-by, including prose edits.
 # Author-edited prose is disclosed at the file or release level in the README.
 #
+# Each commit lands on the main branch unchanged; keep it coherent.
+#
 # Git uses this template only for editor-based commits when commit.template is set.
-# git commit -m bypasses it. Review the final message, including squash commits.
+# git commit -m bypasses it. Review the final message.

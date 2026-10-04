@@ -36,7 +36,7 @@
 # A property test does not require a Ground-truth-source trailer.
 #
 # Decide how to record prose assistance and document gaps in the history.
-# Review the final commit message after rebasing or squash merging.
+# Each commit lands on the main branch unchanged; keep it coherent.
 #
 # Git uses this template only for editor-based commits when commit.template is set.
-# git commit -m bypasses it. Review the final message, including squash commits.
+# git commit -m bypasses it. Review the final message.

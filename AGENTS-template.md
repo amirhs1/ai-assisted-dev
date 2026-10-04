@@ -122,6 +122,7 @@ in each tier. Change both in the same commit. -->
   staging, committing, and pushing", or "you may commit and push to a topic
   branch; never to `<main>`".>
 - Show any history-rewriting command (rebase, amend, squash) before running it.
+- Each commit lands on `<main>` unchanged; keep it coherent.
 - Never force-push, delete tags or releases, or change branch protection,
   repository settings, or secrets.
 - Open issues or pull requests, or post comments, only when the maintainer
