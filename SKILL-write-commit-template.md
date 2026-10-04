@@ -19,7 +19,8 @@ The rules live in AGENTS.md, "Commit format"; this skill is the procedure.
    given and which you wrote. This is where the detail of your role goes.
 4. `Why:` only for a reason the maintainer supplied, in the issue, the pull
    request, or this session. Otherwise leave it out.
-5. End with one trailer block, with no blank line in it and nothing after it:
+5. End with one trailer block, after a blank line, with no blank line in it
+   and nothing after it:
    `Assisted-by: <tool>, <model id or not recorded> (<role>)`, then
    `Checks-run:` for each check you ran, then `Ground-truth-source:` if a
    reference value changed. Pick the role as AGENTS.md, "Commit format",
