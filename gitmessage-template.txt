@@ -7,6 +7,7 @@
 # HOW TO USE
 # Copy this file to .gitmessage in your project, then run:
 #   git config commit.template .gitmessage
+#   git config core.hooksPath .githooks    (if the project keeps hooks there)
 # The template opens for editor-based commits. git commit -m bypasses it.
 # Git removes these comment lines from an edited commit message by default.
 #
@@ -18,22 +19,32 @@
 # For a breaking change, add ! after the type or scope and explain it in the body.
 #
 # AI PROVENANCE, IF YOUR PROJECT USES IT
-# Add each applicable trailer as an uncommented line at the end, after a blank
-# line. Repeat Assisted-by for multiple materially involved tools or models. Do
-# not infer or reconstruct trailers from memory; record only known provenance.
+# Add each applicable trailer as an uncommented line. All trailers sit in one
+# final paragraph, one per line, with no blank line between them and nothing
+# after them; Why: stays in the body above that paragraph. Repeat Assisted-by
+# for multiple materially involved tools or models. Do not infer or
+# reconstruct trailers from memory; record only known provenance.
 #
-# Assisted-by: <tool>, <model identifier or not recorded> (<role or extent>)
+# Assisted-by: <tool>, <model identifier or not recorded> (<role>)
 # Checks-run: <check actually run> — <observed result>
 # Ground-truth-source: <independent source of an added or changed reference value>
 #
-# Roles: plan, partial implementation, full implementation, review, refactor.
+# Roles: pick the first that fits.
+#   full implementation: the tool wrote essentially all of the committed content.
+#   partial implementation: the tool wrote part of it; a person wrote the rest.
+#   refactor: the tool restructured existing content without changing what it
+#     does or says.
+#   plan: the tool proposed the approach or steps; a person wrote the content.
+#   review: the tool reviewed or tested a person's work and wrote none of it.
+#   transcription: a person wrote the content; the tool entered, formatted, or
+#     committed it without adding content.
 #
 # Omit Checks-run when no check ran.
 # Omit Ground-truth-source when no reference value changed.
 # A property test does not require a Ground-truth-source trailer.
 #
 # Decide how to record prose assistance and document gaps in the history.
-# Review the final commit message after rebasing or squash merging.
+# Each commit lands on the main branch unchanged; keep it coherent.
 #
 # Git uses this template only for editor-based commits when commit.template is set.
-# git commit -m bypasses it. Review the final message, including squash commits.
+# git commit -m bypasses it. Review the final message.

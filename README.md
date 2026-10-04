@@ -1,22 +1,29 @@
 # AI-Assisted Development Templates
 
-This repository holds six Markdown templates and one Git commit-message
-template for projects that use AI in software development or research. The
-companion _AI-Assisted Development Guideline_ will be published separately on
-the author's Jekyll website and its public link will be added here when
-available.
+This repository holds Markdown templates, a Git commit-message template, and a
+Claude Code settings template for projects that use AI in software development
+or research. The companion _AI-Assisted Development Guideline_ will be
+published separately on the author's Jekyll website and its public link will be
+added here when available.
 
 ## Template files
 
 | File                                                                         | Use in an adopting project                                                         |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [`agents-template.md`](agents-template.md)                                   | Adapt as `AGENTS.md` for coding agents.                                            |
-| [`ai-policy-template.md`](ai-policy-template.md)                             | Adapt as `AI-POLICY.md` for contributors.                                          |
-| [`ai-disclosure-template.md`](ai-disclosure-template.md)                     | Adapt as a disclosure for a specific research output.                              |
-| [`readme-ai-section-template.md`](readme-ai-section-template.md)             | Add an AI section to the project's `README.md`.                                    |
-| [`contributing-ai-section-template.md`](contributing-ai-section-template.md) | Add a section to `CONTRIBUTING.md`; its second block fits an existing PR template. |
+| [`AGENTS-template.md`](AGENTS-template.md)                                   | Adapt as `AGENTS.md` for coding agents.                                            |
+| [`AI-POLICY-template.md`](AI-POLICY-template.md)                             | Adapt as `AI-POLICY.md` for contributors.                                          |
+| [`AI-DISCLOSURE-template.md`](AI-DISCLOSURE-template.md)                     | Adapt as a disclosure for a specific research output.                              |
+| [`README-ai-section-template.md`](README-ai-section-template.md)             | Add an AI section to the project's `README.md`.                                    |
+| [`CONTRIBUTING-ai-section-template.md`](CONTRIBUTING-ai-section-template.md) | Add a section to `CONTRIBUTING.md`; its second block fits an existing PR template. |
 | [`pull-request-template.md`](pull-request-template.md)                       | Use as a complete `.github/pull_request_template.md` when needed.                  |
+| [`chat-report-template.md`](chat-report-template.md)                         | Give agents the short and full forms of their report in chat.                      |
+| [`SKILL-write-commit-template.md`](SKILL-write-commit-template.md)           | Copy to `.agents/skills/write-commit/SKILL.md`.                                    |
+| [`SKILL-open-pull-request-template.md`](SKILL-open-pull-request-template.md) | Copy to `.agents/skills/open-pull-request/SKILL.md`.                               |
+| [`SKILL-open-issue-template.md`](SKILL-open-issue-template.md)               | Copy to `.agents/skills/open-issue/SKILL.md`.                                      |
+| [`SKILL-post-comment-template.md`](SKILL-post-comment-template.md)           | Copy to `.agents/skills/post-comment/SKILL.md`.                                    |
+| [`SKILL-report-back-template.md`](SKILL-report-back-template.md)             | Copy to `.agents/skills/report-back/SKILL.md`.                                     |
 | [`gitmessage-template.txt`](gitmessage-template.txt)                         | Copy to `.gitmessage` and adapt the commit convention.                             |
+| [`claude-settings-template.json`](claude-settings-template.json)             | Copy to `.claude/settings.json` for Claude Code.                                   |
 
 The two PR options serve different starting points: add the short AI block to
 an existing PR template, or copy the complete PR template. Use one AI prompt in
