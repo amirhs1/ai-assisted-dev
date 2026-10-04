@@ -21,8 +21,8 @@ how each part was checked, is described in the README.>
 - Reported numbers trace back to the code or source that produced them.
 - Check every citation against its source before using it; an AI-suggested
   reference is a lead, not evidence.
-- <Decisions about <domain choices, e.g. observables, estimators, fitting
-  ranges> are made by a person, not an AI tool.>
+- <Decisions about <domain choices, e.g. what to measure, which method or model
+  to use, which data to include> are made by a person, not an AI tool.>
 
 ## Disclosure
 

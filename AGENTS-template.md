@@ -125,8 +125,8 @@ in each tier. Change both in the same commit. -->
   during the session, recorded as `Why:`), or from an outside report the change
   answers, such as a bug report, security alert, or CI failure. Copy,
   copy-edit, or link it; otherwise describe only what changed.
-- Decide <domain choices, e.g. observables, estimators, fitting ranges>.
-  Propose options; the maintainer decides.
+- Decide <domain choices, e.g. what to measure, which method or model to use,
+  which data to include>. Propose options; the maintainer decides.
 - Add or upgrade a dependency without asking.
 - Send credentials, private or restricted data, or material the maintainer has
   not cleared to an external service.
