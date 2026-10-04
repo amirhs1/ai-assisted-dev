@@ -2,7 +2,9 @@
   "attribution": { "commit": "", "pr": "" },
   "permissions": {
     "ask": [
+      "Bash(gh pr merge)",
       "Bash(gh pr merge *)",
+      "Bash(gh pr ready)",
       "Bash(gh pr ready *)",
       "Bash(gh release create *)",
       "Bash(gh release edit *)",
