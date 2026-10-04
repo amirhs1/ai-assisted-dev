@@ -2,8 +2,9 @@
 
 Public templates (CC BY 4.0) for projects that use AI in software development
 or research: an `AGENTS.md`, an AI policy, a disclosure, README and
-CONTRIBUTING sections, a pull request template, and a commit-message template.
-They accompany a guideline published separately; adopters copy and adapt them.
+CONTRIBUTING sections, a pull request template, a chat report, five agent
+skills, a commit-message template, and a Claude Code settings file. They
+accompany a guideline published separately; adopters copy and adapt them.
 
 ## Commands
 
@@ -24,7 +25,7 @@ the expected output.
 
 ```text
 ai-assisted-dev/
-  *-template.md, *-template.txt   stored templates, for adopters
+  *-template.*                    stored templates, for adopters
   pull-request-template.md        stored template
   README.md                       the template table, licence, status
   .gitmessage                     this repository's own commit template
@@ -112,10 +113,18 @@ Assisted-by: <tool>, <model id or not recorded> (<role>)
 Checks-run: <check actually run> — <observed result>
 ```
 
-- End every commit message with one trailer block: one trailer per line, no
-  blank line between them, nothing after them.
-- Roles: plan, partial implementation, full implementation, review, or
-  refactor. If the role is not clear, ask before committing.
+- End every commit message with one trailer block, after a blank line: one
+  trailer per line, no blank line between them, nothing after them.
+- Roles: pick the first that fits. If none clearly fits, ask before
+  committing.
+  - `full implementation`: you wrote essentially all of the committed content.
+  - `partial implementation`: you wrote part of it; a person wrote the rest.
+  - `refactor`: you restructured existing content without changing what it
+    does or says.
+  - `plan`: you proposed the approach or steps; a person wrote the content.
+  - `review`: you reviewed or tested a person's work and wrote none of it.
+  - `transcription`: a person wrote the content; you entered, formatted, or
+    committed it without adding content.
 - An AI-assisted commit carries `Assisted-by:` with your actual model id and
   role. If you do not know the model, write `not recorded`; never guess.
 - Add `Checks-run:` only for checks you ran.
