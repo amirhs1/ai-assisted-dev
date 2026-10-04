@@ -17,6 +17,11 @@ added here when available.
 | [`CONTRIBUTING-ai-section-template.md`](CONTRIBUTING-ai-section-template.md) | Add a section to `CONTRIBUTING.md`; its second block fits an existing PR template. |
 | [`pull-request-template.md`](pull-request-template.md)                       | Use as a complete `.github/pull_request_template.md` when needed.                  |
 | [`chat-report-template.md`](chat-report-template.md)                         | Give agents the short and full forms of their report in chat.                      |
+| [`SKILL-write-commit-template.md`](SKILL-write-commit-template.md)           | Copy to `.agents/skills/write-commit/SKILL.md`.                                    |
+| [`SKILL-open-pull-request-template.md`](SKILL-open-pull-request-template.md) | Copy to `.agents/skills/open-pull-request/SKILL.md`.                               |
+| [`SKILL-open-issue-template.md`](SKILL-open-issue-template.md)               | Copy to `.agents/skills/open-issue/SKILL.md`.                                      |
+| [`SKILL-post-comment-template.md`](SKILL-post-comment-template.md)           | Copy to `.agents/skills/post-comment/SKILL.md`.                                    |
+| [`SKILL-report-back-template.md`](SKILL-report-back-template.md)             | Copy to `.agents/skills/report-back/SKILL.md`.                                     |
 | [`gitmessage-template.txt`](gitmessage-template.txt)                         | Copy to `.gitmessage` and adapt the commit convention.                             |
 | [`claude-settings-template.json`](claude-settings-template.json)             | Copy to `.claude/settings.json` for Claude Code.                                   |
 
