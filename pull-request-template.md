@@ -31,8 +31,9 @@ If the model was not recorded, write `not recorded`; do not guess. For example:
 and reviewed the result.
 ```
 
-If a commit has an AI `Co-authored-by:` trailer, repeat its exact identity here
-so the commit and pull request records agree. Copy it from the actual commit,
-not from an example. Do not include prompts, secrets, or personal data.
+Then repeat the branch's `Assisted-by:` lines so the commit and pull request
+records agree. Copy them from the actual commits, not from an example:
+`git log --no-merges --format=%B <main>..HEAD | grep '^Assisted-by:'`. Do not
+include prompts, secrets, or personal data.
 Responsibility for the contribution remains with the contributor; see
 `AI-POLICY.md` where that policy exists.

@@ -43,6 +43,7 @@ how each part was checked, is described in the README.>
   Omit trailers that do not apply. A property test without a reference value
   does not need `Ground-truth-source:`.
 
+- AI tools are not listed as co-authors.
 - <Research projects only: each release, manuscript, or deposit also has an
   `AI-DISCLOSURE.md`.>
 

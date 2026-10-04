@@ -35,4 +35,5 @@ Pull requests that don't follow the policy may be closed without review.
 Write `None`, or name each AI tool you used (with the model, if known) and what
 it did — for example, "<tool> (<model>): drafted the parser and its tests; I
 rewrote the error handling and reviewed every line." If you don't know the
-model, write `not recorded`.
+model, write `not recorded`. Then copy the branch's `Assisted-by:` lines from
+`git log --no-merges --format=%B <main>..HEAD | grep '^Assisted-by:'`.
