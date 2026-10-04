@@ -181,12 +181,12 @@ Ground-truth-source: <independent source of a reference value>
   role that fits:
   - `full implementation`: you wrote essentially all of the committed content.
   - `partial implementation`: you wrote part of it; a person wrote the rest.
-  - `refactor`: you restructured existing content without changing what it
-    does or says.
+  - `refactor`: you chose how to restructure existing content without
+    changing what it does or says.
   - `plan`: you proposed the approach or steps; a person wrote the content.
   - `review`: you reviewed or tested a person's work and wrote none of it.
-  - `transcription`: a person wrote the content; you entered, formatted, or
-    committed it without adding content.
+  - `transcription`: a person wrote or fully specified the change; you
+    entered, moved, formatted, or committed it without adding content.
 - Add `Ground-truth-source:` only when the commit adds or changes a reference
   value. Omit it for a property test without a reference value.
 - <Optional: `Checks-run: <check> — <result>` for checks actually run that CI
