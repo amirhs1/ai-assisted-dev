@@ -47,26 +47,28 @@ to each part:
 - **Delegated** — AI generates; I can't fully evaluate it. It is covered by
   tests, kept isolated and low-risk, and not presented as my work.
 
-| Part                                    | Tier         | Checks or human review                                                                                 |
-| --------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------ |
-| Stored templates, `README.md`           | Instrumented | I design and write the first draft of each file; AI revises; I review every line and finalize wording. |
-| Issues, pull requests, commit messages  | Instrumented | AI drafts at my request; I review each before it is posted or merged.                                  |
-| `.gitmessage`, `.gitignore`, `.github/` | Instrumented | AI writes at my request; I review the diff in a pull request.                                          |
+| Part                                    | Tier         | Checks or human review                                                                                                                                                |
+| --------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Stored templates, `README.md`           | Instrumented | I design and write the first draft of each file; AI revises; I review every line and finalize wording.                                                                |
+| Issues, pull requests, commit messages  | Instrumented | AI drafts at my request; I review each before it is posted or merged.                                                                                                 |
+| `.gitmessage`, `.gitignore`, `.github/` | Instrumented | AI writes at my request; I review the diff in a pull request.                                                                                                         |
+| `scripts/`, `.githooks/`, `tests/`      | Supervised   | AI drafts against acceptance criteria I set in the issues; I read every line, and ShellCheck and each script's passing and failing fixtures must pass before I merge. |
 
 Where a tier is unclear, I treat the part as Supervised. Tiers last reviewed:
-2026-10-02.
+2026-10-04.
 
 Instructions for AI agents: [`AGENTS.md`](AGENTS.md).
 
 ## Licence
 
-The contents of this repository are licensed under
-[Creative Commons Attribution 4.0 International](LICENSE) (CC BY 4.0). When
-redistributing an adapted template, credit its source, link to the licence, and
-indicate that you changed it. An adopting project's README or attribution
-notice can carry this information without adding source notes to every
-instruction file. The separately published article carries its own CC BY 4.0
-notice on the website.
+Everything in this repository except the tools is licensed under
+[Creative Commons Attribution 4.0 International](LICENSE) (CC BY 4.0), the
+templates included. The tools in `scripts/`, `.githooks/`, and `tests/` are
+licensed under the [MIT License](LICENSE-MIT). When redistributing an adapted
+template, credit its source, link to the licence, and indicate that you changed
+it. An adopting project's README or attribution notice can carry this
+information without adding source notes to every instruction file. The
+separately published article carries its own CC BY 4.0 notice on the website.
 
 ## Status
 
