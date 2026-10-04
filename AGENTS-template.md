@@ -159,8 +159,8 @@ Ground-truth-source: <independent source of a reference value>
 - <Optional: `Checks-run: <check> — <result>` for checks actually run that CI
   does not record. Omit it otherwise. Running a check is not independent
   verification.>
-- Record the assistance once. If your tool adds `Co-authored-by:`
-  automatically, <remove it | keep it and skip `Assisted-by:`>.
+- Do not add a `Co-authored-by:` line for an AI tool; write `Assisted-by:`
+  instead.
 - If the `commit-msg` hook rejects a commit, fix the message. Never use
   `--no-verify`.
 

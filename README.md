@@ -1,10 +1,10 @@
 # AI-Assisted Development Templates
 
-This repository holds six Markdown templates and one Git commit-message
-template for projects that use AI in software development or research. The
-companion _AI-Assisted Development Guideline_ will be published separately on
-the author's Jekyll website and its public link will be added here when
-available.
+This repository holds Markdown templates, a Git commit-message template, and a
+Claude Code settings template for projects that use AI in software development
+or research. The companion _AI-Assisted Development Guideline_ will be
+published separately on the author's Jekyll website and its public link will be
+added here when available.
 
 ## Template files
 
@@ -17,6 +17,7 @@ available.
 | [`CONTRIBUTING-ai-section-template.md`](CONTRIBUTING-ai-section-template.md) | Add a section to `CONTRIBUTING.md`; its second block fits an existing PR template. |
 | [`pull-request-template.md`](pull-request-template.md)                       | Use as a complete `.github/pull_request_template.md` when needed.                  |
 | [`gitmessage-template.txt`](gitmessage-template.txt)                         | Copy to `.gitmessage` and adapt the commit convention.                             |
+| [`claude-settings-template.json`](claude-settings-template.json)             | Copy to `.claude/settings.json` for Claude Code.                                   |
 
 The two PR options serve different starting points: add the short AI block to
 an existing PR template, or copy the complete PR template. Use one AI prompt in
