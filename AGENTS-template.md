@@ -148,6 +148,8 @@ Ground-truth-source: <independent source of a reference value>
 
 - Write the subject and what changed. Add the reason only if the maintainer
   gave you one; otherwise leave it out or ask. Never write a placeholder.
+- All trailers sit in one final paragraph, one per line, with no blank line
+  between them and nothing after them. `Why:` stays in the body above it.
 - `Assisted-by:` names your actual model and role. Use `(full implementation)`
   when you wrote essentially all of it. If you don't know the model, write
   `not recorded`; never guess or fill it in later from memory.

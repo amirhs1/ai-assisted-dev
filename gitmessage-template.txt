@@ -18,9 +18,11 @@
 # For a breaking change, add ! after the type or scope and explain it in the body.
 #
 # AI PROVENANCE, IF YOUR PROJECT USES IT
-# Add each applicable trailer as an uncommented line at the end, after a blank
-# line. Repeat Assisted-by for multiple materially involved tools or models. Do
-# not infer or reconstruct trailers from memory; record only known provenance.
+# Add each applicable trailer as an uncommented line. All trailers sit in one
+# final paragraph, one per line, with no blank line between them and nothing
+# after them; Why: stays in the body above that paragraph. Repeat Assisted-by
+# for multiple materially involved tools or models. Do not infer or
+# reconstruct trailers from memory; record only known provenance.
 #
 # Assisted-by: <tool>, <model identifier or not recorded> (<role or extent>)
 # Checks-run: <check actually run> — <observed result>
