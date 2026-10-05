@@ -1,0 +1,43 @@
+One fault per skill, and a template whose name does not match its file.
+==> .agents/skills/comment-left/SKILL.md <==
+---
+name: comment-left
+description: Leave a comment in. Use when testing.
+---
+
+# Comment left
+
+<!--
+Fill every <...> or delete the line.
+-->
+==> .agents/skills/no-frontmatter/SKILL.md <==
+# No frontmatter
+
+Use when testing.
+==> .agents/skills/no-when/SKILL.md <==
+---
+name: no-when
+description: Post a comment on an issue.
+---
+==> .agents/skills/open-pr/SKILL.md <==
+---
+name: open-pull-request
+description: Open a pull request. Use when a change is ready.
+---
+==> .agents/skills/placeholders/SKILL.md <==
+---
+name: placeholders
+description: Leave placeholders in. Use when testing.
+---
+
+Push to `<main>`, then ask <reviewer> for a review.
+Open it with `gh pr create --base <main>`.
+==> .agents/skills/unclosed/SKILL.md <==
+---
+name: unclosed
+# Unclosed
+==> templates/SKILL-post-comment-template.md <==
+---
+name: comment
+description: Post a comment. Use when asked to comment.
+---

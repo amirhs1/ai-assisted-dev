@@ -1,0 +1,9 @@
+.agents/skills/comment-left/SKILL.md: line 8: template comment
+.agents/skills/no-frontmatter/SKILL.md: no frontmatter: the first line must be ---
+.agents/skills/no-when/SKILL.md: the description does not say when to use the skill: add a sentence starting "Use"
+.agents/skills/open-pr/SKILL.md: name is open-pull-request; expected open-pr
+.agents/skills/placeholders/SKILL.md: line 6: placeholder <main>
+.agents/skills/placeholders/SKILL.md: line 6: placeholder <reviewer>
+.agents/skills/unclosed/SKILL.md: the frontmatter is not closed with ---
+.agents/skills/unclosed/SKILL.md: the frontmatter has no description
+templates/SKILL-post-comment-template.md: name is comment; expected post-comment

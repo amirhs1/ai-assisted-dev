@@ -47,6 +47,26 @@ in_dir() (
   "$@"
 )
 
+# unpack <manifest> <directory>: writes out a fixture repository. A manifest
+# holds each file as a "==> path <==" line followed by the file's lines;
+# lines before the first header describe the fixture. Manifests keep fixture
+# AGENTS.md, CLAUDE.md, and skill files out of this repository's tree, where
+# an agent could load them as instructions.
+unpack() {
+  mkdir -p "$2"
+  sed -n 's/^==> \(.*\) <==$/\1/p' "$1" | while IFS= read -r path; do
+    mkdir -p "$2/$(dirname -- "$path")"
+  done
+  awk -v dir="$2" '
+    /^==> .* <==$/ {
+      if (file) close(file)
+      file = dir "/" substr($0, 5, length($0) - 8)
+      printf "" > file
+      next
+    }
+    file { print > file }' "$1"
+}
+
 # CLAUDE.md is "@AGENTS.md" on its first line, optionally followed by
 # Claude-only sections, each starting with a "## " heading.
 claude_md() {
@@ -94,6 +114,17 @@ for f in tests/check-repo-settings/pass/*.txt; do
 done
 for f in tests/check-repo-settings/fail/*.txt; do
   expect 1 "${f%.txt}.out" sh scripts/check-repo-settings.sh --file "$f"
+done
+
+# check-skills.sh runs on this repository, then on fixture repositories.
+expect 0 - sh scripts/check-skills.sh
+for f in tests/check-skills/pass/*.txt; do
+  unpack "$f" "$tmp/skills-pass-$(basename "$f" .txt)"
+  expect 0 - sh scripts/check-skills.sh "$tmp/skills-pass-$(basename "$f" .txt)"
+done
+for f in tests/check-skills/fail/*.txt; do
+  unpack "$f" "$tmp/skills-fail-$(basename "$f" .txt)"
+  expect 1 "${f%.txt}.out" sh scripts/check-skills.sh "$tmp/skills-fail-$(basename "$f" .txt)"
 done
 
 if [ "$failures" -gt 0 ]; then
