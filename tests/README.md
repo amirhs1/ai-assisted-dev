@@ -41,8 +41,8 @@ Each fixture is named after its mode.
   `Signed-off-by:`.
 - `pass/editor-comments.txt` — git comment lines, and a diff below the
   scissors line.
-- `pass/skip-*.txt` — `Merge`, `Revert`, `fixup!`, `squash!`, `amend!`:
-  skipped, though each holds an AI `Co-Authored-By:`.
+- `pass/skip-merge.txt`, `pass/skip-revert.txt` — skipped, though each holds
+  an AI `Co-Authored-By:`.
 - `fail/unknown-key.txt` — `Why:` and `Reviewed-by:` in the trailer block.
 - `fail/wrapped-line.txt` — a wrapped trailer line without an indent.
 - `fail/free-detail.txt` — extra text inside the `Assisted-by:` role.
@@ -51,6 +51,8 @@ Each fixture is named after its mode.
   `Assisted-by:`.
 - `fail/ai-co-author.txt` — `Co-Authored-By:` naming Claude.
 - `fail/outside-final-paragraph.txt` — a blank line inside the trailer block.
+- `fail/fixup.txt`, `fail/squash.txt`, `fail/amend.txt` — checked like any
+  message: each holds an AI `Co-Authored-By:`.
 
 ## `provenance-report/` — `scripts/provenance-report.sh`
 

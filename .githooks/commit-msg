@@ -13,7 +13,9 @@
 # - an Assisted-by: value is not "<tool>, <model id or not recorded> (<role>)",
 #   with one of the roles below and no free detail;
 # - a Co-authored-by: line names Claude, Anthropic, Codex, OpenAI, or Copilot.
-# Messages starting with Merge, Revert, fixup!, squash!, or amend! pass.
+# Messages starting with Merge or Revert, which git writes, pass. fixup!,
+# squash!, and amend! messages are checked: an autosquash can carry them
+# into history, and an amend! message replaces its target's message.
 #
 # Bypasses: the hook does not run for
 # - git commit --no-verify (-n);
@@ -47,7 +49,7 @@ function ai_coauthor(line,    s) {
 
 END {
   while (n > 0 && msg[n] ~ /^[ \t]*$/) n--
-  if (n == 0 || msg[1] ~ /^(Merge|Revert|fixup!|squash!|amend!)( |$)/) exit 0
+  if (n == 0 || msg[1] ~ /^(Merge|Revert)( |$)/) exit 0
 
   split(keys, list, " ")
   for (i in list) allowed[list[i]] = 1
