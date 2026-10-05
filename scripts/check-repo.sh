@@ -88,6 +88,14 @@ expect 0 $d/pass/none.out in_dir "$tmp/provenance" sh "$provenance" main~3..main
 expect 2 $d/fail/no-range.out in_dir "$tmp/provenance" sh "$provenance"
 expect 2 $d/fail/bad-range.out in_dir "$tmp/provenance" sh "$provenance" main..nosuch
 
+# check-repo-settings.sh reads saved gh api output; it never calls gh here.
+for f in tests/check-repo-settings/pass/*.txt; do
+  expect 0 - sh scripts/check-repo-settings.sh --file "$f"
+done
+for f in tests/check-repo-settings/fail/*.txt; do
+  expect 1 "${f%.txt}.out" sh scripts/check-repo-settings.sh --file "$f"
+done
+
 if [ "$failures" -gt 0 ]; then
   echo "$failures of $checks checks failed." >&2
   exit 1

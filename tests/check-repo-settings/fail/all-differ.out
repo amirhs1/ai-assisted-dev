@@ -1,0 +1,5 @@
+tests/check-repo-settings/fail/all-differ.txt: allow_squash_merge is true; expected false (squash merging off)
+tests/check-repo-settings/fail/all-differ.txt: allow_rebase_merge is true; expected false (rebase merging off)
+tests/check-repo-settings/fail/all-differ.txt: allow_merge_commit is false; expected true (merge commits on)
+tests/check-repo-settings/fail/all-differ.txt: merge_commit_title is MERGE_MESSAGE; expected PR_TITLE (the pull request title)
+tests/check-repo-settings/fail/all-differ.txt: merge_commit_message is null; expected PR_BODY (the pull request description)
