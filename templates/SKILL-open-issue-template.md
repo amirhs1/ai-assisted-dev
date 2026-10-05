@@ -13,7 +13,7 @@ if it has one. Fill every <...> or delete the line, and delete this comment.
 
 1. Search for a duplicate first:
    `gh issue list --state all --search "<terms>"`.
-2. Title: the change wanted, in the imperative.
+2. Title: follow "Names" in AGENTS.md, "Git".
 3. Body, in this order:
    - `## Problem`: what is wrong or missing, with evidence as `path:line`,
      `command → result`, or a link.
