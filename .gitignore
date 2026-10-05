@@ -3,6 +3,8 @@
 .vscode/
 .idea/
 *.pdf
+.env*
+*.local
 
 # Agent files: local only
 CLAUDE.local.md

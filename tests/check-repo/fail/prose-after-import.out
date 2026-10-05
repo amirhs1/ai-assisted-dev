@@ -1,0 +1,1 @@
+tests/check-repo/fail/prose-after-import.md: must be @AGENTS.md, optionally followed by Claude-only sections
