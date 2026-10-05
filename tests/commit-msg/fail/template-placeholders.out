@@ -1,0 +1,2 @@
+commit-msg: Assisted-by: "<tool>, <model identifier or not recorded> (full implementation)" is not "<tool>, <model id or not recorded> (<role>)" with one role: plan, partial implementation, full implementation, review, refactor, or transcription
+commit-msg: fix the message and commit again.

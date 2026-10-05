@@ -1,0 +1,3 @@
+docs: fix a link
+
+Assisted-by: Copilot, not recorded (review)

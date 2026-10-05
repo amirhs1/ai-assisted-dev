@@ -1,0 +1,4 @@
+fix: correct the trailer example
+
+Co-authored-by: Jane Doe <jane@example.com>
+Signed-off-by: Jane Doe <jane@example.com>

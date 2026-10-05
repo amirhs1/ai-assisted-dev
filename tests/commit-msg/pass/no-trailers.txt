@@ -1,0 +1,3 @@
+docs: reword the licence section
+
+- Say which licence covers the tools.

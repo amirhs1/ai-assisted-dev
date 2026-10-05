@@ -1,0 +1,7 @@
+feat: add the hook
+
+- Add .githooks/commit-msg.
+
+Why: instruction text alone drifts.
+Assisted-by: Claude Code, claude-opus-5-5 (full implementation)
+Reviewed-by: Jane Doe <jane@example.com>

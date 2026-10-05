@@ -1,0 +1,5 @@
+feat: add the hook
+
+Assisted-by: Claude Code, claude-opus-5-5 (full implementation)
+Checks-run: sh scripts/check-repo.sh — all checks passed under sh and
+dash

@@ -1,0 +1,2 @@
+commit-msg: "dash" breaks the trailer block; a wrapped trailer continues on a line that starts with whitespace
+commit-msg: fix the message and commit again.

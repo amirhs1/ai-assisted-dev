@@ -61,6 +61,11 @@ for f in tests/validate-report/fail/*.md; do
   expect 1 "${f%.md}.out" sh scripts/validate-report.sh "--$mode" "$f"
 done
 
+for f in tests/commit-msg/pass/*.txt; do expect 0 - sh .githooks/commit-msg "$f"; done
+for f in tests/commit-msg/fail/*.txt; do
+  expect 1 "${f%.txt}.out" sh .githooks/commit-msg "$f"
+done
+
 if [ "$failures" -gt 0 ]; then
   echo "$failures of $checks checks failed." >&2
   exit 1

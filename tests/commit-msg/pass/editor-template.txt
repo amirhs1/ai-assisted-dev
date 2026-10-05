@@ -1,0 +1,11 @@
+docs: list the tools
+
+- Add the tools to the layout.
+
+Assisted-by: Claude Code, claude-opus-5-5 (transcription)
+# Assisted-by: <tool>, <model identifier or not recorded> (<role>)
+# Checks-run: <check actually run> — <observed result>
+# ------------------------ >8 ------------------------
+# Do not modify or remove the line above.
+diff --git a/README.md b/README.md
+Assisted-by: not a trailer, part of the diff
