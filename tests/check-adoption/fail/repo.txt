@@ -24,7 +24,7 @@ Change both tables in the same commit; see [the README](README.md).
 ==> README.md <==
 # Example
 
-## AI-assisted development
+## AI assistance
 
 | Part        | Tier         | Checks or human review |
 | ----------- | ------------ | ---------------------- |

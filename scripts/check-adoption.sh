@@ -136,7 +136,7 @@ done
 for f in AGENTS.md CLAUDE.md AI-POLICY.md .github/pull_request_template.md; do
   [ ! -f "$f" ] || check_text "$f"
 done
-[ ! -f README.md ] || check_text README.md '## AI-assisted development'
+[ ! -f README.md ] || check_text README.md '## AI assistance'
 [ ! -f CONTRIBUTING.md ] || check_text CONTRIBUTING.md '## AI-assisted contributions'
 
 if [ -f README.md ] && [ -f AGENTS.md ]; then

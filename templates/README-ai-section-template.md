@@ -9,7 +9,7 @@ or delete the line, and delete this comment before committing.
 - For a small team where each part has one owner, write "we" instead of "I".
 -->
 
-## AI-assisted development
+## AI assistance
 
 I use AI tools in this project. <Most of it was built with substantial AI help
 in a domain where I am not (yet) an independent evaluator.> Each part has a
