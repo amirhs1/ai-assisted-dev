@@ -1,0 +1,77 @@
+An adopted repository that passes. Placeholders in fenced blocks, in longer
+code spans, and outside the README's AI section are not checked.
+==> AGENTS.md <==
+# AGENTS.md — Example
+
+Example tool for testing the adoption check.
+
+## Commands
+
+| Purpose       | Command           |
+| ------------- | ----------------- |
+| Run all tests | `sh tests/run.sh` |
+
+## Where you may write
+
+| Path                | Tier         | Your role                          |
+| ------------------- | ------------ | ---------------------------------- |
+| `src/core/`         | Instrumented | Review and refactor.               |
+| `src/io/`, `tests/` | Supervised   | Draft against acceptance criteria. |
+
+## Commit format
+
+```text
+<type>(<scope>): <subject>
+
+Assisted-by: <tool>, <model identifier or not recorded> (<role>)
+```
+
+Further reading: [AI policy](AI-POLICY.md).
+==> CLAUDE.md <==
+@AGENTS.md
+
+## Claude Code
+
+- `.claude/settings.json` turns off Claude Code's own attribution lines.
+==> README.md <==
+# Example
+
+Run `example <file>`; the manual is at <https://example.com>.
+<!-- markdownlint-disable MD013 -->
+
+## AI-assisted development
+
+I use AI tools in this project.
+
+| Part        | Tier         | Checks or human review |
+| ----------- | ------------ | ---------------------- |
+| `src/core/` | Instrumented | Unit tests.            |
+| `src/io/`   | Supervised   | Line-by-line review.   |
+| `tests/`    | Supervised   | Line-by-line review.   |
+
+Tiers last reviewed: 2026-10-04.
+
+Instructions for AI agents: [`AGENTS.md`](AGENTS.md).
+
+## Licence
+
+MIT. Write to <maintainer> with questions.
+==> AI-POLICY.md <==
+# AI Policy — Example
+
+AI tools are welcome here.
+==> .claude/settings.json <==
+{
+  "attribution": {
+    "pr": "",
+    "commit": ""
+  }
+}
+==> .github/pull_request_template.md <==
+## Summary
+
+What changed and why.
+
+## AI assistance
+
+Copy the `Assisted-by:` lines from `git log --no-merges --format=%B main..HEAD`.

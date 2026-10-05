@@ -1,0 +1,2 @@
+commit-msg: "Co-Authored-By: Claude <noreply@anthropic.com>" credits an AI tool as co-author; write Assisted-by: <tool>, <model id or not recorded> (<role>) instead
+commit-msg: fix the message and commit again.

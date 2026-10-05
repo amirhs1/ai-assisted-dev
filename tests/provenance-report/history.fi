@@ -1,0 +1,79 @@
+commit refs/heads/main
+mark :1
+author Test Author <test@example.com> 1767614400 +0000
+committer Test Author <test@example.com> 1767614400 +0000
+data <<END
+docs: add the readme
+
+- Add README.md.
+
+Assisted-by: Claude Code, claude-opus-5-5 (full implementation)
+Checks-run: git diff --check — no output
+END
+M 644 inline README.md
+data <<END
+Fixture repository.
+END
+
+commit refs/heads/main
+mark :2
+author Test Author <test@example.com> 1767700800 +0000
+committer Test Author <test@example.com> 1767700800 +0000
+data <<END
+fix: correct a link
+END
+from :1
+M 644 inline README.md
+data <<END
+Fixture repository, corrected.
+END
+
+commit refs/heads/topic
+mark :3
+author Test Author <test@example.com> 1767787200 +0000
+committer Test Author <test@example.com> 1767787200 +0000
+data <<END
+feat: add a tool
+
+Assisted-by: Claude Code, not recorded (partial implementation)
+Ground-truth-source: the manual for the tool
+
+- The Assisted-by line above is not in the final paragraph.
+END
+from :2
+M 644 inline tool.sh
+data <<END
+echo tool
+END
+
+commit refs/heads/main
+mark :4
+author Test Author <test@example.com> 1767873600 +0000
+committer Test Author <test@example.com> 1767873600 +0000
+data <<END
+Merge pull request #2 from example/topic
+
+Assisted-by: Claude Code, not recorded (partial implementation)
+END
+from :2
+merge :3
+M 644 inline tool.sh
+data <<END
+echo tool
+END
+
+commit refs/heads/main
+mark :5
+author Test Author <test@example.com> 1767960000 +0000
+committer Test Author <test@example.com> 1767960000 +0000
+data <<END
+docs: explain the a | b notation
+
+Assisted-by: Codex, not recorded (review)
+Checks-run: grep -c b NOTES.md | wc -l — 1
+END
+from :4
+M 644 inline NOTES.md
+data <<END
+a | b
+END

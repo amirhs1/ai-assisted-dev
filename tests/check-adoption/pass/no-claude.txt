@@ -1,0 +1,20 @@
+An adopted repository without Claude Code files: the Claude checks are
+skipped. The self-check sets core.hooksPath.
+==> AGENTS.md <==
+# AGENTS.md — Example
+
+Example tool for testing the adoption check.
+
+## Where you may write
+
+| Path        | Tier         | Your role            |
+| ----------- | ------------ | -------------------- |
+| `src/core/` | Instrumented | Review and refactor. |
+==> README.md <==
+# Example
+
+## AI-assisted development
+
+| Part        | Tier         | Checks or human review |
+| ----------- | ------------ | ---------------------- |
+| `src/core/` | Instrumented | Unit tests.            |

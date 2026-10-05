@@ -1,0 +1,18 @@
+## Search form: commits with an Assisted-by: line
+
+| Commit | Date | Subject |
+| ------ | ---- | ------- |
+| 76cc89a | 2026-01-09 | docs: explain the a \| b notation |
+| cf60aa3 | 2026-01-07 | feat: add a tool |
+| 9600b22 | 2026-01-05 | docs: add the readme |
+
+## Trailer form: provenance lines
+
+| Commit | Line |
+| ------ | ---- |
+| 76cc89a | Assisted-by: Codex, not recorded (review) |
+| 76cc89a | Checks-run: grep -c b NOTES.md \| wc -l — 1 |
+| cf60aa3 | Assisted-by: Claude Code, not recorded (partial implementation) |
+| cf60aa3 | Ground-truth-source: the manual for the tool |
+| 9600b22 | Assisted-by: Claude Code, claude-opus-5-5 (full implementation) |
+| 9600b22 | Checks-run: git diff --check — no output |

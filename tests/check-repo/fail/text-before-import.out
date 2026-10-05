@@ -1,0 +1,1 @@
+tests/check-repo/fail/text-before-import.md: must start with the line @AGENTS.md and hold only ## sections after it

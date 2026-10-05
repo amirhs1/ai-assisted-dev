@@ -1,0 +1,3 @@
+squash! feat: add the hook
+
+Co-Authored-By: Claude <noreply@anthropic.com>

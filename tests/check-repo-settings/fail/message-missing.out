@@ -1,0 +1,1 @@
+tests/check-repo-settings/fail/message-missing.txt: merge_commit_message is missing; expected PR_BODY (the pull request description)

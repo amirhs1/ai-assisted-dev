@@ -1,0 +1,2 @@
+commit-msg: Assisted-by: sits outside the final paragraph, so git does not read it as a trailer; keep all trailers in one block after the last blank line
+commit-msg: fix the message and commit again.

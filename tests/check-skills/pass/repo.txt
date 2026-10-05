@@ -1,0 +1,37 @@
+Two valid skills and a skill template. Code spans and fenced blocks hold
+format examples, not placeholders; a template keeps its comment and
+placeholders, since only its frontmatter is checked.
+==> .agents/skills/open-issue/SKILL.md <==
+---
+name: open-issue
+description: Open an issue that states a problem. Use when asked to file an issue.
+---
+
+# Open an issue
+
+1. Search for a duplicate: `gh issue list --search "<terms>"`.
+2. Open it: `gh issue create --title "<title>" --body-file <file>`.
+
+```text
+<Answer in one or two sentences.>
+```
+==> .agents/skills/write-commit/SKILL.md <==
+---
+name: "write-commit"
+description: 'Write a commit in this format. Use for every commit.'
+---
+
+# Write a commit
+
+The format is in <https://git-scm.com/docs/git-interpret-trailers>.
+==> templates/SKILL-report-back-template.md <==
+---
+name: report-back
+description: Report back in chat. Use at the end of every task.
+---
+
+<!--
+Copy to .agents/skills/report-back/SKILL.md, and delete this comment.
+-->
+
+<Short form, from the chat report template>

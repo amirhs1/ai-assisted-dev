@@ -1,0 +1,6 @@
+docs: add the templates
+
+- Add the templates and the README.
+
+Why: make the templates available for projects that document AI
+assistance.

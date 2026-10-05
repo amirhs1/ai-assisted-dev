@@ -1,0 +1,6 @@
+tests/validate-report/fail/chat-full.md: line 3: the verdict must read **Verdict: COMPLETE — ...** or **Verdict: NOT COMPLETE — ...**
+tests/validate-report/fail/chat-full.md: line 5: placeholder <files as path:line>
+tests/validate-report/fail/chat-full.md: expected exactly one verdict line, found 2
+tests/validate-report/fail/chat-full.md: the verdict line must come right after the title
+tests/validate-report/fail/chat-full.md: empty section: 2 Checks run (write None if it does not apply)
+tests/validate-report/fail/chat-full.md: section out of order: 5 Close-out

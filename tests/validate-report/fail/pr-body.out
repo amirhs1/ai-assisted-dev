@@ -1,0 +1,5 @@
+tests/validate-report/fail/pr-body.md: line 11: placeholder <What was wrong or missing, with evidence.>
+tests/validate-report/fail/pr-body.md: a pull request body has no verdict line
+tests/validate-report/fail/pr-body.md: empty section: ## Related issues (write None if it does not apply)
+tests/validate-report/fail/pr-body.md: section out of order: ## Checks run
+tests/validate-report/fail/pr-body.md: missing section: ## AI assistance

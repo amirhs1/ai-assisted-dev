@@ -1,0 +1,3 @@
+commit-msg: Why: belongs in the body, above the trailer block
+commit-msg: unknown trailer key Reviewed-by; allowed: Assisted-by, Checks-run, Ground-truth-source, Co-authored-by, Signed-off-by, Refs, Closes, Fixes
+commit-msg: fix the message and commit again.
