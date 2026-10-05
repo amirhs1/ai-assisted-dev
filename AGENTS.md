@@ -8,18 +8,22 @@ guideline published separately; adopters copy and adapt them.
 
 ## Commands
 
-There is no build and no test suite. Before calling a change complete, run:
+There is no build. Before calling a change complete, run:
 
 ```bash
 # whitespace errors
 git diff --check main...HEAD
 # references to template files that do not exist
 for f in $(grep -rhoE '[A-Za-z.-]+-template\.(md|txt|json)' --exclude-dir=.git . | sort -u); do [ -e "templates/$f" ] || echo "missing: $f"; done
+# the tools: ShellCheck, then every tool against its fixtures
+shellcheck scripts/*.sh .githooks/commit-msg
+sh scripts/check-repo.sh
 ```
 
 Then read `git diff main...HEAD` in full for private details: names of private
 repositories, personal details, or local paths. Report the actual output, not
-the expected output.
+the expected output. Once per clone, run `git config core.hooksPath .githooks`
+to turn on the `commit-msg` hook.
 
 ## Layout
 
@@ -28,6 +32,9 @@ ai-assisted-dev/
   templates/
     *-template.*                  stored templates, for adopters
     pull-request-template.md      stored template
+  scripts/                        tools, for this repository and adopters
+  .githooks/                      the commit-msg hook
+  tests/                          each tool's passing and failing fixtures
   README.md                       the template table, licence, status
   .gitmessage                     this repository's own commit template
   AGENTS.md, CLAUDE.md, .claude/  this repository's own agent files
