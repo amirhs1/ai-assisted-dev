@@ -24,7 +24,7 @@ filter='"allow_squash_merge=\(.allow_squash_merge)",
 
 case ${1-} in
   --file)
-    [ "$#" -eq 2 ] && [ -f "$2" ] || usage
+    if [ "$#" -ne 2 ] || [ ! -f "$2" ]; then usage; fi
     target=$2
     settings=$(cat "$2")
     ;;
