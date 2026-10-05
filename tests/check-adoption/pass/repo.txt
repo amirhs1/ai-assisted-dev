@@ -39,7 +39,7 @@ Further reading: [AI policy](AI-POLICY.md).
 Run `example <file>`; the manual is at <https://example.com>.
 <!-- markdownlint-disable MD013 -->
 
-## AI-assisted development
+## AI assistance
 
 I use AI tools in this project.
 

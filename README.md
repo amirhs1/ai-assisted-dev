@@ -34,7 +34,7 @@ To use a copied `.gitmessage` for editor-based commits, run
 `git config commit.template .gitmessage` in that project. Git does not apply it
 to `git commit -m`; check the final message for completed provenance trailers.
 
-## AI-assisted development
+## AI assistance
 
 I use AI tools in this project. Each part has a tier, set by whether I can
 evaluate AI output there. The table records the checks or human review applied

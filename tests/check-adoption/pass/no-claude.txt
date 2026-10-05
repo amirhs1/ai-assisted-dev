@@ -13,7 +13,7 @@ Example tool for testing the adoption check.
 ==> README.md <==
 # Example
 
-## AI-assisted development
+## AI assistance
 
 | Part        | Tier         | Checks or human review |
 | ----------- | ------------ | ---------------------- |

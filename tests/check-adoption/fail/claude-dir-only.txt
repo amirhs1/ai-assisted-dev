@@ -10,7 +10,7 @@
 ==> README.md <==
 # Example
 
-## AI-assisted development
+## AI assistance
 
 | Part        | Tier         | Checks or human review |
 | ----------- | ------------ | ---------------------- |
