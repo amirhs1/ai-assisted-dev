@@ -7,7 +7,8 @@
 # - its final paragraph holds trailers, and a line there is neither one of
 #   the allowed trailers (Assisted-by, Checks-run, Ground-truth-source,
 #   Co-authored-by, Signed-off-by, Refs, Closes, Fixes) nor a continuation
-#   line, which starts with whitespace;
+#   line, which starts with whitespace; a final paragraph that starts with
+#   Why: and holds no other trailer, as in a commit without trailers, is body;
 # - an Assisted-by:, Checks-run:, or Ground-truth-source: line sits outside
 #   the final paragraph, where git does not read it as a trailer;
 # - an Assisted-by: value is not "<tool>, <model id or not recorded> (<role>)",
@@ -62,6 +63,11 @@ END {
   while (start > 1 && msg[start - 1] !~ /^[ \t]*$/) start--
   block = 0
   if (start > 1) for (i = start; i <= n; i++) if (msg[i] ~ trailer) block = 1
+  # A final paragraph that is a Why: line and no other trailer is body.
+  if (block && msg[start] ~ /^Why:/) {
+    block = 0
+    for (i = start + 1; i <= n; i++) if (msg[i] ~ trailer) block = 1
+  }
   end = block ? start - 1 : n
 
   for (i = 1; i <= end; i++)

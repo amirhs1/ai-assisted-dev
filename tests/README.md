@@ -36,6 +36,7 @@ Each fixture is named after its mode.
   indent.
 - `pass/no-model.txt` — `not recorded` in place of a model id.
 - `pass/no-trailers.txt` — a body and no trailer block.
+- `pass/why-only.txt` — a human commit ending with a wrapped `Why:` line.
 - `pass/subject-only.txt` — a subject only, which looks like a trailer.
 - `pass/human-co-author.txt` — a person as `Co-authored-by:`, and
   `Signed-off-by:`.
