@@ -1,4 +1,4 @@
-name: Check
+name: Check tools
 
 on:
   push:
@@ -9,7 +9,8 @@ permissions:
   contents: read
 
 jobs:
-  check:
+  tools:
+    name: ShellCheck and fixtures
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
