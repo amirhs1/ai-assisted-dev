@@ -1,0 +1,3 @@
+CLAUDE.md is missing, though .claude/ exists
+core.hooksPath is not set: run git config core.hooksPath .githooks
+Problems found: 2

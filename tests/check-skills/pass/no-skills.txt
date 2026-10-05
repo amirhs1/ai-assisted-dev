@@ -1,0 +1,3 @@
+A repository with no skills and no skill templates: nothing to check.
+==> README.md <==
+# Example

@@ -1,0 +1,19 @@
+.claude/ exists but CLAUDE.md does not; core.hooksPath is not set.
+==> AGENTS.md <==
+# AGENTS.md — Example
+
+## Where you may write
+
+| Path        | Tier         | Your role            |
+| ----------- | ------------ | -------------------- |
+| `src/core/` | Instrumented | Review and refactor. |
+==> README.md <==
+# Example
+
+## AI-assisted development
+
+| Part        | Tier         | Checks or human review |
+| ----------- | ------------ | ---------------------- |
+| `src/core/` | Instrumented | Unit tests.            |
+==> .claude/settings.json <==
+{ "attribution": { "commit": "", "pr": "" } }

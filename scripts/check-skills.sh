@@ -8,7 +8,7 @@
 # Each templates/SKILL-<name>-template.md (in this repository): the same
 # frontmatter checks, with name equal to <name>.
 # Usage: sh scripts/check-skills.sh [directory]
-# Exit status: 0 valid, 1 a problem or no skills found, 2 usage error.
+# Exit status: 0 valid or no skills, 1 a problem, 2 usage error.
 
 set -eu
 
@@ -107,8 +107,8 @@ for template in templates/SKILL-*-template.md; do
 done
 
 if [ "$found" -eq 0 ]; then
-  echo "No skills found: no .agents/skills/*/SKILL.md or templates/SKILL-*-template.md" >&2
-  exit 1
+  echo "No skills to check: no .agents/skills/*/SKILL.md or templates/SKILL-*-template.md"
+  exit 0
 fi
 [ "$status" -eq 0 ] || exit 1
 echo "Skill metadata is valid: $found files"

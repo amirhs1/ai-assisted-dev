@@ -5,12 +5,13 @@
 # - a placeholder or template comment is left in a governance file; a
 #   placeholder is a <...> outside code, or a code span holding only one;
 # - a relative link in a governance file does not resolve;
-# - CLAUDE.md does not start with the line @AGENTS.md, or holds anything but
-#   "## " sections after it;
 # - the README tier table and the AGENTS.md "Where you may write" table list
 #   different paths or tiers;
-# - .claude/settings.json lacks the attribution block;
 # - core.hooksPath is not set.
+# When CLAUDE.md or .claude/ exists, it also fails when:
+# - CLAUDE.md is missing, does not start with the line @AGENTS.md, or holds
+#   anything but "## " sections after it;
+# - .claude/settings.json lacks the attribution block.
 # Governance files: AGENTS.md, CLAUDE.md, AI-POLICY.md,
 # .github/pull_request_template.md, and the AI sections of README.md and
 # CONTRIBUTING.md. For skills, run check-skills.sh.
@@ -129,7 +130,7 @@ tiers() {
     }' "$1" | LC_ALL=C sort -u
 }
 
-for f in AGENTS.md CLAUDE.md README.md; do
+for f in AGENTS.md README.md; do
   [ -f "$f" ] || problem "$f is missing"
 done
 for f in AGENTS.md CLAUDE.md AI-POLICY.md .github/pull_request_template.md; do
@@ -137,13 +138,6 @@ for f in AGENTS.md CLAUDE.md AI-POLICY.md .github/pull_request_template.md; do
 done
 [ ! -f README.md ] || check_text README.md '## AI-assisted development'
 [ ! -f CONTRIBUTING.md ] || check_text CONTRIBUTING.md '## AI-assisted contributions'
-
-if [ -f CLAUDE.md ] && ! awk 'NR == 1 { ok = ($0 == "@AGENTS.md"); next }
-  /^[ \t]*$/ { next }
-  !seen++ && !/^## / { ok = 0 }
-  END { exit !(NR > 0 && ok) }' CLAUDE.md; then
-  problem "CLAUDE.md: must start with the line @AGENTS.md and hold only ## sections after it"
-fi
 
 if [ -f README.md ] && [ -f AGENTS.md ]; then
   readme=$(tiers README.md)
@@ -166,15 +160,27 @@ EOF
   fi
 fi
 
-attribution=
-if [ -f .claude/settings.json ]; then
-  attribution=$(tr -d ' \t\r\n' < .claude/settings.json |
-    sed -n 's/.*"attribution":{\([^}]*\)}.*/,\1,/p')
-fi
-case $attribution in *',"commit":"",'*) commit=off ;; *) commit=on ;; esac
-case $attribution in *',"pr":"",'*) pr=off ;; *) pr=on ;; esac
-if [ "$commit" = on ] || [ "$pr" = on ]; then
-  problem '.claude/settings.json: no attribution block turning off both lines: "attribution": { "commit": "", "pr": "" }'
+if [ -f CLAUDE.md ] || [ -d .claude ]; then
+  if [ ! -f CLAUDE.md ]; then
+    problem "CLAUDE.md is missing, though .claude/ exists"
+  elif ! awk 'NR == 1 { ok = ($0 == "@AGENTS.md"); next }
+    /^[ \t]*$/ { next }
+    !seen++ && !/^## / { ok = 0 }
+    END { exit !(NR > 0 && ok) }' CLAUDE.md; then
+    problem "CLAUDE.md: must start with the line @AGENTS.md and hold only ## sections after it"
+  fi
+  attribution=
+  if [ -f .claude/settings.json ]; then
+    attribution=$(tr -d ' \t\r\n' < .claude/settings.json |
+      sed -n 's/.*"attribution":{\([^}]*\)}.*/,\1,/p')
+  fi
+  case $attribution in *',"commit":"",'*) commit=off ;; *) commit=on ;; esac
+  case $attribution in *',"pr":"",'*) pr=off ;; *) pr=on ;; esac
+  if [ "$commit" = on ] || [ "$pr" = on ]; then
+    problem '.claude/settings.json: no attribution block turning off both lines: "attribution": { "commit": "", "pr": "" }'
+  fi
+else
+  echo "No CLAUDE.md or .claude/: Claude Code checks skipped."
 fi
 
 if ! git rev-parse --git-dir > /dev/null 2>&1; then

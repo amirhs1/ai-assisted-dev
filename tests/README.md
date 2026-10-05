@@ -72,6 +72,7 @@ Each input is saved output of the script's `gh api --jq` filter.
 ## `check-skills/` — `scripts/check-skills.sh`
 
 - `pass/repo.txt` — two valid skills and a skill template.
+- `pass/no-skills.txt` — no skills at all: nothing to check, so it passes.
 - `fail/repo.txt` — one fault per skill, and a template whose name does not
   match its file.
 
@@ -79,4 +80,7 @@ Each input is saved output of the script's `gh api --jq` filter.
 
 - `pass/repo.txt` — an adopted repository that passes; the self-check sets
   `core.hooksPath`.
+- `pass/no-claude.txt` — no `CLAUDE.md` or `.claude/`: the Claude checks are
+  skipped.
 - `fail/repo.txt` — one of each fault; `core.hooksPath` is not set.
+- `fail/claude-dir-only.txt` — `.claude/` without `CLAUDE.md`.
