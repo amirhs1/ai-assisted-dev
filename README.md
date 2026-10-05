@@ -63,8 +63,7 @@ Instructions for AI agents: [`AGENTS.md`](AGENTS.md).
 
 This repository, the templates and tools included, is licensed under the
 [MIT License](LICENSE). Keep its copyright and permission notice with copies of
-a template or tool, as the licence requires. The AI-Assisted Development
-Guideline is published separately under CC BY 4.0.
+a template or tool, as the licence requires.
 
 ## Status
 
