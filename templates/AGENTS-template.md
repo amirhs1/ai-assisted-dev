@@ -150,6 +150,10 @@ in each tier. Change both in the same commit. -->
   repository settings, or secrets.
 - You may open issues and pull requests, write commits, and post comments.
   The person running you is responsible for what you submit.
+- Names: branches `<type>/<short-name>`; pull request titles in the
+  commit-subject form; issue titles state the change wanted, in the
+  imperative; one type label from <list>; tags `v<MAJOR>.<MINOR>.<PATCH>`.
+  <Longer rules: `docs/NAMING-CONVENTION.md`.>
 
 ## Commit format
 
