@@ -1,0 +1,3 @@
+tests/validate-report/fail/chat-short.md: line 1: placeholder <files read or commands run>
+tests/validate-report/fail/chat-short.md: the answer is missing before Based on:
+tests/validate-report/fail/chat-short.md: empty section: Open: (write None if it does not apply)

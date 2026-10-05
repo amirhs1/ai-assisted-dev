@@ -51,11 +51,14 @@ expect 0 - claude_md CLAUDE.md
 for f in tests/check-repo/pass/*.md; do expect 0 - claude_md "$f"; done
 for f in tests/check-repo/fail/*.md; do expect 1 "${f%.md}.out" claude_md "$f"; done
 
+# Each fixture is named after its mode.
 for f in tests/validate-report/pass/*.md; do
-  expect 0 - sh scripts/validate-report.sh "$f"
+  mode=$(basename "$f" .md)
+  expect 0 - sh scripts/validate-report.sh "--$mode" "$f"
 done
 for f in tests/validate-report/fail/*.md; do
-  expect 1 "${f%.md}.out" sh scripts/validate-report.sh "$f"
+  mode=$(basename "$f" .md)
+  expect 1 "${f%.md}.out" sh scripts/validate-report.sh "--$mode" "$f"
 done
 
 if [ "$failures" -gt 0 ]; then
