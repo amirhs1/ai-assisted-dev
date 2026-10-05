@@ -127,6 +127,23 @@ for f in tests/check-skills/fail/*.txt; do
   expect 1 "${f%.txt}.out" sh scripts/check-skills.sh "$tmp/skills-fail-$(basename "$f" .txt)"
 done
 
+# check-adoption.sh runs in fixture repositories; only the passing ones set
+# core.hooksPath.
+adoption="$repo_root/scripts/check-adoption.sh"
+for f in tests/check-adoption/pass/*.txt; do
+  dir=$tmp/adoption-pass-$(basename "$f" .txt)
+  unpack "$f" "$dir"
+  git init -q -b main "$dir"
+  git -C "$dir" config core.hooksPath .githooks
+  expect 0 - in_dir "$dir" sh "$adoption"
+done
+for f in tests/check-adoption/fail/*.txt; do
+  dir=$tmp/adoption-fail-$(basename "$f" .txt)
+  unpack "$f" "$dir"
+  git init -q -b main "$dir"
+  expect 1 "${f%.txt}.out" in_dir "$dir" sh "$adoption"
+done
+
 if [ "$failures" -gt 0 ]; then
   echo "$failures of $checks checks failed." >&2
   exit 1

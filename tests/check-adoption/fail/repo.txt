@@ -1,0 +1,50 @@
+An adopted repository with one of each fault; it does not set
+core.hooksPath. The placeholder outside CONTRIBUTING.md's AI section is not
+checked.
+==> AGENTS.md <==
+# AGENTS.md — `<PROJECT NAME>`
+
+Example tool for testing the adoption check.
+
+<!-- Optional. -->
+
+## Where you may write
+
+| Path        | Tier         | Your role               |
+| ----------- | ------------ | ----------------------- |
+| `src/core/` | Instrumented | Review and refactor.    |
+| `src/io/`   | Supervised   | Draft against criteria. |
+| `scripts/`  | Delegated    | Generate.               |
+
+Change both tables in the same commit; see [the README](README.md).
+==> CLAUDE.md <==
+# Claude
+
+@AGENTS.md
+==> README.md <==
+# Example
+
+## AI-assisted development
+
+| Part        | Tier         | Checks or human review |
+| ----------- | ------------ | ---------------------- |
+| `src/core/` | Instrumented | Unit tests.            |
+| `src/io/`   | Delegated    | Integration tests.     |
+
+Tiers last reviewed: <YYYY-MM-DD>.
+
+Instructions for AI agents: [`AGENTS.md`](AGENTS.md#where-you-may-write).
+==> CONTRIBUTING.md <==
+# Contributing
+
+Run `<command>` before you open a pull request.
+
+## AI-assisted contributions
+
+Read the [AI policy](AI-POLICY.md) before opening a pull request.
+
+## Licence
+
+MIT.
+==> .claude/settings.json <==
+{ "permissions": { "deny": ["Read(.env*)"] } }

@@ -1,0 +1,11 @@
+AGENTS.md: line 1: placeholder <PROJECT NAME>
+AGENTS.md: line 5: template comment
+README.md: line 10: placeholder <YYYY-MM-DD>
+CONTRIBUTING.md: line 7: link target AI-POLICY.md does not exist
+CLAUDE.md: must be @AGENTS.md, optionally followed by Claude-only sections
+tier tables differ: only README.md lists src/io/ as Delegated
+tier tables differ: only AGENTS.md lists scripts/ as Delegated
+tier tables differ: only AGENTS.md lists src/io/ as Supervised
+.claude/settings.json: no attribution block turning off both lines: "attribution": { "commit": "", "pr": "" }
+core.hooksPath is not set: run git config core.hooksPath .githooks
+Problems found: 10
