@@ -67,14 +67,14 @@ unpack() {
     file { print > file }' "$1"
 }
 
-# CLAUDE.md is "@AGENTS.md" on its first line, optionally followed by
-# Claude-only sections, each starting with a "## " heading.
+# CLAUDE.md starts with the line @AGENTS.md and holds only "## " sections
+# after it, for Claude-only content.
 claude_md() {
   awk 'NR == 1 { ok = ($0 == "@AGENTS.md"); next }
     /^[ \t]*$/ { next }
     !seen++ && !/^## / { ok = 0 }
     END { exit !(NR > 0 && ok) }' "$1" || {
-    echo "$1: must be @AGENTS.md, optionally followed by Claude-only sections" >&2
+    echo "$1: must start with the line @AGENTS.md and hold only ## sections after it" >&2
     return 1
   }
 }

@@ -5,7 +5,8 @@
 # - a placeholder or template comment is left in a governance file; a
 #   placeholder is a <...> outside code, or a code span holding only one;
 # - a relative link in a governance file does not resolve;
-# - CLAUDE.md is not @AGENTS.md, optionally followed by Claude-only sections;
+# - CLAUDE.md does not start with the line @AGENTS.md, or holds anything but
+#   "## " sections after it;
 # - the README tier table and the AGENTS.md "Where you may write" table list
 #   different paths or tiers;
 # - .claude/settings.json lacks the attribution block;
@@ -141,7 +142,7 @@ if [ -f CLAUDE.md ] && ! awk 'NR == 1 { ok = ($0 == "@AGENTS.md"); next }
   /^[ \t]*$/ { next }
   !seen++ && !/^## / { ok = 0 }
   END { exit !(NR > 0 && ok) }' CLAUDE.md; then
-  problem "CLAUDE.md: must be @AGENTS.md, optionally followed by Claude-only sections"
+  problem "CLAUDE.md: must start with the line @AGENTS.md and hold only ## sections after it"
 fi
 
 if [ -f README.md ] && [ -f AGENTS.md ]; then

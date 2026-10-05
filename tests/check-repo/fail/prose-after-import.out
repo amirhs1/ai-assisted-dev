@@ -1,1 +1,1 @@
-tests/check-repo/fail/prose-after-import.md: must be @AGENTS.md, optionally followed by Claude-only sections
+tests/check-repo/fail/prose-after-import.md: must start with the line @AGENTS.md and hold only ## sections after it
