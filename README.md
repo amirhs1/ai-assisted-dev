@@ -8,22 +8,23 @@ added here when available.
 
 ## Template files
 
-| File                                                                                   | Use in an adopting project                                                         |
-| -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [`AGENTS-template.md`](templates/AGENTS-template.md)                                   | Adapt as `AGENTS.md` for coding agents.                                            |
-| [`AI-POLICY-template.md`](templates/AI-POLICY-template.md)                             | Adapt as `AI-POLICY.md` for contributors.                                          |
-| [`AI-DISCLOSURE-template.md`](templates/AI-DISCLOSURE-template.md)                     | Adapt as a disclosure for a specific research output.                              |
-| [`README-ai-section-template.md`](templates/README-ai-section-template.md)             | Add an AI section to the project's `README.md`.                                    |
-| [`CONTRIBUTING-ai-section-template.md`](templates/CONTRIBUTING-ai-section-template.md) | Add a section to `CONTRIBUTING.md`; its second block fits an existing PR template. |
-| [`pull-request-template.md`](templates/pull-request-template.md)                       | Use as a complete `.github/pull_request_template.md` when needed.                  |
-| [`chat-report-template.md`](templates/chat-report-template.md)                         | Give agents the short and full forms of their report in chat.                      |
-| [`SKILL-write-commit-template.md`](templates/SKILL-write-commit-template.md)           | Copy to `.agents/skills/write-commit/SKILL.md`.                                    |
-| [`SKILL-open-pull-request-template.md`](templates/SKILL-open-pull-request-template.md) | Copy to `.agents/skills/open-pull-request/SKILL.md`.                               |
-| [`SKILL-open-issue-template.md`](templates/SKILL-open-issue-template.md)               | Copy to `.agents/skills/open-issue/SKILL.md`.                                      |
-| [`SKILL-post-comment-template.md`](templates/SKILL-post-comment-template.md)           | Copy to `.agents/skills/post-comment/SKILL.md`.                                    |
-| [`SKILL-report-back-template.md`](templates/SKILL-report-back-template.md)             | Copy to `.agents/skills/report-back/SKILL.md`.                                     |
-| [`gitmessage-template.txt`](templates/gitmessage-template.txt)                         | Copy to `.gitmessage` and adapt the commit convention.                             |
-| [`claude-settings-template.json`](templates/claude-settings-template.json)             | Copy to `.claude/settings.json` for Claude Code.                                   |
+| File                                                                                         | Use in an adopting project                                                         |
+| -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [`AGENTS-template.md`](templates/AGENTS-template.md)                                         | Adapt as `AGENTS.md` for coding agents.                                            |
+| [`AI-POLICY-template.md`](templates/AI-POLICY-template.md)                                   | Adapt as `AI-POLICY.md` for contributors.                                          |
+| [`AI-DISCLOSURE-template.md`](templates/AI-DISCLOSURE-template.md)                           | Adapt as a disclosure for a specific research output.                              |
+| [`README-ai-section-template.md`](templates/README-ai-section-template.md)                   | Add an AI section to the project's `README.md`.                                    |
+| [`CONTRIBUTING-ai-section-template.md`](templates/CONTRIBUTING-ai-section-template.md)       | Add a section to `CONTRIBUTING.md`; its second block fits an existing PR template. |
+| [`CONTRIBUTING-names-section-template.md`](templates/CONTRIBUTING-names-section-template.md) | Add a "Names" section to `CONTRIBUTING.md`: the type and area lists.               |
+| [`pull-request-template.md`](templates/pull-request-template.md)                             | Use as a complete `.github/pull_request_template.md` when needed.                  |
+| [`chat-report-template.md`](templates/chat-report-template.md)                               | Give agents the short and full forms of their report in chat.                      |
+| [`SKILL-write-commit-template.md`](templates/SKILL-write-commit-template.md)                 | Copy to `.agents/skills/write-commit/SKILL.md`.                                    |
+| [`SKILL-open-pull-request-template.md`](templates/SKILL-open-pull-request-template.md)       | Copy to `.agents/skills/open-pull-request/SKILL.md`.                               |
+| [`SKILL-open-issue-template.md`](templates/SKILL-open-issue-template.md)                     | Copy to `.agents/skills/open-issue/SKILL.md`.                                      |
+| [`SKILL-post-comment-template.md`](templates/SKILL-post-comment-template.md)                 | Copy to `.agents/skills/post-comment/SKILL.md`.                                    |
+| [`SKILL-report-back-template.md`](templates/SKILL-report-back-template.md)                   | Copy to `.agents/skills/report-back/SKILL.md`.                                     |
+| [`gitmessage-template.txt`](templates/gitmessage-template.txt)                               | Copy to `.gitmessage` and adapt the commit convention.                             |
+| [`claude-settings-template.json`](templates/claude-settings-template.json)                   | Copy to `.claude/settings.json` for Claude Code.                                   |
 
 The two PR options serve different starting points: add the short AI block to
 an existing PR template, or copy the complete PR template. Use one AI prompt in
