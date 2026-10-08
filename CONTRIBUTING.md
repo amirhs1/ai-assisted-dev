@@ -10,7 +10,7 @@ label `area:<word>`. Scope and area are one list.
 
 ```text
 types: feat fix docs test refactor ci chore style
-areas: readme contributing tools git github license agents-template policy-template disclosure-template readme-template contributing-template pull-request-template chat-report-template gitmessage-template claude-settings-template skill-templates
+areas: readme contributing tools agents git github license agents-template policy-template disclosure-template readme-template contributing-template pull-request-template chat-report-template gitmessage-template claude-settings-template skill-templates
 ```
 
 | Name                          | Form                                    |

@@ -9,7 +9,7 @@ Open one only when the maintainer asks (AGENTS.md, "Git").
 
 1. Search for a duplicate first:
    `gh issue list --state all --search "<terms>"`.
-2. Title: the change wanted, in the imperative.
+2. Title: follow "Names" in CONTRIBUTING.md.
 3. Body, in this order:
    - `## Problem`: what is wrong or missing, with evidence as `path:line`,
      `command → result`, or a link.
@@ -22,7 +22,7 @@ Open one only when the maintainer asks (AGENTS.md, "Git").
 4. The reason comes from the maintainer, or from the evidence; never invent
    it. Include no secrets, personal data, or anything from a private
    repository.
-5. Label it `documentation`, `enhancement`, or `bug`.
+5. Labels: follow "Names" in CONTRIBUTING.md.
 6. Open it with
-   `gh issue create --title "<title>" --label <label> --body-file <file>`,
+   `gh issue create --title "<title>" --label <labels> --body-file <file>`,
    then give the full chat report.
