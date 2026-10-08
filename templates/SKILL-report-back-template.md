@@ -5,8 +5,7 @@ description: Report back in chat at the end of a task, in the short or the full 
 
 <!--
 Copy to .agents/skills/report-back/SKILL.md; .claude/skills is a symlink to
-.agents/skills. Paste the two forms from chat-report-template.md where marked,
-and delete this comment.
+.agents/skills. Delete this comment.
 -->
 
 # Report back
@@ -19,6 +18,4 @@ and delete this comment.
 3. Report actual output, not expected output. Say what was not run, and why.
 4. List each decision you made that was the maintainer's.
 
-<Short form, from chat-report-template.md>
-
-<Full form, from chat-report-template.md>
+The short and full forms are in AGENTS.md, "Report back".

@@ -5,7 +5,7 @@ description: Write and make a commit in this repository's format. Use for every 
 
 # Write a commit
 
-The rules live in AGENTS.md, "Commit format"; this skill is the procedure.
+The rules live in AGENTS.md, "Provenance"; this skill is the procedure.
 
 1. Read the staged diff (`git diff --cached`). One commit holds one coherent
    change; each commit lands on `main` unchanged.
@@ -19,8 +19,8 @@ The rules live in AGENTS.md, "Commit format"; this skill is the procedure.
 5. End with one trailer block, after a blank line, with no blank line in it
    and nothing after it:
    `Assisted-by: <tool>, <model id or not recorded> (<role>)`, then
-   `Checks-run:` for each check you ran. Pick the role as AGENTS.md, "Commit
-   format", defines it.
+   `Checks-run:` for each check you ran. Pick the role as AGENTS.md,
+   "Provenance", defines it.
 6. Commit from a file: `git commit -F <message file>`. Never add an AI
    `Co-authored-by:` line, and never use `--no-verify`.
 7. Check that git reads every trailer: `git log -1 --format='%(trailers)'`.
