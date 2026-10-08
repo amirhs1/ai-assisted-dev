@@ -6,7 +6,7 @@ description: Write and make a commit in this project's format. Use for every com
 <!--
 Copy to .agents/skills/write-commit/SKILL.md; .claude/skills is a symlink to
 .agents/skills. Fill every <...> or delete the line, and delete this comment.
-The rules live in AGENTS.md, "Commit format"; this skill is the procedure.
+The rules live in AGENTS.md, "Provenance"; this skill is the procedure.
 -->
 
 # Write a commit
@@ -23,7 +23,7 @@ The rules live in AGENTS.md, "Commit format"; this skill is the procedure.
    and nothing after it:
    `Assisted-by: <tool>, <model id or not recorded> (<role>)`, then
    `Checks-run:` for each check you ran, then `Ground-truth-source:` if a
-   reference value changed. Pick the role as AGENTS.md, "Commit format",
+   reference value changed. Pick the role as AGENTS.md, "Provenance",
    defines it.
 6. Commit from a file: `git commit -F <message file>`. Never add an AI
    `Co-authored-by:` line, and never use `--no-verify`.
