@@ -125,24 +125,13 @@ Do these only with the maintainer's explicit approval for that change:
 
 ## Provenance
 
-Follow `.gitmessage`: `<type>(<scope>): <imperative subject>`, using its types
-and scopes, then a body of bullets.
-
-```text
-<type>(<scope>): <subject>
-
-- <what changed>
-
-Why: <reason supplied by the maintainer; omit otherwise>
-
-Assisted-by: <tool>, <model id or not recorded> (<role>)
-Checks-run: <check actually run> — <observed result>
-```
-
 - Every text you write into the repository or its tracker (commit message,
   pull request body, issue body, comment, release notes) ends with one trailer
   block that includes `Assisted-by:`, after a blank line: one trailer per line,
-  no blank line between them, nothing after them.
+  no blank line between them, nothing after them:
+  `Assisted-by: <tool>, <model id or not recorded> (<role>)`, then
+  `Checks-run: <check actually run> — <observed result>`.
+- The `write-commit` skill gives a commit message's subject and body.
 - Roles: pick the first that fits. If none clearly fits, ask before
   committing.
   - `full implementation`: you wrote essentially all of the committed content.
