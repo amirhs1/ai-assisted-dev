@@ -13,7 +13,7 @@ if it has one. Fill every <...> or delete the line, and delete this comment.
 
 1. Search for a duplicate first:
    `gh issue list --state all --search "<terms>"`.
-2. Title: follow "Names" in AGENTS.md, "Git".
+2. Title and labels: follow "Names" in CONTRIBUTING.md.
 3. Body, in this order:
    - `## Problem`: what is wrong or missing, with evidence as `path:line`,
      `command → result`, or a link.
@@ -23,5 +23,6 @@ if it has one. Fill every <...> or delete the line, and delete this comment.
      `- [ ] <path>, <section>: <change> (add | change | remove)`.
 4. The reason comes from the person who asked, or from the evidence; never
    invent it. Include no secrets or personal data.
-5. Open it with `gh issue create --title "<title>" --body-file <file>`, then
-   give the full chat report.
+5. Open it with
+   `gh issue create --title "<title>" --label <label> --body-file <file>`,
+   then give the full chat report.

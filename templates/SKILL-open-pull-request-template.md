@@ -23,8 +23,8 @@ this comment.
    - AI assistance, last: tool, model, role, then the branch's `Assisted-by:`
      lines from
      `git log --no-merges --format=%B <main>..HEAD | grep '^Assisted-by:'`.
-3. Title and label: follow "Names" in AGENTS.md, "Git"; a pull request that
-   closes an issue takes that issue's label.
+3. Title and labels: follow "Names" in CONTRIBUTING.md; a pull request that
+   closes an issue takes that issue's labels.
 4. Push the branch and open a draft:
    `gh pr create --draft --base <main> --title "<title>" --label <label> --body-file <file>`.
    Never mark it ready or merge it.
