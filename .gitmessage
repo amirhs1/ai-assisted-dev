@@ -9,7 +9,7 @@
 #
 # Scopes: readme, policy-template, agents-template, disclosure-template,
 # readme-template, contributing-template, pull-request-template,
-# chat-report-template, gitmessage-template, claude-settings-template,
+# gitmessage-template, claude-settings-template,
 # skill-templates, git, github, license.
 # Pick one dominant scope or omit it. This vocabulary is preferred, not required.
 #

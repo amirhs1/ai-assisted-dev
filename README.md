@@ -16,7 +16,6 @@ added here when available.
 | [`README-ai-section-template.md`](templates/README-ai-section-template.md)             | Add an AI section to the project's `README.md`.                                    |
 | [`CONTRIBUTING-ai-section-template.md`](templates/CONTRIBUTING-ai-section-template.md) | Add a section to `CONTRIBUTING.md`; its second block fits an existing PR template. |
 | [`pull-request-template.md`](templates/pull-request-template.md)                       | Use as a complete `.github/pull_request_template.md` when needed.                  |
-| [`chat-report-template.md`](templates/chat-report-template.md)                         | Give agents the short and full forms of their report in chat.                      |
 | [`SKILL-write-commit-template.md`](templates/SKILL-write-commit-template.md)           | Copy to `.agents/skills/write-commit/SKILL.md`.                                    |
 | [`SKILL-open-pull-request-template.md`](templates/SKILL-open-pull-request-template.md) | Copy to `.agents/skills/open-pull-request/SKILL.md`.                               |
 | [`SKILL-open-issue-template.md`](templates/SKILL-open-issue-template.md)               | Copy to `.agents/skills/open-issue/SKILL.md`.                                      |
