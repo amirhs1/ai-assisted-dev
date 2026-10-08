@@ -36,6 +36,7 @@ ai-assisted-dev/
   .githooks/                      the commit-msg hook
   tests/                          each tool's passing and failing fixtures
   README.md                       the template table, licence, status
+  CONTRIBUTING.md                 "Names": the type and area lists
   .gitmessage                     this repository's own commit template
   AGENTS.md, CLAUDE.md, .claude/  this repository's own agent files
   .agents/skills/                 this repository's own skills
@@ -108,11 +109,7 @@ diff you drafted is not the same as originating it.
 - Show any history-rewriting command before running it, and use it only on your
   own unpushed commits.
 - Open issues or post comments only when the maintainer asks.
-- Names: branches `<type>/<short-name>`, with a `.gitmessage` type; pull
-  request titles in the commit-subject form; issue titles state the change
-  wanted, in the imperative; one type label: `bug` for a fix,
-  `documentation` for docs only, `enhancement` otherwise; tags
-  `v<MAJOR>.<MINOR>.<PATCH>`.
+- Names: follow `CONTRIBUTING.md`, "Names".
 
 ## Commit format
 
