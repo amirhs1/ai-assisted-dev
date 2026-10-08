@@ -4,14 +4,9 @@
 #
 # Why: <maintainer-supplied reason; omit for a trivial change>
 #
-# Types: docs, fix, update, style, ci.
-# Other useful types: chore, feat, refactor.
-#
-# Scopes: readme, policy-template, agents-template, disclosure-template,
-# readme-template, contributing-template, pull-request-template,
-# gitmessage-template, claude-settings-template,
-# skill-templates, git, github, license.
-# Pick one dominant scope or omit it. This vocabulary is preferred, not required.
+# Types and scopes are in CONTRIBUTING.md, "Names"; a scope is an area there.
+#   Types: feat, fix, docs, test, refactor, ci, chore, style
+# Pick one dominant scope or omit it.
 #
 # For a breaking change, add ! after the type or scope and explain it in the body.
 #

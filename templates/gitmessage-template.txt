@@ -1,21 +1,21 @@
+# ===== FOR THE ADOPTER: delete this block after copying =====
+# Copy this file to .gitmessage in your project, then run:
+#   git config commit.template .gitmessage
+#   git config core.hooksPath .githooks    (if the project keeps hooks there)
+# Git removes these comment lines from an edited commit message by default.
+# Decide how to record prose assistance and document gaps in the history.
+# ===== END OF THE BLOCK TO DELETE =====
+#
 # <type>(<scope>): <imperative subject>
 #
 # Describe the changes using concise imperative bullet points.
 #
 # Why: <reason supplied by a person; omit for a trivial change>
 #
-# HOW TO USE
-# Copy this file to .gitmessage in your project, then run:
-#   git config commit.template .gitmessage
-#   git config core.hooksPath .githooks    (if the project keeps hooks there)
-# The template opens for editor-based commits. git commit -m bypasses it.
-# Git removes these comment lines from an edited commit message by default.
-#
 # TYPES AND SCOPES
-# Choose names that suit your project. For example:
-#   Types: docs, fix, feat, refactor, style, chore, ci
-#   Scopes: readme, src, tests, docs, ci, license
-# Pick one dominant scope or omit it. The vocabulary is not enforced.
+# Types and scopes are in CONTRIBUTING.md, "Names"; a scope is an area there.
+#   Types: feat, fix, docs, test, refactor, ci, chore
+# Pick one dominant scope or omit it.
 # For a breaking change, add ! after the type or scope and explain it in the body.
 #
 # AI PROVENANCE, IF YOUR PROJECT USES IT
@@ -43,7 +43,6 @@
 # Omit Ground-truth-source when no reference value changed.
 # A property test does not require a Ground-truth-source trailer.
 #
-# Decide how to record prose assistance and document gaps in the history.
 # Each commit lands on the main branch unchanged; keep it coherent.
 #
 # Git uses this template only for editor-based commits when commit.template is set.
