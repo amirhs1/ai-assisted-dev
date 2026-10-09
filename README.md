@@ -65,15 +65,16 @@ to each part:
 - **Delegated** — AI generates; I can't fully evaluate it. It is covered by
   tests, kept isolated and low-risk, and not presented as my work.
 
-| Part                                    | Tier         | Checks or human review                                                                                                                                                |
-| --------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Stored templates, `README.md`           | Instrumented | I design and write the first draft of each file; AI revises; I review every line and finalize wording.                                                                |
-| Issues, pull requests, commit messages  | Instrumented | AI drafts at my request; I review each before it is posted or merged.                                                                                                 |
-| `.gitmessage`, `.gitignore`, `.github/` | Instrumented | AI writes at my request; I review the diff in a pull request.                                                                                                         |
-| `scripts/`, `.githooks/`, `tests/`      | Supervised   | AI drafts against acceptance criteria I set in the issues; I read every line, and ShellCheck and each script's passing and failing fixtures must pass before I merge. |
+| Part                                            | Tier         | Checks or human review                                                                                                                                                |
+| ----------------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Stored templates, `README.md`                   | Instrumented | I design and write the first draft of each file; AI revises; I review every line and finalize wording.                                                                |
+| Issues, pull requests, commit messages          | Instrumented | AI drafts at my request; I review each before it is posted or merged.                                                                                                 |
+| `.gitmessage`, `.gitignore`, `.github/`         | Instrumented | AI writes at my request; I review the diff in a pull request.                                                                                                         |
+| `scripts/`, `.githooks/`, `tests/`              | Supervised   | AI drafts against acceptance criteria I set in the issues; I read every line, and ShellCheck and each script's passing and failing fixtures must pass before I merge. |
+| `AGENTS.md`, `CLAUDE.md`, `.claude/`, `LICENSE` | Instrumented | AI drafts each change as a patch in the pull request; I apply, review, and commit it myself.                                                                          |
 
 Where a tier is unclear, I treat the part as Supervised. Tiers last reviewed:
-2026-10-04.
+2026-10-09.
 
 Instructions for AI agents: [`AGENTS.md`](AGENTS.md).
 
