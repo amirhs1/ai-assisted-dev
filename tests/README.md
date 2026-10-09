@@ -97,8 +97,8 @@ Each input is saved output of the script's `gh api --jq` filter.
   documented `<...>` format; its skill quotes a section across a line break;
   its `AGENTS.md` nests a fenced block, with a placeholder and a missing path
   inside.
-- `pass/long-agents.out` — the same repository with 200 lines added to
-  `AGENTS.md`, which the self-check writes out: a warning, and a pass.
+- `pass/long-agents.out` — the same repository with `AGENTS.md` padded to 201
+  lines, which the self-check writes out: a warning, and a pass.
 - `pass/no-claude.txt` — no `CLAUDE.md` or `.claude/`: the Claude checks are
   skipped.
 - `fail/repo.txt` — one of each fault, among them a "Skills" table that
