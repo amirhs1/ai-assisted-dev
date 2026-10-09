@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  issues: read
 
 jobs:
   tools:
@@ -18,3 +19,7 @@ jobs:
         run: git ls-files -z 'scripts/*.sh' '.githooks/*' | xargs -0 shellcheck
       - name: Self-check
         run: sh scripts/check-repo.sh
+      - name: Names
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: sh scripts/check-names.sh
