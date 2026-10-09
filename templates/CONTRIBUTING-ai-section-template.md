@@ -15,7 +15,10 @@ request. The rules most often missed:
 
 - Understand, and be able to explain, everything you submit.
 - Say in the pull request which AI tools you used and for what.
-- Write issues, pull request descriptions, and replies in your own words.
+- Write issues, pull request descriptions, and replies in your own words. If
+  an AI agent writes them for you, you answer for every word, and its text
+  ends with its `Assisted-by:` trailer, with `not recorded` for an unknown
+  model.
 
 Pull requests that don't follow the policy may be closed without review.
 
