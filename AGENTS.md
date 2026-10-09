@@ -18,6 +18,8 @@ for f in $(grep -rhoE '[A-Za-z.-]+-template\.(md|txt|json)' --exclude-dir=.git .
 # the tools: ShellCheck, then every tool against its fixtures
 shellcheck scripts/*.sh .githooks/commit-msg
 sh scripts/check-repo.sh
+# names against CONTRIBUTING.md, "Names", and the labels (reads them with gh)
+sh scripts/check-names.sh
 ```
 
 Then read `git diff main...HEAD` in full for private details: names of private
