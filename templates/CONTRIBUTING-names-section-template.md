@@ -39,9 +39,11 @@ for a feature request<, ...>.
 - `.gitmessage`
 - `.github/pull_request_template.md`
 - `.github/ISSUE_TEMPLATE/*`
-- `.agents/skills/open-issue/SKILL.md`,
+- `.agents/skills/create-branch/SKILL.md`,
+  `.agents/skills/draft-release/SKILL.md`,
+  `.agents/skills/open-issue/SKILL.md`,
   `.agents/skills/open-pull-request/SKILL.md`,
   `.agents/skills/write-commit/SKILL.md`
-- `AGENTS.md`, "Skills"
+- `AGENTS.md`, "Git"
 
 Each of these cites this section.
