@@ -122,7 +122,6 @@ Do these only with the maintainer's explicit approval for that change:
 - Pull requests merge with a merge commit, so each commit lands unchanged. Keep
   every commit coherent; do not plan on a squash.
 - History rewrites are under "Ask first".
-- Open issues or post comments only when the maintainer asks.
 - Names: follow `CONTRIBUTING.md`, "Names".
 
 ## Provenance
