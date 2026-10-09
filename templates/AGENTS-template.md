@@ -6,15 +6,16 @@ committing.
 
 Design rules:
   1. Short: a budget of 200 lines, counted once filled in and stripped of
-     the optional sections that don't apply. This file is loaded every
-     session and competes for context with the work. Link out for detail.
+     the optional sections that don't apply. The budget is a recommendation,
+     not a hard limit: never cut a safety or verification rule to meet it.
+     This file is loaded every session and competes for context with the
+     work. Link out for detail.
   2. Non-obvious only. Don't restate what the agent can read from the code,
      the manifest, or the lockfile.
   3. Executable over descriptive. Commands beat prose.
   4. Self-contained. A rule every task needs is written here in full; a rule
      one task needs lives in that task's skill or in the section it cites.
-     Other files may be named as further reading, never as the only place a
-     rule lives.
+     Name other files only as further reading.
   5. One real file. Tool-specific facts go in CLAUDE.md (or another tool's
      file), which imports this one (`@AGENTS.md`); machine-specific ones in a
      gitignored AGENTS.local.md, imported by CLAUDE.local.md; module-specific
@@ -117,7 +118,6 @@ person running you:
 - Change `.github/workflows/` or `CODEOWNERS`.
 - Rewrite history (rebase, amend, squash); show the command before running it.
 - Create a release or a tag.
-- Change repository settings, branch protection, or secrets.
 - Change the licence, or add code under another licence.
 - Change the public API: <what counts as public here>.
 
@@ -169,8 +169,9 @@ person running you:
   task covers the branch, commits, push, and a draft pull request; only the
   maintainer may <list>".>
 - Each commit lands on `<main>` unchanged; keep it coherent.
-- Never force-push or delete tags or releases. History rewrites, releases,
-  tags, and repository settings are under "Ask first".
+- Never force-push, delete tags or releases, or change repository settings,
+  branch protection, or secrets; draft the change for the maintainer.
+  History rewrites, releases, and tags are under "Ask first".
 - You may open issues and pull requests, write commits, and post comments.
   The person running you is responsible for what you submit.
 - Names: as `CONTRIBUTING.md`, "Names", sets them.
@@ -179,31 +180,17 @@ person running you:
 
 Every text you write into the repository or its tracker (commit message, pull
 request body, issue body, comment, release notes) ends with one trailer block
-that includes `Assisted-by:`, after a blank line. A commit follows this format
-whether or not the repository has a `.gitmessage`.
-
-<!-- Adjust the first line to the project's commit convention. -->
-
-```text
-<type>(<scope>): <subject>
-
-<what changed>
-
-Why: <reason the maintainer supplied; omit otherwise, never a placeholder>
-
-Assisted-by: <tool>, <model identifier or not recorded> (<role>)
-Checks-run: <check actually run> — <observed result>
-Ground-truth-source: <independent source of a reference value>
-```
+that includes `Assisted-by:`, after a blank line. The `write-commit` skill
+gives a commit message's subject and body.
 
 - All trailers sit in one final paragraph, one per line, with no blank line
   between them and nothing after them. `Why:` stays in the body above it.
   Outside a commit, the block is `Assisted-by:`, then `Checks-run:` lines
   where checks ran.
-- `Assisted-by:` names your actual model and one role, with no free detail;
-  the body carries the detail. If you don't know the model, write
-  `not recorded`; never guess or fill it in later from memory. Pick the first
-  role that fits:
+- `Assisted-by: <tool>, <model identifier or not recorded> (<role>)` names
+  your actual model and one role, with no free detail; the body carries the
+  detail. If you don't know the model, write `not recorded`; never guess or
+  fill it in later from memory. Pick the first role that fits:
   - `full implementation`: you wrote essentially all of the committed content.
   - `partial implementation`: you wrote part of it; a person wrote the rest.
   - `refactor`: you chose how to restructure existing content without
@@ -214,8 +201,11 @@ Ground-truth-source: <independent source of a reference value>
     entered, moved, formatted, or committed it without adding content.
 - Template text adapted only by deletion is `transcription`; once you add
   words, it is `partial implementation`.
-- Add `Ground-truth-source:` only when the commit adds or changes a reference
-  value. Omit it for a property test without a reference value.
+- `Checks-run: <check actually run> — <observed result>`, one line per check
+  you ran. Running a check is not independent verification.
+- Add `Ground-truth-source: <independent source of a reference value>` only
+  when the commit adds or changes a reference value. Omit it for a property
+  test without a reference value.
 - Never add an AI `Co-authored-by:` line or use `--no-verify`; if the
   `commit-msg` hook rejects a commit, fix the message.
 
