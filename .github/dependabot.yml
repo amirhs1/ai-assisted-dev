@@ -8,3 +8,7 @@ updates:
     labels:
       - type:ci
       - area:github
+    commit-message:
+      prefix: "ci(github)"
+    pull-request-branch-name:
+      prefix: "ci"
