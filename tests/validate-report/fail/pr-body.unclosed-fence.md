@@ -32,6 +32,4 @@ None
 
 None
 
-## AI assistance
-
-None
+Assisted-by: Claude Code, claude-opus-5-5 (full implementation)

@@ -1,0 +1,1 @@
+tests/validate-report/fail/pr-body.empty-notes.md: empty section: ## Notes for review (write None if it does not apply)

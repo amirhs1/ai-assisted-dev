@@ -1,11 +1,17 @@
 AGENTS.md: line 1: placeholder <PROJECT NAME>
 AGENTS.md: line 5: template comment
+.github/PULL_REQUEST_TEMPLATE.md: line 5: link target ../docs/review.md does not exist
 README.md: line 10: placeholder <YYYY-MM-DD>
 CONTRIBUTING.md: line 7: link target AI-POLICY.md does not exist
 tier tables differ: only README.md lists src/io/ as Delegated
 tier tables differ: only AGENTS.md lists scripts/ as Delegated
 tier tables differ: only AGENTS.md lists src/io/ as Supervised
+skills differ: only the AGENTS.md "Skills" table lists review-pr
+skills differ: only .agents/skills/ holds write-commit
+AGENTS.md: line 16: path docs/ARCHITECTURE.md does not exist
+AGENTS.md: CONTRIBUTING.md has no "Names" section
+AGENTS.md: SECURITY.md, "Reporting": SECURITY.md does not exist
 CLAUDE.md: must start with the line @AGENTS.md and hold only ## sections after it
 .claude/settings.json: no attribution block turning off both lines: "attribution": { "commit": "", "pr": "" }
 core.hooksPath is not set: run git config core.hooksPath .githooks
-Problems found: 10
+Problems found: 16

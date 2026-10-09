@@ -35,6 +35,10 @@ To use a copied `.gitmessage` for editor-based commits, run
 `git config commit.template .gitmessage` in that project. Git does not apply it
 to `git commit -m`; check the final message for completed provenance trailers.
 
+[`scripts/check-names.sh`](scripts/check-names.sh) checks that an adopting
+repository's labels, `.gitmessage`, skills, and templates agree with its
+`CONTRIBUTING.md`, "Names"; it reads the labels with `gh` and changes nothing.
+
 ## AI assistance
 
 I use AI tools in this project. Each part has a tier, set by whether I can

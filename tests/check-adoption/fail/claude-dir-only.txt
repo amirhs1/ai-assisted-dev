@@ -17,3 +17,5 @@
 | `src/core/` | Instrumented | Unit tests.            |
 ==> .claude/settings.json <==
 { "attribution": { "commit": "", "pr": "" } }
+==> src/core/model.py <==
+# model

@@ -1,8 +1,11 @@
 #!/bin/sh
 
-# Checks the shape of a report: the chat report, short or full form, or the
-# pull request body. Each section appears once, in order, and is not empty; a
-# section that does not apply says None. A <...> placeholder outside code
+# Checks the shape of a report: the chat report, in the short or full form of
+# the AGENTS template's "Report back", or the pull request body. Each section
+# appears once, in order, and is not empty; a section that does not apply
+# says None. The pull request body ends with a trailer block that includes
+# Assisted-by:, after a blank line; other sections may sit between the listed
+# ones and are not checked. A <...> placeholder outside code
 # spans and fenced blocks is rejected. A fenced block closes only on a fence
 # of its own character, at least as long, indented at most three spaces and
 # followed by nothing but spaces; a line indented four or more spaces never
@@ -26,7 +29,7 @@ report=$2
 case $mode in
   chat-short) sections='Based on:|Open:' ;;
   chat-full) sections='End product:|1 What changed|2 Checks run|3 Decisions I made that were yours|4 What I need from you|5 Close-out' ;;
-  pr-body) sections='## Summary|## Related issues|## Problem|## What changed|## Checks run|## Decisions and risks|## Notes for review|## AI assistance' ;;
+  pr-body) sections='## Summary|## Related issues|## Problem|## What changed|## Checks run|## Decisions and risks|## Notes for review' ;;
   *) usage ;;
 esac
 
@@ -105,7 +108,21 @@ BEGIN { n = split(sections, name, "|"); current = 0 }
   } else if (fenced && run && fchar == open_char && run >= open_len && after ~ /^ *$/)
     fenced = 0
   if (!code) placeholders(line)
-  if (line ~ /^[ \t]*$/) next
+  if (line ~ /^[ \t]*$/) { blank = 1; next }
+  # Track the last paragraph: whether every line is a trailer or a
+  # continuation of one, and whether one is Assisted-by:.
+  if (blank || !lines) {
+    para_at = NR
+    trailers = 1
+    assisted = 0
+    para_section = current
+    para_filled = filled[current]
+  }
+  blank = 0
+  if (code || (line !~ /^[A-Za-z0-9][A-Za-z0-9-]*:([ \t]|$)/ &&
+      (NR == para_at || line !~ /^[ \t]/)))
+    trailers = 0
+  if (!code && line ~ /^Assisted-by:/) assisted = 1
   if (++lines == 1) first = line
   if (!code) {
     if (line ~ /^(\*\*)?Verdict:/) {
@@ -134,6 +151,11 @@ END {
     if (verdicts && verdict_at != 2) problem("the verdict line must come right after the title")
   }
   if (mode == "pr-body" && verdicts) problem("a pull request body has no verdict line")
+  # The trailer block is not the content of the section it follows.
+  if (mode == "pr-body" && trailers && assisted && para_at > 1) {
+    if (!para_filled) filled[para_section] = 0
+  } else if (mode == "pr-body")
+    problem("the body must end with a trailer block that includes Assisted-by:, after a blank line")
   if (mode == "chat-short" && !filled[0]) problem("the answer is missing before Based on:")
   last = 0
   for (i = 1; i <= n; i++) {

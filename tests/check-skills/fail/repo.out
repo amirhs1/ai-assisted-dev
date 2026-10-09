@@ -6,4 +6,5 @@
 .agents/skills/placeholders/SKILL.md: line 6: placeholder <reviewer>
 .agents/skills/unclosed/SKILL.md: the frontmatter is not closed with ---
 .agents/skills/unclosed/SKILL.md: the frontmatter has no description
+.agents/skills/user-invoked/SKILL.md: disable-model-invocation is yes; expected true or false
 templates/SKILL-post-comment-template.md: name is comment; expected post-comment

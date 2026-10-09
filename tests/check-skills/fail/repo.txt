@@ -36,6 +36,12 @@ Open it with `gh pr create --base <main>`.
 ---
 name: unclosed
 # Unclosed
+==> .agents/skills/user-invoked/SKILL.md <==
+---
+name: user-invoked
+description: Run only when asked. Use when a person invokes it.
+disable-model-invocation: yes
+---
 ==> templates/SKILL-post-comment-template.md <==
 ---
 name: comment

@@ -1,6 +1,6 @@
 ## Summary
 
-Shows a patch of a Markdown file in the body.
+Adds a trailer check.
 
 ## Related issues
 
@@ -12,17 +12,7 @@ None
 
 ## What changed
 
-````diff
---- a/README.md
-+++ b/README.md
-@@ -1,4 +1,4 @@
- ```text
--<old>
-+<new>
- ```
-~~~
-    ````
-````
+- scripts/validate-report.sh
 
 ## Checks run
 
@@ -33,7 +23,5 @@ None.
 None
 
 ## Notes for review
-
-None
 
 Assisted-by: Claude Code, claude-opus-5-5 (full implementation)

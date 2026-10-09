@@ -1,6 +1,7 @@
-Two valid skills and a skill template. Code spans and fenced blocks hold
-format examples, not placeholders; a template keeps its comment and
-placeholders, since only its frontmatter is checked.
+Three valid skills, one of them user-invoked, and a user-invoked skill
+template. Code spans and fenced blocks hold format examples, not
+placeholders; a template keeps its comment and placeholders, since only its
+frontmatter is checked.
 ==> .agents/skills/open-issue/SKILL.md <==
 ---
 name: open-issue
@@ -24,6 +25,14 @@ description: 'Write a commit in this format. Use for every commit.'
 # Write a commit
 
 The format is in <https://git-scm.com/docs/git-interpret-trailers>.
+==> .agents/skills/draft-release/SKILL.md <==
+---
+name: draft-release
+description: Draft a release. Use only when the maintainer asks.
+disable-model-invocation: false
+---
+
+# Draft a release
 ==> templates/SKILL-draft-release-template.md <==
 ---
 name: draft-release

@@ -1,0 +1,69 @@
+A repository whose names agree: the labels, .gitmessage, AGENTS.md, a skill,
+an issue template under a listed pattern, and dependabot.yml. A skill that
+neither cites the section nor uses a label need not be listed; a label
+outside type: and area: is not checked; area:docs has its own description,
+which only --print-label-commands reports, as a gh label edit command.
+==> labels.tsv <==
+type:feat	Type: feat
+type:fix	Type: fix
+type:docs	Type: docs
+area:core	Area: core
+area:docs	Documentation
+good first issue	Good for newcomers
+==> CONTRIBUTING.md <==
+# Contributing
+
+## Names
+
+```text
+types: feat fix docs
+areas: core docs
+```
+
+### Where these names are used
+
+- `.gitmessage`
+- `.github/ISSUE_TEMPLATE/*`
+- `.github/dependabot.yml`
+- `.agents/skills/open-issue/SKILL.md`
+- `AGENTS.md`, "Git"
+
+Each of these cites this section.
+==> .gitmessage <==
+# <type>(<scope>): <subject>
+# Types and scopes are in CONTRIBUTING.md, "Names".
+#   Types: feat, fix, docs
+==> AGENTS.md <==
+# AGENTS.md — Example
+
+## Git
+
+- Names: follow `CONTRIBUTING.md`, "Names".
+==> .agents/skills/open-issue/SKILL.md <==
+---
+name: open-issue
+description: Open an issue. Use when asked to file one.
+---
+
+Labels, from "Names" in CONTRIBUTING.md: `type:fix` for a bug, and one
+`area:` label for each area.
+==> .agents/skills/post-comment/SKILL.md <==
+---
+name: post-comment
+description: Post a comment. Use when asked to comment.
+---
+
+Post it with `gh issue comment`.
+==> .github/ISSUE_TEMPLATE/bug.yml <==
+# Labels: CONTRIBUTING.md, "Names".
+name: Bug report
+labels: ["type:fix", "area:core"]
+==> .github/dependabot.yml <==
+# Labels: CONTRIBUTING.md, "Names".
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    labels: [type:fix, area:core]

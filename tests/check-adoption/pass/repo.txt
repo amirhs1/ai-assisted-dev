@@ -1,5 +1,8 @@
 An adopted repository that passes. Placeholders in fenced blocks, in longer
-code spans, and outside the README's AI section are not checked.
+code spans, and outside the README's AI section are not checked. The
+"Skills" table matches .agents/skills/; every path in a code span exists or
+is ignored by git; every quoted section exists. The pull request template
+keeps a comment and a documented <...> format.
 ==> AGENTS.md <==
 # AGENTS.md — Example
 
@@ -18,6 +21,8 @@ Example tool for testing the adoption check.
 | `src/core/`         | Instrumented | Review and refactor.               |
 | `src/io/`, `tests/` | Supervised   | Draft against acceptance criteria. |
 
+Machine-specific notes go in `AGENTS.local.md`; see `src/core/model.py:12`.
+
 ## Commit format
 
 ```text
@@ -26,7 +31,30 @@ Example tool for testing the adoption check.
 Assisted-by: <tool>, <model identifier or not recorded> (<role>)
 ```
 
+## Skills
+
+| Skill          | Use when     |
+| -------------- | ------------ |
+| `write-commit` | Every commit |
+
 Further reading: [AI policy](AI-POLICY.md).
+==> .gitignore <==
+AGENTS.local.md
+==> src/core/model.py <==
+# model
+==> src/io/read.py <==
+# read
+==> tests/run.sh <==
+# run
+==> .agents/skills/write-commit/SKILL.md <==
+---
+name: write-commit
+description: Write a commit. Use for every commit.
+---
+
+1. Follow AGENTS.md, "Commit format", and the trailer rules under "Commit
+   format" in AGENTS.md.
+2. Commit from a file: `git commit -F <file>`, then check `origin/main`.
 ==> CLAUDE.md <==
 @AGENTS.md
 
@@ -68,10 +96,13 @@ AI tools are welcome here.
   }
 }
 ==> .github/pull_request_template.md <==
+<!-- Title: as CONTRIBUTING.md, "Names", sets it. -->
+
 ## Summary
 
 What changed and why.
 
 ## AI assistance
 
-Copy the `Assisted-by:` lines from `git log --no-merges --format=%B main..HEAD`.
+Name each tool, for example "<tool> (<model>): drafted the parser", and see
+the [AI policy](../AI-POLICY.md).

@@ -25,3 +25,5 @@ None.
 ## Notes for review
 
 None.
+
+Checks-run: sh scripts/check-repo.sh — All checks passed.
