@@ -1,9 +1,9 @@
 <!--
 Two blocks. Paste the first into CONTRIBUTING.md. If the project already has
 .github/pull_request_template.md, add the second block to its end. If it needs
-a complete PR template, use pull-request-template.md instead; its AI section
-serves the same purpose. Keep the wording aligned with AI-POLICY.md. Delete
-this comment before committing.
+a complete PR template, use pull-request-template.md instead; its closing
+comment serves the same purpose. Keep the wording aligned with AI-POLICY.md.
+Delete this comment before committing.
 -->
 
 <!-- ===== CONTRIBUTING.md ===== -->
@@ -45,10 +45,10 @@ Pull requests that don't follow the policy may be closed without review.
 
 <!-- ===== .github/pull_request_template.md ===== -->
 
-## AI assistance
-
-Write `None`, or name each AI tool you used (with the model, if known) and what
-it did — for example, "<tool> (<model>): drafted the parser and its tests; I
-rewrote the error handling and reviewed every line." If you don't know the
-model, write `not recorded`. Then copy the branch's `Assisted-by:` lines from
-`git log --no-merges --format=%B <main>..HEAD | grep '^Assisted-by:'`.
+<!--
+AI assistance: end the body with one trailer block, after a blank line. Write
+one `Assisted-by: <tool>, <model id or not recorded> (<role>)` line for each
+AI tool used, then `Checks-run: <check actually run> — <observed result>` for
+each check it ran. Do not guess a model; write `not recorded`. With no AI
+tool, leave the block out. Do not include prompts, secrets, or personal data.
+-->

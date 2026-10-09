@@ -6,7 +6,9 @@
 # disable-model-invocation, which makes a skill user-invoked only, is true or
 # false where it is set, and no placeholder or template comment is left. A
 # placeholder is a <...> outside code, or a code span that holds only one,
-# such as `<main>`.
+# such as `<main>`. A fenced block closes only on a fence of its own
+# character, at least as long; a line indented four or more spaces is never a
+# fence.
 # Each templates/SKILL-<name>-template.md (in this repository): the same
 # frontmatter checks, with name equal to <name>.
 # Usage: sh scripts/check-skills.sh [directory]
@@ -27,6 +29,32 @@ cd "${1:-.}"
 check() {
   awk -v file="$1" -v want="$2" -v body="$3" '
     function problem(msg) { print file ": " msg; bad = 1 }
+    # fence(line): the length of the run of backticks or tildes that makes the
+    # line a fence, or 0; sets fchar to its character and after to the rest.
+    function fence(line,    s, len) {
+      match(line, /^ */)
+      if (RLENGTH > 3) return 0
+      s = substr(line, RLENGTH + 1)
+      fchar = substr(s, 1, 1)
+      if (fchar != "`" && fchar != "~") return 0
+      len = 0
+      while (substr(s, len + 1, 1) == fchar) len++
+      if (len < 3) return 0
+      after = substr(s, len + 1)
+      return len
+    }
+    # in_code(line): 1 when the line is a fence or inside a fenced block. A block
+    # closes only on a fence of its own character, at least as long, followed by
+    # nothing but spaces.
+    function in_code(line,    run) {
+      run = fence(line)
+      if (!fenced && run) { fenced = 1; open_char = fchar; open_len = run; return 1 }
+      if (fenced && run && fchar == open_char && run >= open_len && after ~ /^ *$/) {
+        fenced = 0
+        return 1
+      }
+      return fenced
+    }
     function value(s,    q) {
       q = "\047"
       sub(/^[ \t]+/, "", s)
@@ -70,8 +98,7 @@ check() {
     }
     body == "yes" {
       line = $0
-      if (line ~ /^[ \t]*(```|~~~)/) { fenced = !fenced; next }
-      if (fenced) next
+      if (in_code(line)) next
       if (comment) {
         if (!index(line, "-->")) next
         comment = 0

@@ -2,7 +2,8 @@ An adopted repository that passes. Placeholders in fenced blocks, in longer
 code spans, and outside the README's AI section are not checked. The
 "Skills" table matches .agents/skills/; every path in a code span exists or
 is ignored by git; every quoted section exists. The pull request template
-keeps a comment and a documented <...> format.
+keeps a comment and a documented <...> format. A four-backtick block in
+AGENTS.md holds a three-backtick block, with a placeholder and a missing path.
 ==> AGENTS.md <==
 # AGENTS.md — Example
 
@@ -30,6 +31,15 @@ Machine-specific notes go in `AGENTS.local.md`; see `src/core/model.py:12`.
 
 Assisted-by: <tool>, <model identifier or not recorded> (<role>)
 ```
+
+## Commit example
+
+````markdown
+```text
+<type>(<scope>): <subject>
+See `docs/commit-format.md`.
+```
+````
 
 ## Skills
 
