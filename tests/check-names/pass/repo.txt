@@ -2,7 +2,8 @@ A repository whose names agree: the labels, .gitmessage, AGENTS.md, a skill,
 an issue template under a listed pattern, and dependabot.yml. A skill that
 neither cites the section nor uses a label need not be listed; a label
 outside type: and area: is not checked; area:docs has its own description,
-which only --print-label-commands reports, as a gh label edit command.
+which only --print-label-commands reports, as a gh label edit command. A
+line indented four spaces before the lists is not a fence.
 ==> labels.tsv <==
 type:feat	Type: feat
 type:fix	Type: fix
@@ -14,6 +15,10 @@ good first issue	Good for newcomers
 # Contributing
 
 ## Names
+
+Fence the lists like this:
+
+    ```text
 
 ```text
 types: feat fix docs

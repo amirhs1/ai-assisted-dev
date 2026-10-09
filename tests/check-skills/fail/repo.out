@@ -1,4 +1,5 @@
 .agents/skills/comment-left/SKILL.md: line 8: template comment
+.agents/skills/indented-fence/SKILL.md: line 8: placeholder <reviewer>
 .agents/skills/no-frontmatter/SKILL.md: no frontmatter: the first line must be ---
 .agents/skills/no-when/SKILL.md: the description does not say when to use the skill: add a sentence starting "Use"
 .agents/skills/open-pr/SKILL.md: name is open-pull-request; expected open-pr

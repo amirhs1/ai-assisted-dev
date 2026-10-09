@@ -1,7 +1,8 @@
 An adopted repository with one of each fault; it does not set
 core.hooksPath. The placeholder outside CONTRIBUTING.md's AI section is not
 checked. The pull request template has an upper-case name: its comment is
-kept, and its broken link is reported.
+kept, and its broken link is reported. A line indented four spaces in
+AGENTS.md is not a fence, so the placeholder after it counts.
 ==> AGENTS.md <==
 # AGENTS.md — `<PROJECT NAME>`
 
@@ -26,6 +27,10 @@ and security reports SECURITY.md, "Reporting".
 | Skill       | Use when             |
 | ----------- | -------------------- |
 | `review-pr` | Asked for a review   |
+
+    ```
+
+Ask <reviewer> before you merge.
 ==> .agents/skills/write-commit/SKILL.md <==
 ---
 name: write-commit

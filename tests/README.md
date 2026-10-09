@@ -81,25 +81,30 @@ Each input is saved output of the script's `gh api --jq` filter.
 
 ## `check-skills/` — `scripts/check-skills.sh`
 
-- `pass/repo.txt` — three valid skills, one user-invoked, and a user-invoked
-  skill template.
+- `pass/repo.txt` — four valid skills, one user-invoked, and a user-invoked
+  skill template; one skill holds a three-backtick block inside a
+  four-backtick one.
 - `pass/no-skills.txt` — no skills at all: nothing to check, so it passes.
 - `fail/repo.txt` — one fault per skill, among them a
-  `disable-model-invocation` that is neither true nor false, and a template
+  `disable-model-invocation` that is neither true nor false, a placeholder
+  after a line indented four spaces, which is not a fence, and a template
   whose name does not match its file.
 
 ## `check-adoption/` — `scripts/check-adoption.sh`
 
 - `pass/repo.txt` — an adopted repository that passes; the self-check sets
   `core.hooksPath`. Its pull request template keeps a comment and a
-  documented `<...>` format; its skill quotes a section across a line break.
+  documented `<...>` format; its skill quotes a section across a line break;
+  its `AGENTS.md` nests a fenced block, with a placeholder and a missing path
+  inside.
 - `pass/long-agents.out` — the same repository with 200 lines added to
   `AGENTS.md`, which the self-check writes out: a warning, and a pass.
 - `pass/no-claude.txt` — no `CLAUDE.md` or `.claude/`: the Claude checks are
   skipped.
 - `fail/repo.txt` — one of each fault, among them a "Skills" table that
-  differs from `.agents/skills/`, a missing path, a missing section, and a
-  broken link in a `PULL_REQUEST_TEMPLATE.md`; `core.hooksPath` is not set.
+  differs from `.agents/skills/`, a missing path, a missing section, a
+  placeholder after a line indented four spaces, and a broken link in a
+  `PULL_REQUEST_TEMPLATE.md`; `core.hooksPath` is not set.
 - `fail/claude-dir-only.txt` — `.claude/` without `CLAUDE.md`.
 
 ## `check-names/` — `scripts/check-names.sh --labels`
@@ -108,7 +113,8 @@ Each manifest holds a `labels.tsv`, saved output of the script's
 `gh label list` call; the self-check never calls `gh`.
 
 - `pass/repo.txt` — names that agree, with an issue template under a listed
-  pattern and a `dependabot.yml`.
+  pattern and a `dependabot.yml`; a line indented four spaces before the lists
+  is not a fence.
 - `pass/repo-commands.out` — the same with `--print-label-commands`: one
   `gh label edit` command.
 - `fail/repo.txt` — one of each fault: labels, `.gitmessage`, a skill's

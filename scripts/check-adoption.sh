@@ -3,7 +3,9 @@
 # Adoption check for a repository that adopted these templates; run it from
 # the repository's root. It fails when:
 # - a placeholder or template comment is left in a governance file; a
-#   placeholder is a <...> outside code, or a code span holding only one;
+#   placeholder is a <...> outside code, or a code span holding only one; a
+#   fenced block closes only on a fence of its own character, at least as
+#   long, and a line indented four or more spaces is never a fence;
 # - a relative link in a governance file does not resolve;
 # - the README tier table and the AGENTS.md "Where you may write" table list
 #   different paths or tiers;
@@ -49,6 +51,32 @@ problem() {
 # guide, comments and placeholders are kept and only links are printed.
 scan() {
   awk -v section="${2-}" -v guide="${3-}" '
+    # fence(line): the length of the run of backticks or tildes that makes the
+    # line a fence, or 0; sets fchar to its character and after to the rest.
+    function fence(line,    s, len) {
+      match(line, /^ */)
+      if (RLENGTH > 3) return 0
+      s = substr(line, RLENGTH + 1)
+      fchar = substr(s, 1, 1)
+      if (fchar != "`" && fchar != "~") return 0
+      len = 0
+      while (substr(s, len + 1, 1) == fchar) len++
+      if (len < 3) return 0
+      after = substr(s, len + 1)
+      return len
+    }
+    # in_code(line): 1 when the line is a fence or inside a fenced block. A block
+    # closes only on a fence of its own character, at least as long, followed by
+    # nothing but spaces.
+    function in_code(line,    run) {
+      run = fence(line)
+      if (!fenced && run) { fenced = 1; open_char = fchar; open_len = run; return 1 }
+      if (fenced && run && fchar == open_char && run >= open_len && after ~ /^ *$/) {
+        fenced = 0
+        return 1
+      }
+      return fenced
+    }
     function placeholders(line,    s, span, p) {
       s = line
       while (match(s, /`[^`]*`/)) {
@@ -83,8 +111,7 @@ scan() {
     }
     {
       line = $0
-      if (line ~ /^[ \t]*(```|~~~)/) { fenced = !fenced; next }
-      if (fenced) next
+      if (in_code(line)) next
       if (comment) {
         if (!index(line, "-->")) next
         comment = 0
@@ -161,6 +188,32 @@ tiers() {
 # file, outside fenced blocks and comments.
 refs() {
   awk '
+    # fence(line): the length of the run of backticks or tildes that makes the
+    # line a fence, or 0; sets fchar to its character and after to the rest.
+    function fence(line,    s, len) {
+      match(line, /^ */)
+      if (RLENGTH > 3) return 0
+      s = substr(line, RLENGTH + 1)
+      fchar = substr(s, 1, 1)
+      if (fchar != "`" && fchar != "~") return 0
+      len = 0
+      while (substr(s, len + 1, 1) == fchar) len++
+      if (len < 3) return 0
+      after = substr(s, len + 1)
+      return len
+    }
+    # in_code(line): 1 when the line is a fence or inside a fenced block. A block
+    # closes only on a fence of its own character, at least as long, followed by
+    # nothing but spaces.
+    function in_code(line,    run) {
+      run = fence(line)
+      if (!fenced && run) { fenced = 1; open_char = fchar; open_len = run; return 1 }
+      if (fenced && run && fchar == open_char && run >= open_len && after ~ /^ *$/) {
+        fenced = 0
+        return 1
+      }
+      return fenced
+    }
     function path(s) {
       sub(/:[0-9]+(-[0-9]+)?$/, "", s)
       if (s ~ /[] \t<>*?[{}$|="(),@#~!\\:;]/ || s ~ /^[-\/]/) return ""
@@ -170,8 +223,7 @@ refs() {
     }
     {
       line = $0
-      if (line ~ /^[ \t]*(```|~~~)/) { fenced = !fenced; next }
-      if (fenced) next
+      if (in_code(line)) next
       if (comment) {
         if (!index(line, "-->")) next
         comment = 0

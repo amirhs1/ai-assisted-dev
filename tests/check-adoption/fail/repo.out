@@ -1,5 +1,6 @@
 AGENTS.md: line 1: placeholder <PROJECT NAME>
 AGENTS.md: line 5: template comment
+AGENTS.md: line 27: placeholder <reviewer>
 .github/PULL_REQUEST_TEMPLATE.md: line 5: link target ../docs/review.md does not exist
 README.md: line 10: placeholder <YYYY-MM-DD>
 CONTRIBUTING.md: line 7: link target AI-POLICY.md does not exist
@@ -14,4 +15,4 @@ AGENTS.md: SECURITY.md, "Reporting": SECURITY.md does not exist
 CLAUDE.md: must start with the line @AGENTS.md and hold only ## sections after it
 .claude/settings.json: no attribution block turning off both lines: "attribution": { "commit": "", "pr": "" }
 core.hooksPath is not set: run git config core.hooksPath .githooks
-Problems found: 16
+Problems found: 17

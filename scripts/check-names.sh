@@ -81,12 +81,39 @@ if [ ! -f CONTRIBUTING.md ]; then
 fi
 
 # names <key>: prints the words of the key's line in the fenced block of the
-# "Names" section, one per line.
+# "Names" section, one per line. The block closes only on a fence of its own
+# character, at least as long; a line indented four or more spaces is never a
+# fence.
 names() {
   awk -v key="$1:" '
+    # fence(line): the length of the run of backticks or tildes that makes the
+    # line a fence, or 0; sets fchar to its character and after to the rest.
+    function fence(line,    s, len) {
+      match(line, /^ */)
+      if (RLENGTH > 3) return 0
+      s = substr(line, RLENGTH + 1)
+      fchar = substr(s, 1, 1)
+      if (fchar != "`" && fchar != "~") return 0
+      len = 0
+      while (substr(s, len + 1, 1) == fchar) len++
+      if (len < 3) return 0
+      after = substr(s, len + 1)
+      return len
+    }
+    # in_code(line): 1 when the line is a fence or inside a fenced block. A block
+    # closes only on a fence of its own character, at least as long, followed by
+    # nothing but spaces.
+    function in_code(line,    run) {
+      run = fence(line)
+      if (!fenced && run) { fenced = 1; open_char = fchar; open_len = run; return 1 }
+      if (fenced && run && fchar == open_char && run >= open_len && after ~ /^ *$/) {
+        fenced = 0
+        return 1
+      }
+      return fenced
+    }
     /^## / { inside = ($0 == "## Names"); next }
-    inside && /^[ \t]*(```|~~~)/ { fenced = !fenced; next }
-    inside && fenced && $1 == key { for (i = 2; i <= NF; i++) print $i }
+    inside && in_code($0) && $1 == key { for (i = 2; i <= NF; i++) print $i }
   ' CONTRIBUTING.md
 }
 types=$(names types)

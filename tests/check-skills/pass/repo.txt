@@ -1,5 +1,5 @@
-Three valid skills, one of them user-invoked, and a user-invoked skill
-template. Code spans and fenced blocks hold format examples, not
+Four valid skills, one of them user-invoked, and a user-invoked skill
+template. One shows a four-backtick block that holds a three-backtick block. Code spans and fenced blocks hold format examples, not
 placeholders; a template keeps its comment and placeholders, since only its
 frontmatter is checked.
 ==> .agents/skills/open-issue/SKILL.md <==
@@ -33,6 +33,19 @@ disable-model-invocation: false
 ---
 
 # Draft a release
+==> .agents/skills/show-format/SKILL.md <==
+---
+name: show-format
+description: Show a Markdown format. Use when asked for one.
+---
+
+````markdown
+```text
+<example placeholder>
+```
+````
+
+Then ask the person running you.
 ==> templates/SKILL-draft-release-template.md <==
 ---
 name: draft-release
