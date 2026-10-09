@@ -32,7 +32,8 @@ how each part was checked, is described in the README.>
   trailer. Add `Checks-run:` only for a check actually run, with its observed
   result. Add `Ground-truth-source:` only when a commit adds or changes a
   reference value, naming its independent source. Outside contributors may use
-  these trailers too, but their pull-request statement is enough.
+  these trailers too, but their pull-request statement is enough for what they
+  write themselves.
 
   ```text
   Assisted-by: <tool>, <model identifier or not recorded> (<role>)
@@ -49,8 +50,12 @@ how each part was checked, is described in the README.>
 
 ## Communication
 
-Write issues, pull request descriptions, and replies in your own words. AI may
-fix grammar or translate. The reason a change exists comes from a person, or
+People write issues, pull request descriptions, and replies in their own words;
+AI may fix grammar or translate. Meanwhile, an AI agent may open issues and
+pull requests, write commits, and post comments. The person running it is
+responsible for what it submits, and every text it writes ends with its
+`Assisted-by:` trailer, with `not recorded` for a model it cannot name.
+The reason a change exists comes from a person, or
 from an outside report such as a bug report, a security alert, or a CI failure.
 It is recorded where it lasts: the linked issue, the pull request description,
 the linked report, or a `Why:` line in the commit. AI may copy, copy-edit, or
