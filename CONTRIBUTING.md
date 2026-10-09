@@ -28,6 +28,7 @@ combination labels. Status, priority, and release are not labels.
 ### Where these names are used
 
 - `.gitmessage`
+- `.github/dependabot.yml`
 - `.agents/skills/create-branch/SKILL.md`,
   `.agents/skills/draft-release/SKILL.md`,
   `.agents/skills/open-issue/SKILL.md`,
