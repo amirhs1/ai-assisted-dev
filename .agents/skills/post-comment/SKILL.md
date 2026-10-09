@@ -1,6 +1,6 @@
 ---
 name: post-comment
-description: Post a short comment on an issue or pull request. Use when asked to reply to or comment on an issue or pull request, not for comments in code.
+description: Post a short comment on an issue or pull request. Use when asked to reply to, comment on, or revise your comment on an issue or pull request, not for comments in code.
 ---
 
 # Post a comment
@@ -11,3 +11,5 @@ description: Post a short comment on an issue or pull request. Use when asked to
    End with your trailer block (AGENTS.md, "Provenance").
 3. Post it with `gh issue comment <n> --body-file <file>` or
    `gh pr comment <n> --body-file <file>`.
+4. To revise your last comment there, run the same command with
+   `--edit-last`.

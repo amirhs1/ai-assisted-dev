@@ -25,3 +25,5 @@ changelog.
 5. Write them to a file outside the repository. Give the maintainer the
    command that creates the draft, and do not run it:
    `gh release create v<version> --draft --title v<version> --notes-file <file>`.
+6. To revise the draft, give the maintainer
+   `gh release edit v<version> --notes-file <file>`.

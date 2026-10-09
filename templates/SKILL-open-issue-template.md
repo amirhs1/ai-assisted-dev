@@ -1,6 +1,6 @@
 ---
 name: open-issue
-description: Open a GitHub issue that states a problem, its evidence, and the proposed change. Use when asked to file an issue; not for a suspected vulnerability or a reply on an existing issue.
+description: Open a GitHub issue that states a problem, its evidence, and the proposed change. Use when asked to file or revise an issue; not for a suspected vulnerability or a reply on an existing issue.
 ---
 
 <!--
@@ -30,3 +30,5 @@ if it has one. Fill every <...> or delete the line, and delete this comment.
    template's type as the default, and the area of each part it changes.
 7. Open it with
    `gh issue create --title "<title>" --label <labels> --body-file <file>`.
+8. To revise an issue you opened, rewrite its body file and run
+   `gh issue edit <n> --body-file <file>`.

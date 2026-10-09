@@ -30,3 +30,4 @@ and delete this comment.
 6. Release notes: the same categories without the heading, then your trailer
    block (AGENTS.md, "Provenance"). Create the draft, and never publish it:
    `gh release create v<version> --draft --title v<version> --notes-file <file>`.
+7. To revise the draft: `gh release edit v<version> --notes-file <file>`.

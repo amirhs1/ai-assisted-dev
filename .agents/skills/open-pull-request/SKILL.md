@@ -1,6 +1,6 @@
 ---
 name: open-pull-request
-description: Open a draft pull request whose body is the full report. Use when a change is committed and ready for review; not for reviewing someone else's pull request.
+description: Open a draft pull request whose body is the full report. Use when a change is committed and ready for review, or to update an open pull request's body; not for reviewing someone else's pull request.
 ---
 
 # Open a pull request
@@ -28,3 +28,7 @@ description: Open a draft pull request whose body is the full report. Use when a
 6. Push the branch, open a draft, then read it back with `gh pr view`:
    `gh pr create --draft --base main --title "<title>" --label <labels> --body-file <file>`.
    Never mark it ready or merge it.
+7. If the branch already has a pull request, check it is open
+   (`gh pr view <n> --json state`); if it merged, start a new branch
+   (create-branch). Push, then replace its body and read it back:
+   `gh pr edit <n> --body-file <file>`.
