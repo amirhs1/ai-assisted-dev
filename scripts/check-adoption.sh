@@ -13,7 +13,8 @@
 # - in AGENTS.md or a skill, a path in a code span does not exist, or a
 #   section quoted with its file (AGENTS.md, "Git", or "Names" in
 #   CONTRIBUTING.md) is not a heading there; a path git ignores counts as
-#   existing;
+#   existing. This covers the paths in the "Where you may write" table: a
+#   part listed there must exist, even one only planned;
 # - core.hooksPath is not set.
 # When CLAUDE.md or .claude/ exists, it also fails when:
 # - CLAUDE.md is missing, does not start with the line @AGENTS.md, or holds
