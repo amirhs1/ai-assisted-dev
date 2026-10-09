@@ -39,6 +39,15 @@ to `git commit -m`; check the final message for completed provenance trailers.
 repository's labels, `.gitmessage`, skills, and templates agree with its
 `CONTRIBUTING.md`, "Names"; it reads the labels with `gh` and changes nothing.
 
+## Scope
+
+The skills and tools assume GitHub and the `gh` CLI. A GitLab project would
+change the commands (`glab`) and the terms (merge request), and the set does
+not cover that yet. The `draft-release` skill writes changelog sections in
+[Common Changelog](https://common-changelog.org) form: unlike Keep a
+Changelog, there is no Unreleased section, each section is written at release
+time, and every line references a commit or pull request.
+
 ## AI assistance
 
 I use AI tools in this project. Each part has a tier, set by whether I can
