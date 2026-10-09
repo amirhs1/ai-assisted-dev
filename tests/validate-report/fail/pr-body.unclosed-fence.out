@@ -1,0 +1,4 @@
+tests/validate-report/fail/pr-body.unclosed-fence.md: missing section: ## Checks run
+tests/validate-report/fail/pr-body.unclosed-fence.md: missing section: ## Decisions and risks
+tests/validate-report/fail/pr-body.unclosed-fence.md: missing section: ## Notes for review
+tests/validate-report/fail/pr-body.unclosed-fence.md: missing section: ## AI assistance

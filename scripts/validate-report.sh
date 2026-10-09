@@ -3,8 +3,11 @@
 # Checks the shape of a report: the chat report, short or full form, or the
 # pull request body. Each section appears once, in order, and is not empty; a
 # section that does not apply says None. A <...> placeholder outside code
-# spans and fenced blocks is rejected. The full chat form has exactly one
-# verdict line, right after its title; the pull request body has none.
+# spans and fenced blocks is rejected. A fenced block closes only on a fence
+# of its own character, at least as long, indented at most three spaces and
+# followed by nothing but spaces; a line indented four or more spaces never
+# opens or closes one. The full chat form has exactly one verdict line, right
+# after its title; the pull request body has none.
 # Usage: sh scripts/validate-report.sh --chat-short|--chat-full|--pr-body report.md
 # Exit status: 0 valid, 1 invalid, 2 usage error.
 
@@ -72,14 +75,35 @@ function label(line,    i, s) {
   return 0
 }
 
+# Returns the length of the run of backticks or tildes that makes this line a
+# fence, or 0; sets fchar to the run character and after to the rest of the
+# line.
+function fence(line,    s, len) {
+  match(line, /^ */)
+  if (RLENGTH > 3) return 0
+  s = substr(line, RLENGTH + 1)
+  fchar = substr(s, 1, 1)
+  if (fchar != "`" && fchar != "~") return 0
+  len = 0
+  while (substr(s, len + 1, 1) == fchar) len++
+  if (len < 3) return 0
+  after = substr(s, len + 1)
+  return len
+}
+
 BEGIN { n = split(sections, name, "|"); current = 0 }
 
 {
   line = $0
   sub(/\r$/, "", line)
-  fence = (line ~ /^[ \t]*(```|~~~)/)
-  code = fenced || fence
-  if (fence) fenced = !fenced
+  code = fenced
+  run = fence(line)
+  if (!fenced && run) {
+    fenced = code = 1
+    open_char = fchar
+    open_len = run
+  } else if (fenced && run && fchar == open_char && run >= open_len && after ~ /^ *$/)
+    fenced = 0
   if (!code) placeholders(line)
   if (line ~ /^[ \t]*$/) next
   if (++lines == 1) first = line

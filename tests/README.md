@@ -18,17 +18,22 @@
 
 ## `validate-report/` — `scripts/validate-report.sh`
 
-Each fixture is named after its mode.
+Each fixture's name starts with its mode: `<mode>.md` or `<mode>.<case>.md`.
 
 - `pass/chat-short.md` — the short chat form.
 - `pass/chat-full.md` — the full chat form, with plain, bold, and heading
   labels.
 - `pass/pr-body.md` — a pull request body with code that quotes placeholders.
+- `pass/pr-body.nested-fence.md` — a four-backtick block that holds a
+  three-backtick line, a `~~~` line, and a fence indented four spaces.
 - `fail/chat-short.md` — a placeholder, no answer, an empty `Open:`.
 - `fail/chat-full.md` — bad, misplaced, and repeated verdicts; empty and
   out-of-order sections.
 - `fail/pr-body.md` — a placeholder, a verdict, empty, out-of-order, and
   missing sections.
+- `fail/pr-body.unclosed-fence.md` — a four-backtick block that shorter,
+  `~~~~`, and indented fences do not close, so the sections after it are
+  missing.
 
 ## `commit-msg/` — `.githooks/commit-msg`
 
