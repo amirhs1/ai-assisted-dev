@@ -30,6 +30,10 @@ The two PR options serve different starting points: add the short AI block to
 an existing PR template, or copy the complete PR template. Use one AI prompt in
 the resulting PR form.
 
+The templates are written in Canadian English, for example "licence" as a
+noun, "behaviour", and "colour". An adopting repository may keep that spelling
+or change it to its own, but keeps one spelling throughout.
+
 [`.gitmessage`](.gitmessage) is this repository's own commit-message example.
 To use a copied `.gitmessage` for editor-based commits, run
 `git config commit.template .gitmessage` in that project. Git does not apply it
