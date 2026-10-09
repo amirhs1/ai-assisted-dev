@@ -24,14 +24,15 @@ description: 'Write a commit in this format. Use for every commit.'
 # Write a commit
 
 The format is in <https://git-scm.com/docs/git-interpret-trailers>.
-==> templates/SKILL-report-back-template.md <==
+==> templates/SKILL-draft-release-template.md <==
 ---
-name: report-back
-description: Report back in chat. Use at the end of every task.
+name: draft-release
+description: Draft a release. Use only when asked for a release.
+disable-model-invocation: true
 ---
 
 <!--
-Copy to .agents/skills/report-back/SKILL.md, and delete this comment.
+Copy to .agents/skills/draft-release/SKILL.md, and delete this comment.
 -->
 
-<Short form, from the chat report template>
+<Release notes, in Common Changelog form>

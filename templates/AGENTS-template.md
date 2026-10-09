@@ -213,11 +213,12 @@ gives a commit message's subject and body.
 
 <!-- One row per skill in .agents/skills/. -->
 
-| Skill               | Use when                     |
-| ------------------- | ---------------------------- |
-| `write-commit`      | Every commit                 |
-| `report-back`       | The end of every task        |
-| `<name>`            | <>                           |
+| Skill               | Use when                                 |
+| ------------------- | ---------------------------------------- |
+| `create-branch`     | Starting a change                        |
+| `write-commit`      | Every commit                             |
+| `draft-release`     | Never on your own; a person invokes it   |
+| `<name>`            | <>                                       |
 
 Load a task's skill before you start it. Changing a skill means checking every
 file it cites and this table.

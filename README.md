@@ -17,11 +17,12 @@ added here when available.
 | [`CONTRIBUTING-ai-section-template.md`](templates/CONTRIBUTING-ai-section-template.md)       | Add a section to `CONTRIBUTING.md`; its second block fits an existing PR template. |
 | [`CONTRIBUTING-names-section-template.md`](templates/CONTRIBUTING-names-section-template.md) | Add a "Names" section to `CONTRIBUTING.md`: the type and area lists.               |
 | [`pull-request-template.md`](templates/pull-request-template.md)                             | Use as a complete `.github/pull_request_template.md` when needed.                  |
+| [`SKILL-create-branch-template.md`](templates/SKILL-create-branch-template.md)               | Copy to `.agents/skills/create-branch/SKILL.md`.                                   |
 | [`SKILL-write-commit-template.md`](templates/SKILL-write-commit-template.md)                 | Copy to `.agents/skills/write-commit/SKILL.md`.                                    |
 | [`SKILL-open-pull-request-template.md`](templates/SKILL-open-pull-request-template.md)       | Copy to `.agents/skills/open-pull-request/SKILL.md`.                               |
 | [`SKILL-open-issue-template.md`](templates/SKILL-open-issue-template.md)                     | Copy to `.agents/skills/open-issue/SKILL.md`.                                      |
 | [`SKILL-post-comment-template.md`](templates/SKILL-post-comment-template.md)                 | Copy to `.agents/skills/post-comment/SKILL.md`.                                    |
-| [`SKILL-report-back-template.md`](templates/SKILL-report-back-template.md)                   | Copy to `.agents/skills/report-back/SKILL.md`.                                     |
+| [`SKILL-draft-release-template.md`](templates/SKILL-draft-release-template.md)               | Copy to `.agents/skills/draft-release/SKILL.md`; a person invokes it.              |
 | [`gitmessage-template.txt`](templates/gitmessage-template.txt)                               | Copy to `.gitmessage` and adapt the commit convention.                             |
 | [`claude-settings-template.json`](templates/claude-settings-template.json)                   | Copy to `.claude/settings.json` for Claude Code.                                   |
 
