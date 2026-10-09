@@ -15,18 +15,18 @@ and delete this comment.
 
 1. Check the branch, the working tree, and `HEAD`: on `<main>`, clean, and
    level with `origin/<main>`.
-2. Tag and title: `v<MAJOR>.<MINOR>.<PATCH>`, as CONTRIBUTING.md, "Names",
-   sets them. The person running you chooses the version.
+2. Tag and release title: both `v<MAJOR>.<MINOR>.<PATCH>`, as
+   CONTRIBUTING.md, "Names", sets them. The person running you chooses the
+   version.
 3. List the changes since the last tag:
    `git log --no-merges --format='%h %s' <last tag>..HEAD`.
-4. Write the release's changelog section in Common Changelog form
-   (https://common-changelog.org): categories Changed, Added, Removed, Fixed,
-   in that order, each only when it has a change; one imperative line per
-   change, with a commit or pull request reference; no Unreleased section.
-5. Add the section to the top of CHANGELOG.md on a new branch, and open a
-   pull request for it.
-6. Create the draft, with the section as its notes and your trailer block
-   (AGENTS.md, "Provenance") at the end:
+4. Write the changes in Common Changelog form: `### Changed`, `### Added`,
+   `### Removed`, `### Fixed`, in that order, each only when it has a change;
+   one imperative line per change, with a commit or pull request reference;
+   no Unreleased section.
+5. CHANGELOG.md: add them at the top under a version heading
+   (`## [<MAJOR>.<MINOR>.<PATCH>] - <YYYY-MM-DD>`), with no trailer; its
+   commit carries one. Do this on a new branch, and open a pull request.
+6. Release notes: the same categories without the heading, then your trailer
+   block (AGENTS.md, "Provenance"). Create the draft, and never publish it:
    `gh release create v<version> --draft --title v<version> --notes-file <file>`.
-   Never publish it; the person running you does.
-7. Give the full chat report.
