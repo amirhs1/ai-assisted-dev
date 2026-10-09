@@ -3,7 +3,8 @@
 # This repository's self-check. It runs each tool on its passing and failing
 # fixtures under tests/ and checks the exit status and, where a fixture has a
 # .out file, the exact output. It also checks that CLAUDE.md imports
-# AGENTS.md. ShellCheck runs separately.
+# AGENTS.md. ShellCheck runs separately, and so does check-names.sh on this
+# repository, since it reads the labels with gh.
 # Usage: sh scripts/check-repo.sh
 
 set -eu
@@ -83,14 +84,14 @@ expect 0 - claude_md CLAUDE.md
 for f in tests/check-repo/pass/*.md; do expect 0 - claude_md "$f"; done
 for f in tests/check-repo/fail/*.md; do expect 1 "${f%.md}.out" claude_md "$f"; done
 
-# Each fixture is named after its mode.
+# Each fixture's name starts with its mode: <mode>.md or <mode>.<case>.md.
 for f in tests/validate-report/pass/*.md; do
   mode=$(basename "$f" .md)
-  expect 0 - sh scripts/validate-report.sh "--$mode" "$f"
+  expect 0 - sh scripts/validate-report.sh "--${mode%%.*}" "$f"
 done
 for f in tests/validate-report/fail/*.md; do
   mode=$(basename "$f" .md)
-  expect 1 "${f%.md}.out" sh scripts/validate-report.sh "--$mode" "$f"
+  expect 1 "${f%.md}.out" sh scripts/validate-report.sh "--${mode%%.*}" "$f"
 done
 
 for f in tests/commit-msg/pass/*.txt; do expect 0 - sh .githooks/commit-msg "$f"; done
@@ -143,6 +144,31 @@ for f in tests/check-adoption/fail/*.txt; do
   git init -q -b main "$dir"
   expect 1 "${f%.txt}.out" in_dir "$dir" sh "$adoption"
 done
+# An AGENTS.md over 200 lines draws a warning, not a failure.
+dir=$tmp/adoption-long
+unpack tests/check-adoption/pass/repo.txt "$dir"
+awk 'BEGIN { for (i = 1; i <= 200; i++) print "- Rule " i "." }' >> "$dir/AGENTS.md"
+git init -q -b main "$dir"
+git -C "$dir" config core.hooksPath .githooks
+expect 0 tests/check-adoption/pass/long-agents.out in_dir "$dir" sh "$adoption"
+
+# check-names.sh runs on fixture repositories with saved labels; it never
+# calls gh here.
+for f in tests/check-names/pass/*.txt; do
+  dir=$tmp/names-pass-$(basename "$f" .txt)
+  unpack "$f" "$dir"
+  expect 0 - sh scripts/check-names.sh --labels "$dir/labels.tsv" "$dir"
+done
+for f in tests/check-names/fail/*.txt; do
+  dir=$tmp/names-fail-$(basename "$f" .txt)
+  unpack "$f" "$dir"
+  expect 1 "${f%.txt}.out" sh scripts/check-names.sh --labels "$dir/labels.tsv" "$dir"
+done
+# --print-label-commands adds the gh label commands to the same report.
+expect 0 tests/check-names/pass/repo-commands.out sh scripts/check-names.sh \
+  --print-label-commands --labels "$tmp/names-pass-repo/labels.tsv" "$tmp/names-pass-repo"
+expect 1 tests/check-names/fail/repo-commands.out sh scripts/check-names.sh \
+  --print-label-commands --labels "$tmp/names-fail-repo/labels.tsv" "$tmp/names-fail-repo"
 
 if [ "$failures" -gt 0 ]; then
   echo "$failures of $checks checks failed." >&2

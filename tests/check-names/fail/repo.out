@@ -1,0 +1,10 @@
+label type:docs is missing
+label area:old is in neither list in "Names"
+.gitmessage: type perf is not in "Names"
+.gitmessage: type docs from "Names" is missing
+.agents/skills/open-issue/SKILL.md: line 6: label type:bug is in neither list in "Names"
+.agents/skills/open-issue/SKILL.md: line 6: label area:ui is in neither list in "Names"
+.agents/skills/write-commit/SKILL.md: applies the names but is not listed under "Where these names are used"
+CONTRIBUTING.md: .github/pull_request_template.md, listed under "Where these names are used", does not exist
+AGENTS.md: listed under "Where these names are used" but does not cite CONTRIBUTING.md, "Names"
+Problems found: 9

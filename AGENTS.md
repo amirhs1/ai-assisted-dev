@@ -2,7 +2,7 @@
 
 Public templates (MIT) for projects that use AI in software development or
 research: an `AGENTS.md`, an AI policy, a disclosure, README and CONTRIBUTING
-sections, a pull request template, five agent skills, a commit-message
+sections, a pull request template, six agent skills, a commit-message
 template, and a Claude Code settings file. They accompany a
 guideline published separately; adopters copy and adapt them.
 
@@ -63,7 +63,7 @@ diff you drafted is not the same as originating it.
 | Issues, pull requests, commit messages          | Instrumented | Draft when the maintainer asks.                                                                                                                                       |
 | `.gitmessage`, `.gitignore`, `.github/`         | Instrumented | Write when the maintainer asks, on a branch.                                                                                                                          |
 | `scripts/`, `.githooks/`, `tests/`              | Supervised   | Draft against the acceptance criteria in the issue; expect every line read. Every script is POSIX `sh`, passes ShellCheck, and has passing and failing fixtures.      |
-| `AGENTS.md`, `CLAUDE.md`, `.claude/`, `LICENSE` | —            | Never edit. Draft the change in the pull request description or a comment instead.                                                                                    |
+| `AGENTS.md`, `CLAUDE.md`, `.claude/`, `LICENSE` | Instrumented | Never edit. Draft the change in the pull request description or a comment instead.                                                                                    |
 
 - A path not listed is treated like the stored templates.
 - The gate is the pull request: a ruleset on `main` requires one, and only the
@@ -108,6 +108,8 @@ Do these only with the maintainer's explicit approval for that change:
 - Invent the reason for a change in a commit or pull request. Describe what
   changed; add a reason only if the maintainer gave one.
 - Substitute an easier approach for the one requested without saying so.
+- Write American or British spellings; this repository uses Canadian English
+  ("licence" as a noun, "behaviour").
 
 ## Git
 
@@ -120,7 +122,6 @@ Do these only with the maintainer's explicit approval for that change:
 - Pull requests merge with a merge commit, so each commit lands unchanged. Keep
   every commit coherent; do not plan on a squash.
 - History rewrites are under "Ask first".
-- Open issues or post comments only when the maintainer asks.
 - Names: follow `CONTRIBUTING.md`, "Names".
 
 ## Provenance
@@ -154,19 +155,21 @@ Do these only with the maintainer's explicit approval for that change:
 
 | Skill               | Use when                                     |
 | ------------------- | -------------------------------------------- |
+| `create-branch`     | Starting an assigned change                  |
 | `write-commit`      | Every commit                                 |
 | `open-pull-request` | A change is ready for review                 |
 | `open-issue`        | Asked to file an issue                       |
 | `post-comment`      | Asked to reply or comment                    |
-| `report-back`       | The end of every task; stopping for a choice |
+| `draft-release`     | Never on your own; the maintainer invokes it |
 
 Load a task's skill before you start it. Changing a skill means checking every
 file it cites and this table.
 
-## Reporting
+## Report back
 
 The pull request description is the full report, in this order; a section that
-does not apply says `None`:
+does not apply says `None`. It ends with your own trailer block ("Provenance"),
+not the branch's `Assisted-by:` lines:
 
 ```text
 ## Summary          what changed; the why only as the maintainer supplied it
@@ -176,15 +179,31 @@ does not apply says `None`:
 ## Checks run       command → result; then "Not verified:" lines
 ## Decisions and risks
 ## Notes for review   which wording is a proposal, for line-by-line review
-## AI assistance    last: tool, model, role, then the branch's Assisted-by lines
 ```
 
-In chat, give the full report when the session changed a file, opened or
-updated a pull request or issue, or needs a decision from the maintainer:
-verdict, end product, what changed, checks run, decisions you made that were
-the maintainer's, what you need, and close-out. Otherwise give the short
-report: the answer, what it is based on, and what remains open. Posting a
-comment gets the short report.
+Report in chat at the end of every task and whenever you stop for a decision:
+the full form when the session changed a file, opened or updated a pull
+request or issue, or needs a decision from the maintainer; else the short
+form, as after posting a comment. A section that does not apply says `None`;
+the verdict appears once, at the top.
+
+```text
+<Answer in one or two sentences.>
+Based on: <files read or commands run; "memory only" if nothing was checked>
+Open: <anything unverified, or None>
+```
+
+```text
+## <title>
+**Verdict: COMPLETE | NOT COMPLETE — <one line; anything remaining goes here>**
+**End product:** <code change | design | issue #n | PR #n | decision for you> — <path or link>
+
+1 What changed — files as path:line, or the issue or PR created
+2 Checks run — command → result; anything not run → why
+3 Decisions I made that were yours — choice, rejected alternative, cost to reverse
+4 What I need from you — Action Needed / Decision Needed, blocking items first; or None
+5 Close-out — what to review, branch state, what to keep
+```
 
 ## When stuck
 

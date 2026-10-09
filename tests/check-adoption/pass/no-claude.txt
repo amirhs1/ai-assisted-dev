@@ -18,3 +18,5 @@ Example tool for testing the adoption check.
 | Part        | Tier         | Checks or human review |
 | ----------- | ------------ | ---------------------- |
 | `src/core/` | Instrumented | Unit tests.            |
+==> src/core/model.py <==
+# model

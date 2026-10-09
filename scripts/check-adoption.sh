@@ -7,14 +7,23 @@
 # - a relative link in a governance file does not resolve;
 # - the README tier table and the AGENTS.md "Where you may write" table list
 #   different paths or tiers;
+# - the AGENTS.md "Skills" table and .agents/skills/ list different skills;
+# - in AGENTS.md or a skill, a path in a code span does not exist, or a
+#   section quoted with its file (AGENTS.md, "Git", or "Names" in
+#   CONTRIBUTING.md) is not a heading there; a path git ignores counts as
+#   existing;
 # - core.hooksPath is not set.
 # When CLAUDE.md or .claude/ exists, it also fails when:
 # - CLAUDE.md is missing, does not start with the line @AGENTS.md, or holds
 #   anything but "## " sections after it;
 # - .claude/settings.json lacks the attribution block.
-# Governance files: AGENTS.md, CLAUDE.md, AI-POLICY.md,
-# .github/pull_request_template.md, and the AI sections of README.md and
-# CONTRIBUTING.md. For skills, run check-skills.sh.
+# It warns, without failing, when AGENTS.md has more than 200 lines, the
+# budget the AGENTS template's design rule 1 recommends.
+# Governance files: AGENTS.md, CLAUDE.md, AI-POLICY.md, the pull request
+# templates, and the AI sections of README.md and CONTRIBUTING.md. A pull
+# request template, in .github/, docs/, or the root, under any case, guides
+# the person writing a pull request: its comments and <...> formats are kept,
+# so only its links are checked. For skill metadata, run check-skills.sh.
 # The maintainer still reviews both tier tables: a script cannot compare
 # prose.
 # Usage: sh scripts/check-adoption.sh
@@ -34,11 +43,12 @@ problem() {
   problems=$((problems + 1))
 }
 
-# scan <file> [section heading]: prints "P<tab>problem" for each placeholder
-# or template comment and "L<tab>line<tab>target" for each relative link, in
-# the whole file or only in the given "## " section.
+# scan <file> [section heading] [guide]: prints "P<tab>problem" for each
+# placeholder or template comment and "L<tab>line<tab>target" for each
+# relative link, in the whole file or only in the given "## " section. With
+# guide, comments and placeholders are kept and only links are printed.
 scan() {
-  awk -v section="${2-}" '
+  awk -v section="${2-}" -v guide="${3-}" '
     function placeholders(line,    s, span, p) {
       s = line
       while (match(s, /`[^`]*`/)) {
@@ -81,19 +91,19 @@ scan() {
         line = substr(line, index(line, "-->") + 3)
       }
       if (index(line, "<!--")) {
-        print "P\tline " NR ": template comment"
+        if (!guide) print "P\tline " NR ": template comment"
         rest = substr(line, index(line, "<!--") + 4)
         line = substr(line, 1, index(line, "<!--") - 1)
         if (index(rest, "-->")) line = line substr(rest, index(rest, "-->") + 3)
         else comment = 1
       }
-      placeholders(line)
+      if (!guide) placeholders(line)
       links(line)
     }
     END { if (section != "" && !found) print "P\tno \"" section "\" section" }' "$1"
 }
 
-# check_text <file> [section heading]
+# check_text <file> [section heading] [guide]
 check_text() {
   out=$(scan "$@")
   dir=$(dirname -- "$1")
@@ -113,6 +123,22 @@ $out
 EOF
 }
 
+# pr_templates: prints each pull request template GitHub reads: a file named
+# pull_request_template.md, in any case, in .github/, docs/, or the root, or
+# a .md file in a PULL_REQUEST_TEMPLATE/ directory there.
+pr_templates() {
+  for f in .github/* docs/* ./*; do
+    name=$(basename -- "$f" | tr '[:upper:]' '[:lower:]')
+    if [ -f "$f" ] && [ "$name" = pull_request_template.md ]; then
+      printf '%s\n' "${f#./}"
+    elif [ -d "$f" ] && [ "$name" = pull_request_template ]; then
+      for g in "$f"/*.md; do
+        if [ -f "$g" ]; then printf '%s\n' "${g#./}"; fi
+      done
+    fi
+  done
+}
+
 # tiers <file>: prints "path<tab>tier" for each path in the first table whose
 # second column is Tier.
 tiers() {
@@ -130,12 +156,114 @@ tiers() {
     }' "$1" | LC_ALL=C sort -u
 }
 
+# refs <file>: prints "C<tab>line<tab>span" for each code span that looks
+# like a path, and "S<tab>file<tab>section" for each section quoted with its
+# file, outside fenced blocks and comments.
+refs() {
+  awk '
+    function path(s) {
+      sub(/:[0-9]+(-[0-9]+)?$/, "", s)
+      if (s ~ /[] \t<>*?[{}$|="(),@#~!\\:;]/ || s ~ /^[-\/]/) return ""
+      if (s ~ /^(origin|upstream|refs)\//) return ""
+      if (s ~ /\// || s ~ /^\.[A-Za-z]/ || s ~ /\.[A-Za-z]+$/) return s
+      return ""
+    }
+    {
+      line = $0
+      if (line ~ /^[ \t]*(```|~~~)/) { fenced = !fenced; next }
+      if (fenced) next
+      if (comment) {
+        if (!index(line, "-->")) next
+        comment = 0
+        line = substr(line, index(line, "-->") + 3)
+      }
+      if (index(line, "<!--")) {
+        rest = substr(line, index(line, "<!--") + 4)
+        line = substr(line, 1, index(line, "<!--") - 1)
+        if (index(rest, "-->")) line = line substr(rest, index(rest, "-->") + 3)
+        else comment = 1
+      }
+      s = line
+      while (match(s, /`[^`]+`/)) {
+        p = path(substr(s, RSTART + 1, RLENGTH - 2))
+        if (p != "") print "C\t" NR "\t" p
+        s = substr(s, RSTART + RLENGTH)
+      }
+      text = text " " line
+    }
+    END {
+      gsub(/`/, "", text)
+      gsub(/[ \t]+/, " ", text)
+      s = text
+      while (match(s, /[A-Za-z0-9_.\/-]+\.md,? "[^"]+"/)) {
+        m = substr(s, RSTART, RLENGTH)
+        s = substr(s, RSTART + RLENGTH)
+        file = m
+        sub(/,? ".*/, "", file)
+        sec = substr(m, index(m, "\"") + 1)
+        sub(/"$/, "", sec)
+        print "S\t" file "\t" sec
+      }
+      s = text
+      while (match(s, /"[^"]+" in [A-Za-z0-9_.\/-]+\.md/)) {
+        m = substr(s, RSTART, RLENGTH)
+        s = substr(s, RSTART + RLENGTH)
+        sec = substr(m, 2)
+        sub(/" in .*/, "", sec)
+        file = m
+        sub(/.*" in /, "", file)
+        print "S\t" file "\t" sec
+      }
+    }' "$1"
+}
+
+# heading <file> <text>: succeeds when a heading in the file reads text.
+heading() {
+  awk -v want="$2" '
+    /^#+[ \t]/ {
+      s = $0
+      sub(/^#+[ \t]+/, "", s)
+      sub(/[ \t]+#*[ \t]*$/, "", s)
+      if (s == want) found = 1
+    }
+    END { exit !found }' "$1"
+}
+
+# check_refs <file>
+check_refs() {
+  out=$(refs "$1" | awk '!seen[$0]++')
+  dir=$(dirname -- "$1")
+  while IFS="$tab" read -r kind where what; do
+    case $kind in
+      C)
+        [ -e "$what" ] || [ -e "$dir/$what" ] || git check-ignore -q -- "$what" 2> /dev/null ||
+          problem "$1: line $where: path $what does not exist"
+        ;;
+      S)
+        if [ ! -f "$where" ]; then
+          problem "$1: $where, \"$what\": $where does not exist"
+        elif ! heading "$where" "$what"; then
+          problem "$1: $where has no \"$what\" section"
+        fi
+        ;;
+    esac
+  done << EOF
+$out
+EOF
+}
+
 for f in AGENTS.md README.md; do
   [ -f "$f" ] || problem "$f is missing"
 done
-for f in AGENTS.md CLAUDE.md AI-POLICY.md .github/pull_request_template.md; do
+for f in AGENTS.md CLAUDE.md AI-POLICY.md; do
   [ ! -f "$f" ] || check_text "$f"
 done
+templates=$(pr_templates)
+while IFS= read -r f; do
+  [ -z "$f" ] || check_text "$f" '' guide
+done << EOF
+$templates
+EOF
 [ ! -f README.md ] || check_text README.md '## AI assistance'
 [ ! -f CONTRIBUTING.md ] || check_text CONTRIBUTING.md '## AI-assisted contributions'
 
@@ -158,6 +286,47 @@ EOF
 $agents
 EOF
   fi
+fi
+
+if [ -f AGENTS.md ]; then
+  lines=$(awk 'END { print NR }' AGENTS.md)
+  if [ "$lines" -gt 200 ]; then
+    echo "warning: AGENTS.md has $lines lines; design rule 1 of the AGENTS template recommends at most 200" >&2
+  fi
+
+  # The skill names in the first column of the "Skills" table, and the
+  # skills in .agents/skills/.
+  table=$(awk -F '|' '
+    function trim(s) { gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
+    /^## / { inside = ($0 == "## Skills"); next }
+    inside && /^\|/ && trim($2) ~ /^`[^`]+`$/ {
+      s = trim($2)
+      print substr(s, 2, length(s) - 2)
+    }' AGENTS.md | LC_ALL=C sort -u)
+  skills=$(for s in .agents/skills/*/SKILL.md; do
+    if [ -f "$s" ]; then s=${s#.agents/skills/}; printf '%s\n' "${s%/SKILL.md}"; fi
+  done | LC_ALL=C sort -u)
+  if [ -n "$skills" ] && ! grep -q '^## Skills[ \t]*$' AGENTS.md; then
+    problem "AGENTS.md: no \"Skills\" section, though .agents/skills/ holds skills"
+  else
+    while IFS= read -r s; do
+      [ -z "$s" ] || printf '%s\n' "$skills" | grep -Fxq -- "$s" ||
+        problem "skills differ: only the AGENTS.md \"Skills\" table lists $s"
+    done << EOF
+$table
+EOF
+    while IFS= read -r s; do
+      [ -z "$s" ] || printf '%s\n' "$table" | grep -Fxq -- "$s" ||
+        problem "skills differ: only .agents/skills/ holds $s"
+    done << EOF
+$skills
+EOF
+  fi
+
+  check_refs AGENTS.md
+  for s in .agents/skills/*/SKILL.md; do
+    [ ! -f "$s" ] || check_refs "$s"
+  done
 fi
 
 if [ -f CLAUDE.md ] || [ -d .claude ]; then

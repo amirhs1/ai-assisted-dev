@@ -1,0 +1,2 @@
+gh label edit "area:docs" --description "Area: docs"
+Names agree with CONTRIBUTING.md, "Names".

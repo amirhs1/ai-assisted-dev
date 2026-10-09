@@ -31,6 +31,5 @@ None
 
 The `<main>` in a quoted command is not a placeholder.
 
-## AI assistance
-
 Assisted-by: Claude Code, claude-opus-5-5 (full implementation)
+Checks-run: sh scripts/check-repo.sh — All checks passed.

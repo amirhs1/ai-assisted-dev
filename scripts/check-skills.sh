@@ -2,9 +2,11 @@
 
 # Checks skill metadata, in the current directory or the one given.
 # Each .agents/skills/<name>/SKILL.md: the frontmatter name is <name>, the
-# description says when to use the skill (a sentence starting "Use"), and no
-# placeholder or template comment is left. A placeholder is a <...> outside
-# code, or a code span that holds only one, such as `<main>`.
+# description says when to use the skill (a sentence starting "Use"),
+# disable-model-invocation, which makes a skill user-invoked only, is true or
+# false where it is set, and no placeholder or template comment is left. A
+# placeholder is a <...> outside code, or a code span that holds only one,
+# such as `<main>`.
 # Each templates/SKILL-<name>-template.md (in this repository): the same
 # frontmatter checks, with name equal to <name>.
 # Usage: sh scripts/check-skills.sh [directory]
@@ -58,6 +60,12 @@ check() {
     frontmatter {
       if (sub(/^name:/, "")) name = value($0)
       else if (sub(/^description:/, "")) description = value($0)
+      else if (sub(/^disable-model-invocation:/, "")) {
+        sub(/^[ \t]+/, "")
+        sub(/[ \t]+$/, "")
+        if ($0 != "true" && $0 != "false")
+          problem("disable-model-invocation is " $0 "; expected true or false")
+      }
       next
     }
     body == "yes" {
