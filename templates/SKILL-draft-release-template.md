@@ -22,11 +22,13 @@ and delete this comment.
    `git log --no-merges --format='%h %s' <last tag>..HEAD`.
 4. Write the changes in Common Changelog form: `### Changed`, `### Added`,
    `### Removed`, `### Fixed`, in that order, each only when it has a change;
-   one imperative line per change, with a commit or pull request reference;
-   no Unreleased section.
-5. CHANGELOG.md: add them at the top under a version heading
-   (`## [<MAJOR>.<MINOR>.<PATCH>] - <YYYY-MM-DD>`), with no trailer; its
-   commit carries one. Do this on a new branch, and open a pull request.
+   one imperative line per change, citing its commit, and its pull request
+   when there is one; no Unreleased section.
+5. CHANGELOG.md: add them at the top under a version heading whose version
+   links to the release,
+   `## [<MAJOR>.<MINOR>.<PATCH>](<release URL>) - <YYYY-MM-DD>`, with no
+   trailer; its commit carries one. Do this on a new branch, and open a pull
+   request.
 6. Release notes: the same categories without the heading, then your trailer
    block (AGENTS.md, "Provenance"). Create the draft, and never publish it:
    `gh release create v<version> --draft --title v<version> --notes-file <file>`.

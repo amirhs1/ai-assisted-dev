@@ -2,7 +2,8 @@ An adopted repository with one of each fault; it does not set
 core.hooksPath. The placeholder outside CONTRIBUTING.md's AI section is not
 checked. The pull request template has an upper-case name: its comment is
 kept, and its broken link is reported. A line indented four spaces in
-AGENTS.md is not a fence, so the placeholder after it counts.
+AGENTS.md is not a fence, so the placeholder after it counts. A second
+pull request template, .github/PULL_REQUEST_TEMPLATE/Bug.TXT, is read too.
 ==> AGENTS.md <==
 # AGENTS.md — `<PROJECT NAME>`
 
@@ -81,3 +82,7 @@ MIT.
 ## Summary
 
 What changed, as the [guide](../docs/review.md) asks.
+==> .github/PULL_REQUEST_TEMPLATE/Bug.TXT <==
+## Bug
+
+Steps, as the [guide](../../docs/bugs.md) asks.

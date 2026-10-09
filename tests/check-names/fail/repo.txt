@@ -1,7 +1,8 @@
 One of each fault: a missing label and a label in neither list; .gitmessage
 with a type too many and one too few; labels in a skill that are in neither
 list; a listed file that does not exist and one that does not cite the
-section; a file that cites the section but is not listed.
+section; a file that cites the section but is not listed, and a .txt pull
+request template that uses a label but is not listed.
 ==> labels.tsv <==
 type:feat	Type: feat
 type:fix	Type: fix
@@ -46,3 +47,5 @@ description: Write a commit. Use for every commit.
 ---
 
 Types and scopes: CONTRIBUTING.md, "Names".
+==> docs/pull_request_template.txt <==
+Label it `type:feat`.

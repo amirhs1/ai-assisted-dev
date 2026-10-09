@@ -13,7 +13,8 @@
 # - in AGENTS.md or a skill, a path in a code span does not exist, or a
 #   section quoted with its file (AGENTS.md, "Git", or "Names" in
 #   CONTRIBUTING.md) is not a heading there; a path git ignores counts as
-#   existing;
+#   existing. This covers the paths in the "Where you may write" table: a
+#   part listed there must exist, even one only planned;
 # - core.hooksPath is not set.
 # When CLAUDE.md or .claude/ exists, it also fails when:
 # - CLAUDE.md is missing, does not start with the line @AGENTS.md, or holds
@@ -23,9 +24,10 @@
 # budget the AGENTS template's design rule 1 recommends.
 # Governance files: AGENTS.md, CLAUDE.md, AI-POLICY.md, the pull request
 # templates, and the AI sections of README.md and CONTRIBUTING.md. A pull
-# request template, in .github/, docs/, or the root, under any case, guides
-# the person writing a pull request: its comments and <...> formats are kept,
-# so only its links are checked. For skill metadata, run check-skills.sh.
+# request template, .md or .txt, in .github/, docs/, or the root, under any
+# case, guides the person writing a pull request: its comments and <...>
+# formats are kept, so only its links are checked. For skill metadata, run
+# check-skills.sh.
 # The maintainer still reviews both tier tables: a script cannot compare
 # prose.
 # Usage: sh scripts/check-adoption.sh
@@ -151,16 +153,19 @@ EOF
 }
 
 # pr_templates: prints each pull request template GitHub reads: a file named
-# pull_request_template.md, in any case, in .github/, docs/, or the root, or
-# a .md file in a PULL_REQUEST_TEMPLATE/ directory there.
+# pull_request_template.md or .txt, in any case, in .github/, docs/, or the
+# root, or a .md or .txt file in a PULL_REQUEST_TEMPLATE/ directory there.
 pr_templates() {
   for f in .github/* docs/* ./*; do
     name=$(basename -- "$f" | tr '[:upper:]' '[:lower:]')
-    if [ -f "$f" ] && [ "$name" = pull_request_template.md ]; then
+    if [ -f "$f" ] && { [ "$name" = pull_request_template.md ] ||
+      [ "$name" = pull_request_template.txt ]; }; then
       printf '%s\n' "${f#./}"
     elif [ -d "$f" ] && [ "$name" = pull_request_template ]; then
-      for g in "$f"/*.md; do
-        if [ -f "$g" ]; then printf '%s\n' "${g#./}"; fi
+      for g in "$f"/*; do
+        case $(basename -- "$g" | tr '[:upper:]' '[:lower:]') in
+          (*.md | *.txt) if [ -f "$g" ]; then printf '%s\n' "${g#./}"; fi ;;
+        esac
       done
     fi
   done

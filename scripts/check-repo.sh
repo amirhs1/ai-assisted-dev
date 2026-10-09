@@ -144,10 +144,12 @@ for f in tests/check-adoption/fail/*.txt; do
   git init -q -b main "$dir"
   expect 1 "${f%.txt}.out" in_dir "$dir" sh "$adoption"
 done
-# An AGENTS.md over 200 lines draws a warning, not a failure.
+# An AGENTS.md over 200 lines draws a warning, not a failure. The copy is
+# padded to 201 lines, whatever the fixture holds.
 dir=$tmp/adoption-long
 unpack tests/check-adoption/pass/repo.txt "$dir"
-awk 'BEGIN { for (i = 1; i <= 200; i++) print "- Rule " i "." }' >> "$dir/AGENTS.md"
+lines=$(awk 'END { print NR }' "$dir/AGENTS.md")
+awk -v n="$lines" 'BEGIN { for (i = n + 1; i <= 201; i++) print "- Rule " i "." }' >> "$dir/AGENTS.md"
 git init -q -b main "$dir"
 git -C "$dir" config core.hooksPath .githooks
 expect 0 tests/check-adoption/pass/long-agents.out in_dir "$dir" sh "$adoption"
