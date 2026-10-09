@@ -29,5 +29,4 @@ if it has one. Fill every <...> or delete the line, and delete this comment.
 6. Labels, from "Names": the type that fits the work, with the issue
    template's type as the default, and the area of each part it changes.
 7. Open it with
-   `gh issue create --title "<title>" --label <labels> --body-file <file>`,
-   then give the full chat report.
+   `gh issue create --title "<title>" --label <labels> --body-file <file>`.

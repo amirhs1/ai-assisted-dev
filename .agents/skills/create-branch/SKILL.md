@@ -1,6 +1,6 @@
 ---
 name: create-branch
-description: Create a branch for an assigned change from an up-to-date main, named as CONTRIBUTING.md "Names" sets. Use when starting a change, before its first commit; not for switching to a branch that exists.
+description: Create a branch for an assigned change from an up-to-date main. Use when starting a change, before its first commit; not for switching to a branch that exists.
 ---
 
 # Create a branch

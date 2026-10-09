@@ -1,6 +1,6 @@
 ---
 name: open-pull-request
-description: Review the branch diff, push the branch, and open a draft GitHub pull request whose body is the full report. Use when a change is committed and ready for review; not for reviewing someone else's pull request.
+description: Open a draft GitHub pull request whose body is the full report. Use when a change is committed and ready for review; not for reviewing someone else's pull request.
 ---
 
 <!--
@@ -28,7 +28,6 @@ this comment.
      not list the commits' trailers.
 4. Title and labels: follow "Names" in CONTRIBUTING.md. The type comes from
    the branch name; the areas, from the parts the diff changes.
-5. Push the branch and open a draft:
+5. Push the branch, open a draft, then read it back with `gh pr view`:
    `gh pr create --draft --base <main> --title "<title>" --label <labels> --body-file <file>`.
    Never mark it ready or merge it.
-6. Read the body back (`gh pr view`), then give the full chat report.

@@ -1,6 +1,6 @@
 ---
 name: draft-release
-description: Draft a GitHub release and its changelog section in Common Changelog form; never publish it. Use only when the person running you asks for a release.
+description: Draft a GitHub release and its changelog section; never publish it. Use only when the person running you asks for a release.
 disable-model-invocation: true
 ---
 

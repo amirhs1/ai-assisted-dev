@@ -15,4 +15,4 @@ Copy to .agents/skills/post-comment/SKILL.md; .claude/skills is a symlink to
    Include no secrets or personal data. End with your trailer block, as
    AGENTS.md, "Provenance", gives it.
 3. Post it with `gh issue comment <n> --body-file <file>` or
-   `gh pr comment <n> --body-file <file>`, then give the short chat report.
+   `gh pr comment <n> --body-file <file>`.

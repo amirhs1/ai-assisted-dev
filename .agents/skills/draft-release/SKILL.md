@@ -1,6 +1,6 @@
 ---
 name: draft-release
-description: Draft the notes of a GitHub release in Common Changelog form, for the maintainer to create and publish. Use only when the maintainer asks for a release.
+description: Draft the notes of a GitHub release, for the maintainer to create and publish. Use only when the maintainer asks for a release.
 disable-model-invocation: true
 ---
 
