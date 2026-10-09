@@ -18,10 +18,10 @@ changelog.
    `git log --no-merges --format='%h %s' <last tag>..HEAD`.
 4. Write the notes in Common Changelog form: `### Changed`, `### Added`,
    `### Removed`, `### Fixed`, in that order, each only when it has a change;
-   one imperative line per change, with a commit or pull request reference;
-   no Unreleased section, and no version heading, since the release title
-   carries the version. End with your trailer block (AGENTS.md,
-   "Provenance").
+   one imperative line per change, citing its commit, and its pull request
+   when there is one; no Unreleased section, and no version heading, since
+   the release title carries the version. End with your trailer block
+   (AGENTS.md, "Provenance").
 5. Write them to a file outside the repository. Give the maintainer the
    command that creates the draft, and do not run it:
    `gh release create v<version> --draft --title v<version> --notes-file <file>`.
