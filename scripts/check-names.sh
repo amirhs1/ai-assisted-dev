@@ -194,11 +194,14 @@ candidates=$(
   done
   for f in .github/* docs/* ./*; do
     name=$(basename -- "$f" | tr '[:upper:]' '[:lower:]')
-    if [ -f "$f" ] && [ "$name" = pull_request_template.md ]; then
+    if [ -f "$f" ] && { [ "$name" = pull_request_template.md ] ||
+      [ "$name" = pull_request_template.txt ]; }; then
       printf '%s\n' "${f#./}"
     elif [ -d "$f" ] && [ "$name" = pull_request_template ]; then
-      for g in "$f"/*.md; do
-        if [ -f "$g" ]; then printf '%s\n' "${g#./}"; fi
+      for g in "$f"/*; do
+        case $(basename -- "$g" | tr '[:upper:]' '[:lower:]') in
+          (*.md | *.txt) if [ -f "$g" ]; then printf '%s\n' "${g#./}"; fi ;;
+        esac
       done
     fi
   done

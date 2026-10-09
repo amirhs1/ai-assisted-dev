@@ -103,8 +103,9 @@ Each input is saved output of the script's `gh api --jq` filter.
   skipped.
 - `fail/repo.txt` — one of each fault, among them a "Skills" table that
   differs from `.agents/skills/`, a missing path, a missing section, a
-  placeholder after a line indented four spaces, and a broken link in a
-  `PULL_REQUEST_TEMPLATE.md`; `core.hooksPath` is not set.
+  placeholder after a line indented four spaces, and broken links in a
+  `PULL_REQUEST_TEMPLATE.md` and a `PULL_REQUEST_TEMPLATE/Bug.TXT`;
+  `core.hooksPath` is not set.
 - `fail/claude-dir-only.txt` — `.claude/` without `CLAUDE.md`.
 
 ## `check-names/` — `scripts/check-names.sh --labels`
@@ -118,6 +119,7 @@ Each manifest holds a `labels.tsv`, saved output of the script's
 - `pass/repo-commands.out` — the same with `--print-label-commands`: one
   `gh label edit` command.
 - `fail/repo.txt` — one of each fault: labels, `.gitmessage`, a skill's
-  labels, and the "Where these names are used" list.
+  labels, and the "Where these names are used" list, which leaves out a
+  `docs/pull_request_template.txt` that uses a label.
 - `fail/repo-commands.out` — the same with `--print-label-commands`: one
   `gh label create` command.
