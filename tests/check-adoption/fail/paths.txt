@@ -1,0 +1,51 @@
+Paths that do not exist: a file at the root, a file in an existing folder,
+and a file named without its folder, whose extension only a file in a
+subfolder uses. A skill quotes a section that a file in its own folder
+lacks. It does not set core.hooksPath.
+==> AGENTS.md <==
+# AGENTS.md — Example
+
+Example tool for testing the adoption check.
+
+## Where you may write
+
+| Path        | Tier         | Your role            |
+| ----------- | ------------ | -------------------- |
+| `src/core/` | Instrumented | Review and refactor. |
+
+## Conventions
+
+- Plans go in `ROADMAP.md`.
+- The old reader was `src/core/reader.py`.
+- Releases follow `release.yml`.
+
+## Skills
+
+| Skill       | Use when           |
+| ----------- | ------------------ |
+| `add-entry` | Adding a log entry |
+==> README.md <==
+# Example
+
+## AI assistance
+
+| Part        | Tier         | Checks or human review |
+| ----------- | ------------ | ---------------------- |
+| `src/core/` | Instrumented | Unit tests.            |
+==> src/core/model.py <==
+# model
+==> .github/workflows/test.yml <==
+name: test
+==> .agents/skills/add-entry/SKILL.md <==
+---
+name: add-entry
+description: Add a log entry. Use when adding one.
+---
+
+Write the entry as `entry-format.md`, "The parts of an entry", describes.
+==> .agents/skills/add-entry/entry-format.md <==
+# Entry format
+
+## Parts
+
+A date and a line.

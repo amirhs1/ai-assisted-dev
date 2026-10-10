@@ -128,13 +128,14 @@ for f in tests/check-skills/fail/*.txt; do
   expect 1 "${f%.txt}.out" sh scripts/check-skills.sh "$tmp/skills-fail-$(basename "$f" .txt)"
 done
 
-# check-adoption.sh runs in fixture repositories; only the passing ones set
-# core.hooksPath.
+# check-adoption.sh runs in fixture repositories whose files are tracked;
+# only the passing ones set core.hooksPath.
 adoption="$repo_root/scripts/check-adoption.sh"
 for f in tests/check-adoption/pass/*.txt; do
   dir=$tmp/adoption-pass-$(basename "$f" .txt)
   unpack "$f" "$dir"
   git init -q -b main "$dir"
+  git -C "$dir" add -A
   git -C "$dir" config core.hooksPath .githooks
   expect 0 - in_dir "$dir" sh "$adoption"
 done
@@ -142,6 +143,7 @@ for f in tests/check-adoption/fail/*.txt; do
   dir=$tmp/adoption-fail-$(basename "$f" .txt)
   unpack "$f" "$dir"
   git init -q -b main "$dir"
+  git -C "$dir" add -A
   expect 1 "${f%.txt}.out" in_dir "$dir" sh "$adoption"
 done
 # An AGENTS.md over 200 lines draws a warning, not a failure. The copy is
@@ -151,6 +153,7 @@ unpack tests/check-adoption/pass/repo.txt "$dir"
 lines=$(awk 'END { print NR }' "$dir/AGENTS.md")
 awk -v n="$lines" 'BEGIN { for (i = n + 1; i <= 201; i++) print "- Rule " i "." }' >> "$dir/AGENTS.md"
 git init -q -b main "$dir"
+git -C "$dir" add -A
 git -C "$dir" config core.hooksPath .githooks
 expect 0 tests/check-adoption/pass/long-agents.out in_dir "$dir" sh "$adoption"
 

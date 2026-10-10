@@ -101,12 +101,18 @@ Each input is saved output of the script's `gh api --jq` filter.
   lines, which the self-check writes out: a warning, and a pass.
 - `pass/no-claude.txt` — no `CLAUDE.md` or `.claude/`: the Claude checks are
   skipped.
+- `pass/paths.txt` — code spans that are not paths, such as branch prefixes
+  and class names; file names without their folder, found among the tracked
+  files; a section quoted from a file in the skill's own folder.
 - `fail/repo.txt` — one of each fault, among them a "Skills" table that
   differs from `.agents/skills/`, a missing path, a missing section, a
   placeholder after a line indented four spaces, and broken links in a
   `PULL_REQUEST_TEMPLATE.md` and a `PULL_REQUEST_TEMPLATE/Bug.TXT`;
   `core.hooksPath` is not set.
 - `fail/claude-dir-only.txt` — `.claude/` without `CLAUDE.md`.
+- `fail/paths.txt` — a missing file at the root, in an existing folder, and
+  named without its folder; a section missing from a file in the skill's own
+  folder.
 
 ## `check-names/` — `scripts/check-names.sh --labels`
 

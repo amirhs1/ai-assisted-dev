@@ -37,7 +37,7 @@ Assisted-by: <tool>, <model identifier or not recorded> (<role>)
 ````markdown
 ```text
 <type>(<scope>): <subject>
-See `docs/commit-format.md`.
+See `src/commit-format.md`.
 ```
 ````
 
