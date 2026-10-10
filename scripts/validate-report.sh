@@ -39,7 +39,8 @@ esac
   exit 2
 }
 
-awk -v mode="$mode" -v sections="$sections" -v file="$report" '
+# The C locale, so that every awk counts bytes alike; see chars().
+LC_ALL=C awk -v mode="$mode" -v sections="$sections" -v file="$report" '
 function problem(msg) { print file ": " msg; bad = 1 }
 
 function placeholders(line,    s, p) {
@@ -79,11 +80,14 @@ function label(line,    i, s) {
   return 0
 }
 
-# Returns the number of characters in s. An awk that counts bytes counts an
-# em dash as three; it then leaves out the UTF-8 continuation bytes.
-function chars(s) {
+# Returns the number of characters in s. awk runs in the C locale, where it
+# counts bytes, so the UTF-8 continuation bytes are left out. An awk that
+# reads UTF-8 even there counts the em dash as one and takes length() as is;
+# the byte pattern is a string, so such an awk never compiles it.
+function chars(s,    cont) {
   if (length("—") == 1) return length(s)
-  return length(s) - gsub(/[\200-\277]/, "", s)
+  cont = "[\200-\277]"
+  return length(s) - gsub(cont, "", s)
 }
 
 # Returns the length of the run of backticks or tildes that makes this line a
