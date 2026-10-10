@@ -19,7 +19,9 @@ description: Open a draft pull request whose body is the full report. Use when a
    - Checks run: commands you ran in this session, with their actual output.
    - Notes for review: mark every wording or design you proposed.
    - Last, your own trailer block (AGENTS.md, "Provenance"). Do not list the
-     commits' trailers.
+     commits' trailers. Keep each trailer line within 72 characters, since
+     GitHub wraps the body into the merge commit; give a long check result
+     in "Checks run" and a short one in the trailer.
 4. Title: in the commit subject format from CONTRIBUTING.md, "Names"; it
    becomes the merge commit's subject.
 5. Labels, from "Names": one `type:` label, the branch's type, and an `area:`

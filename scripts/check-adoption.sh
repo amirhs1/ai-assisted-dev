@@ -18,9 +18,10 @@
 #   more than an extension and ends in one a tracked file uses; so feat/,
 #   .scss, and site.url are not paths. A path exists from the root or the
 #   citing file's folder, or when git ignores it; one without a slash also
-#   exists when a tracked file or folder anywhere has that name. A part
-#   listed in the "Where you may write" table must exist, even one only
-#   planned, when its first segment exists;
+#   exists when a tracked file or folder anywhere has that name. A code span
+#   in the first column of the "Where you may write" table is a path
+#   whatever its shape, unless it holds a character such as * or a space, so
+#   a part listed there must exist, even one only planned;
 # - core.hooksPath is not set.
 # When CLAUDE.md or .claude/ exists, it also fails when:
 # - CLAUDE.md is missing, does not start with the line @AGENTS.md, or holds
@@ -195,9 +196,10 @@ tiers() {
 }
 
 # refs <file>: prints "C<tab>line<tab>span" for each code span shaped like a
-# path, one with a slash or with text before a final extension, and
-# "S<tab>file<tab>section" for each section quoted with its file, outside
-# fenced blocks and comments.
+# path, one with a slash or with text before a final extension;
+# "T<tab>line<tab>span" for each code span in the first column of the first
+# table whose second column is Tier; and "S<tab>file<tab>section" for each
+# section quoted with its file, outside fenced blocks and comments.
 refs() {
   awk '
     # fence(line): the length of the run of backticks or tildes that makes the
@@ -226,9 +228,16 @@ refs() {
       }
       return fenced
     }
-    function path(s) {
+    function trim(s) { gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
+    # usable(s): s without a :line suffix, or "" when s holds a character no
+    # path here has, or starts with - or /.
+    function usable(s) {
       sub(/:[0-9]+(-[0-9]+)?$/, "", s)
       if (s ~ /[] \t<>*?[{}$|="(),@#~!\\:;]/ || s ~ /^[-\/]/) return ""
+      return s
+    }
+    function path(s) {
+      s = usable(s)
       if (s ~ /^(origin|upstream|refs)\//) return ""
       if (s ~ /\// || s ~ /.\.[^.]+$/) return s
       return ""
@@ -248,6 +257,23 @@ refs() {
         else comment = 1
       }
       s = line
+      # In the first table whose second column is Tier, each code span in the
+      # first column is a part: a path whatever its shape.
+      if (line !~ /^\|/) {
+        if (table == 1) table = 2
+      } else {
+        split(line, f, "|")
+        if (!table && trim(f[3]) == "Tier") table = 1
+        else if (table == 1) {
+          part = f[2]
+          while (match(part, /`[^`]+`/)) {
+            p = usable(substr(part, RSTART + 1, RLENGTH - 2))
+            if (p != "") print "T\t" NR "\t" p
+            part = substr(part, RSTART + RLENGTH)
+          }
+          sub(/^[^|]*\|[^|]*\|/, "", s)
+        }
+      }
       while (match(s, /`[^`]+`/)) {
         p = path(substr(s, RSTART + 1, RLENGTH - 2))
         if (p != "") print "C\t" NR "\t" p
@@ -326,6 +352,7 @@ check_refs() {
           problem "$1: line $where: path $what does not exist"
         fi
         ;;
+      T) exists "$what" "$dir" || problem "$1: line $where: path $what does not exist" ;;
       S)
         if [ ! -f "$where" ] && [ ! -f "$dir/$where" ]; then
           problem "$1: $where, \"$what\": $where does not exist"

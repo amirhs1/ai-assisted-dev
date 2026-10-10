@@ -1,0 +1,28 @@
+The "Where you may write" table lists parts that do not exist: a top-level
+folder, a dotfile, and a file without an extension. A code span in another
+column of the table is read as any other code span. It does not set
+core.hooksPath.
+==> AGENTS.md <==
+# AGENTS.md — Example
+
+Example tool for testing the adoption check.
+
+## Where you may write
+
+| Path                   | Tier         | Your role                  |
+| ---------------------- | ------------ | -------------------------- |
+| `src/core/`            | Instrumented | Review and refactor.       |
+| `docs/`, `.gitmessage` | Supervised   | Draft on a `feat/` branch. |
+| `Makefile`             | Delegated    | Generate.                  |
+==> README.md <==
+# Example
+
+## AI assistance
+
+| Part                   | Tier         | Checks or human review |
+| ---------------------- | ------------ | ---------------------- |
+| `src/core/`            | Instrumented | Unit tests.            |
+| `docs/`, `.gitmessage` | Supervised   | Line-by-line review.   |
+| `Makefile`             | Delegated    | Build checks.          |
+==> src/core/model.py <==
+# model

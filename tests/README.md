@@ -26,6 +26,8 @@ Each fixture's name starts with its mode: `<mode>.md` or `<mode>.<case>.md`.
 - `pass/pr-body.md` — a pull request body with code that quotes placeholders.
 - `pass/pr-body.nested-fence.md` — a four-backtick block that holds a
   three-backtick line, a `~~~` line, and a fence indented four spaces.
+- `pass/pr-body.trailer-72.md` — a 72-character trailer line with an em dash,
+  74 bytes.
 - `fail/chat-short.md` — a placeholder, no answer, an empty `Open:`.
 - `fail/chat-full.md` — bad, misplaced, and repeated verdicts; empty and
   out-of-order sections.
@@ -36,6 +38,8 @@ Each fixture's name starts with its mode: `<mode>.md` or `<mode>.<case>.md`.
   missing, and its trailer block is code.
 - `fail/pr-body.empty-notes.md` — a trailer block that is the only content
   of "Notes for review".
+- `fail/pr-body.trailer-73.md` — a 73-character trailer line with an em dash,
+  after one within the limit.
 
 ## `commit-msg/` — `.githooks/commit-msg`
 
@@ -104,6 +108,8 @@ Each input is saved output of the script's `gh api --jq` filter.
 - `pass/paths.txt` — code spans that are not paths, such as branch prefixes
   and class names; file names without their folder, found among the tracked
   files; a section quoted from a file in the skill's own folder.
+- `pass/tiers.txt` — tier-table parts of any shape that exist or git ignores;
+  a part with a glob and a part outside a code span, not checked.
 - `fail/repo.txt` — one of each fault, among them a "Skills" table that
   differs from `.agents/skills/`, a missing path, a missing section, a
   placeholder after a line indented four spaces, and broken links in a
@@ -113,6 +119,8 @@ Each input is saved output of the script's `gh api --jq` filter.
 - `fail/paths.txt` — a missing file at the root, in an existing folder, and
   named without its folder; a section missing from a file in the skill's own
   folder.
+- `fail/tiers.txt` — tier-table parts that do not exist: a top-level folder,
+  a dotfile, and a file without an extension.
 
 ## `check-names/` — `scripts/check-names.sh --labels`
 

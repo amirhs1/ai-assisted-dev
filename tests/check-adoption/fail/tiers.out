@@ -1,0 +1,6 @@
+AGENTS.md: line 10: path docs/ does not exist
+AGENTS.md: line 10: path .gitmessage does not exist
+AGENTS.md: line 11: path Makefile does not exist
+No CLAUDE.md or .claude/: Claude Code checks skipped.
+core.hooksPath is not set: run git config core.hooksPath .githooks
+Problems found: 4
