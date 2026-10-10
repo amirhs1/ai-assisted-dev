@@ -26,6 +26,8 @@ Each fixture's name starts with its mode: `<mode>.md` or `<mode>.<case>.md`.
 - `pass/pr-body.md` — a pull request body with code that quotes placeholders.
 - `pass/pr-body.nested-fence.md` — a four-backtick block that holds a
   three-backtick line, a `~~~` line, and a fence indented four spaces.
+- `pass/pr-body.trailer-72.md` — a 72-character trailer line with an em dash,
+  74 bytes.
 - `fail/chat-short.md` — a placeholder, no answer, an empty `Open:`.
 - `fail/chat-full.md` — bad, misplaced, and repeated verdicts; empty and
   out-of-order sections.
@@ -36,6 +38,8 @@ Each fixture's name starts with its mode: `<mode>.md` or `<mode>.<case>.md`.
   missing, and its trailer block is code.
 - `fail/pr-body.empty-notes.md` — a trailer block that is the only content
   of "Notes for review".
+- `fail/pr-body.trailer-73.md` — a 73-character trailer line with an em dash,
+  after one within the limit.
 
 ## `commit-msg/` — `.githooks/commit-msg`
 

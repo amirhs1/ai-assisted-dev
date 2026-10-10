@@ -4,13 +4,14 @@
 # the AGENTS template's "Report back", or the pull request body. Each section
 # appears once, in order, and is not empty; a section that does not apply
 # says None. The pull request body ends with a trailer block that includes
-# Assisted-by:, after a blank line; other sections may sit between the listed
-# ones and are not checked. A <...> placeholder outside code
-# spans and fenced blocks is rejected. A fenced block closes only on a fence
-# of its own character, at least as long, indented at most three spaces and
-# followed by nothing but spaces; a line indented four or more spaces never
-# opens or closes one. The full chat form has exactly one verdict line, right
-# after its title; the pull request body has none.
+# Assisted-by:, after a blank line, with no line over 72 characters: GitHub
+# wraps the body at about 72 when it builds the merge commit. Other sections
+# may sit between the listed ones and are not checked. A <...> placeholder
+# outside code spans and fenced blocks is rejected. A fenced block closes only
+# on a fence of its own character, at least as long, indented at most three
+# spaces and followed by nothing but spaces; a line indented four or more
+# spaces never opens or closes one. The full chat form has exactly one verdict
+# line, right after its title; the pull request body has none.
 # Usage: sh scripts/validate-report.sh --chat-short|--chat-full|--pr-body report.md
 # Exit status: 0 valid, 1 invalid, 2 usage error.
 
@@ -78,6 +79,13 @@ function label(line,    i, s) {
   return 0
 }
 
+# Returns the number of characters in s. An awk that counts bytes counts an
+# em dash as three; it then leaves out the UTF-8 continuation bytes.
+function chars(s) {
+  if (length("—") == 1) return length(s)
+  return length(s) - gsub(/[\200-\277]/, "", s)
+}
+
 # Returns the length of the run of backticks or tildes that makes this line a
 # fence, or 0; sets fchar to the run character and after to the rest of the
 # line.
@@ -109,16 +117,18 @@ BEGIN { n = split(sections, name, "|"); current = 0 }
     fenced = 0
   if (!code) placeholders(line)
   if (line ~ /^[ \t]*$/) { blank = 1; next }
-  # Track the last paragraph: whether every line is a trailer or a
-  # continuation of one, and whether one is Assisted-by:.
+  # Track the last paragraph: its lines, whether every line is a trailer or
+  # a continuation of one, and whether one is Assisted-by:.
   if (blank || !lines) {
     para_at = NR
+    para_n = 0
     trailers = 1
     assisted = 0
     para_section = current
     para_filled = filled[current]
   }
   blank = 0
+  para[++para_n] = line
   if (code || (line !~ /^[A-Za-z0-9][A-Za-z0-9-]*:([ \t]|$)/ &&
       (NR == para_at || line !~ /^[ \t]/)))
     trailers = 0
@@ -154,6 +164,9 @@ END {
   # The trailer block is not the content of the section it follows.
   if (mode == "pr-body" && trailers && assisted && para_at > 1) {
     if (!para_filled) filled[para_section] = 0
+    for (i = 1; i <= para_n; i++)
+      if ((len = chars(para[i])) > 72)
+        problem("line " (para_at + i - 1) ": trailer line over 72 characters (" len ")")
   } else if (mode == "pr-body")
     problem("the body must end with a trailer block that includes Assisted-by:, after a blank line")
   if (mode == "chat-short" && !filled[0]) problem("the answer is missing before Based on:")
