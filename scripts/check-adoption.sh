@@ -12,9 +12,15 @@
 # - the AGENTS.md "Skills" table and .agents/skills/ list different skills;
 # - in AGENTS.md or a skill, a path in a code span does not exist, or a
 #   section quoted with its file (AGENTS.md, "Git", or "Names" in
-#   CONTRIBUTING.md) is not a heading there; a path git ignores counts as
-#   existing. This covers the paths in the "Where you may write" table: a
-#   part listed there must exist, even one only planned;
+#   CONTRIBUTING.md) is not a heading in that file, found from the root or
+#   the citing file's folder. A code span is a path when it holds a slash and
+#   its first segment exists at the root, or, without a slash, when it is
+#   more than an extension and ends in one a tracked file uses; so feat/,
+#   .scss, and site.url are not paths. A path exists from the root or the
+#   citing file's folder, or when git ignores it; one without a slash also
+#   exists when a tracked file or folder anywhere has that name. A part
+#   listed in the "Where you may write" table must exist, even one only
+#   planned, when its first segment exists;
 # - core.hooksPath is not set.
 # When CLAUDE.md or .claude/ exists, it also fails when:
 # - CLAUDE.md is missing, does not start with the line @AGENTS.md, or holds
@@ -188,9 +194,10 @@ tiers() {
     }' "$1" | LC_ALL=C sort -u
 }
 
-# refs <file>: prints "C<tab>line<tab>span" for each code span that looks
-# like a path, and "S<tab>file<tab>section" for each section quoted with its
-# file, outside fenced blocks and comments.
+# refs <file>: prints "C<tab>line<tab>span" for each code span shaped like a
+# path, one with a slash or with text before a final extension, and
+# "S<tab>file<tab>section" for each section quoted with its file, outside
+# fenced blocks and comments.
 refs() {
   awk '
     # fence(line): the length of the run of backticks or tildes that makes the
@@ -223,7 +230,7 @@ refs() {
       sub(/:[0-9]+(-[0-9]+)?$/, "", s)
       if (s ~ /[] \t<>*?[{}$|="(),@#~!\\:;]/ || s ~ /^[-\/]/) return ""
       if (s ~ /^(origin|upstream|refs)\//) return ""
-      if (s ~ /\// || s ~ /^\.[A-Za-z]/ || s ~ /\.[A-Za-z]+$/) return s
+      if (s ~ /\// || s ~ /.\.[^.]+$/) return s
       return ""
     }
     {
@@ -274,9 +281,10 @@ refs() {
     }' "$1"
 }
 
-# heading <file> <text>: succeeds when a heading in the file reads text.
+# heading <file> <text>: succeeds when the file exists and a heading in it
+# reads text.
 heading() {
-  awk -v want="$2" '
+  [ -f "$1" ] && awk -v want="$2" '
     /^#+[ \t]/ {
       s = $0
       sub(/^#+[ \t]+/, "", s)
@@ -286,6 +294,27 @@ heading() {
     END { exit !found }' "$1"
 }
 
+# is_path <span>: succeeds when a span shaped like a path is one: with a
+# slash, its first segment exists at the root; without, its extension is one
+# a tracked file uses.
+is_path() {
+  case $1 in
+    */*) [ -e "${1%%/*}" ] ;;
+    *) printf '%s\n' "$extensions" | grep -Fxq -- "${1##*.}" ;;
+  esac
+}
+
+# exists <path> <dir>: succeeds when the path exists from the root or from
+# dir, or git ignores it, or, without a slash, a tracked file or folder
+# anywhere has that name.
+exists() {
+  [ -e "$1" ] || [ -e "$2/$1" ] || git check-ignore -q -- "$1" 2> /dev/null ||
+    case $1 in
+      */*) false ;;
+      *) printf '%s\n' "$names" | grep -Fxq -- "$1" ;;
+    esac
+}
+
 # check_refs <file>
 check_refs() {
   out=$(refs "$1" | awk '!seen[$0]++')
@@ -293,13 +322,14 @@ check_refs() {
   while IFS="$tab" read -r kind where what; do
     case $kind in
       C)
-        [ -e "$what" ] || [ -e "$dir/$what" ] || git check-ignore -q -- "$what" 2> /dev/null ||
+        if is_path "$what" && ! exists "$what" "$dir"; then
           problem "$1: line $where: path $what does not exist"
+        fi
         ;;
       S)
-        if [ ! -f "$where" ]; then
+        if [ ! -f "$where" ] && [ ! -f "$dir/$where" ]; then
           problem "$1: $where, \"$what\": $where does not exist"
-        elif ! heading "$where" "$what"; then
+        elif ! heading "$where" "$what" && ! heading "$dir/$where" "$what"; then
           problem "$1: $where has no \"$what\" section"
         fi
         ;;
@@ -380,6 +410,13 @@ $skills
 EOF
   fi
 
+  # The names of tracked files and the folders above them, and the
+  # extensions tracked files use, for code spans without a slash.
+  tracked=$(git ls-files -z 2> /dev/null | tr '\000' '\n')
+  names=$(printf '%s\n' "$tracked" | awk -F / '{ for (i = 1; i <= NF; i++) print $i }' |
+    LC_ALL=C sort -u)
+  extensions=$(printf '%s\n' "$tracked" |
+    awk -F / 'match($NF, /.\.[^.]+$/) { print substr($NF, RSTART + 2) }' | LC_ALL=C sort -u)
   check_refs AGENTS.md
   for s in .agents/skills/*/SKILL.md; do
     [ ! -f "$s" ] || check_refs "$s"

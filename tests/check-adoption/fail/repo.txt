@@ -20,7 +20,7 @@ Example tool for testing the adoption check.
 | `scripts/`  | Delegated    | Generate.               |
 
 Change both tables in the same commit; see [the README](README.md). The
-design is in `docs/ARCHITECTURE.md`; names follow CONTRIBUTING.md, "Names",
+design is in `src/ARCHITECTURE.md`; names follow CONTRIBUTING.md, "Names",
 and security reports SECURITY.md, "Reporting".
 
 ## Skills

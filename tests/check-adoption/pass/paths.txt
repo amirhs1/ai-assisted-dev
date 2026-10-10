@@ -1,0 +1,64 @@
+Code spans that are not paths: branch prefixes, placeholders without angle
+brackets, extensions and class names, dotted names, owner/repo and plugin
+names, and a folder a command creates. File names given without their
+folder are found among the tracked files. An absent file is named outside a
+code span. A skill quotes a section of a file in its own folder.
+==> AGENTS.md <==
+# AGENTS.md — Example
+
+Example site for testing which code spans the adoption check reads as paths.
+
+## Where you may write
+
+| Path        | Tier         | Your role            |
+| ----------- | ------------ | -------------------- |
+| `src/core/` | Instrumented | Review and refactor. |
+
+## Conventions
+
+- Branches start with `feat/`, `fix/`, `hotfix/`, or `chore/`, as in
+  `type/short-description`; releases are tagged `vX.Y.Z`.
+- Styles are `.scss` files with classes such as `.grid` and `.c-card`;
+  build logs end in `.tlg`.
+- Templates read `site.url` and `site.baseurl`.
+- The upstream is `octo-org/widget`; tags come from the `acme/tagger`
+  plugin.
+- The linter runs in `.lint-venv`, which the setup script creates.
+- Issues start from `task_form.md`; pages include `banner.html` and
+  `_spacing.scss`.
+- This repository carries no AI-POLICY.md.
+
+## Skills
+
+| Skill       | Use when           |
+| ----------- | ------------------ |
+| `add-entry` | Adding a log entry |
+==> README.md <==
+# Example
+
+## AI assistance
+
+| Part        | Tier         | Checks or human review |
+| ----------- | ------------ | ---------------------- |
+| `src/core/` | Instrumented | Unit tests.            |
+==> src/core/model.py <==
+# model
+==> .github/ISSUE_TEMPLATE/task_form.md <==
+# Task
+==> partials/banner.html <==
+<header></header>
+==> styles/base/_spacing.scss <==
+$gap: 1rem;
+==> .agents/skills/add-entry/SKILL.md <==
+---
+name: add-entry
+description: Add a log entry. Use when adding one.
+---
+
+Write the entry as `entry-format.md`, "The parts of an entry", describes.
+==> .agents/skills/add-entry/entry-format.md <==
+# Entry format
+
+## The parts of an entry
+
+A date and a line.

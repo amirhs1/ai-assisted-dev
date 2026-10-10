@@ -10,7 +10,7 @@ tier tables differ: only AGENTS.md lists scripts/ as Delegated
 tier tables differ: only AGENTS.md lists src/io/ as Supervised
 skills differ: only the AGENTS.md "Skills" table lists review-pr
 skills differ: only .agents/skills/ holds write-commit
-AGENTS.md: line 16: path docs/ARCHITECTURE.md does not exist
+AGENTS.md: line 16: path src/ARCHITECTURE.md does not exist
 AGENTS.md: CONTRIBUTING.md has no "Names" section
 AGENTS.md: SECURITY.md, "Reporting": SECURITY.md does not exist
 CLAUDE.md: must start with the line @AGENTS.md and hold only ## sections after it

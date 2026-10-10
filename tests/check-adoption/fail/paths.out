@@ -1,0 +1,7 @@
+AGENTS.md: line 13: path ROADMAP.md does not exist
+AGENTS.md: line 14: path src/core/reader.py does not exist
+AGENTS.md: line 15: path release.yml does not exist
+.agents/skills/add-entry/SKILL.md: entry-format.md has no "The parts of an entry" section
+No CLAUDE.md or .claude/: Claude Code checks skipped.
+core.hooksPath is not set: run git config core.hooksPath .githooks
+Problems found: 5
