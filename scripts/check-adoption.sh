@@ -13,15 +13,19 @@
 # - in AGENTS.md or a skill, a path in a code span does not exist, or a
 #   section quoted with its file (AGENTS.md, "Git", or "Names" in
 #   CONTRIBUTING.md) is not a heading in that file, found from the root or
-#   the citing file's folder. A code span is a path when it holds a slash and
-#   its first segment exists at the root, or, without a slash, when it is
-#   more than an extension and ends in one a tracked file uses; so feat/,
-#   .scss, and site.url are not paths. A path exists from the root or the
-#   citing file's folder, or when git ignores it; one without a slash also
-#   exists when a tracked file or folder anywhere has that name. A code span
-#   in the first column of the "Where you may write" table is a path
-#   whatever its shape, unless it holds a character such as * or a space, so
-#   a part listed there must exist, even one only planned;
+#   the citing file's folder. A code span is a path when it is a folder of
+#   one name, such as e2e/, unless the name is a type on the types: line of
+#   CONTRIBUTING.md, "Names" (without that line, only when it exists at the
+#   root); when it holds another slash and its first segment exists at the
+#   root; or, without a slash, when it is more than an extension and ends in
+#   one a tracked file uses. So feat/, .scss, and site.url are not paths. A
+#   path exists from the root or the citing file's folder, or when git
+#   ignores it; one without a slash also exists when a tracked file or
+#   folder anywhere has that name, and a folder of one name when a tracked
+#   folder anywhere has it. A code span in the first column of the "Where
+#   you may write" table is a path whatever its shape, unless it holds a
+#   character such as * or a space, so a part listed there must exist, even
+#   one only planned;
 # - core.hooksPath is not set.
 # When CLAUDE.md or .claude/ exists, it also fails when:
 # - CLAUDE.md is missing, does not start with the line @AGENTS.md, or holds
@@ -320,23 +324,36 @@ heading() {
     END { exit !found }' "$1"
 }
 
-# is_path <span>: succeeds when a span shaped like a path is one: with a
-# slash, its first segment exists at the root; without, its extension is one
-# a tracked file uses.
+# is_path <span>: succeeds when a span shaped like a path is one. A folder of
+# one name, such as e2e/, is one unless the name is a type, a branch prefix;
+# without types, only when it exists at the root. Another span with a slash
+# is one when its first segment exists at the root; one without a slash,
+# when its extension is one a tracked file uses.
 is_path() {
   case $1 in
-    */*) [ -e "${1%%/*}" ] ;;
+    */*/* | */?*) [ -e "${1%%/*}" ] ;;
+    */)
+      if [ -z "$types" ]; then
+        [ -e "${1%/}" ]
+      elif printf '%s\n' "$types" | grep -Fxq -- "${1%/}"; then
+        false
+      else
+        true
+      fi
+      ;;
     *) printf '%s\n' "$extensions" | grep -Fxq -- "${1##*.}" ;;
   esac
 }
 
 # exists <path> <dir>: succeeds when the path exists from the root or from
-# dir, or git ignores it, or, without a slash, a tracked file or folder
+# dir, or git ignores it; or, without a slash, a tracked file or folder
+# anywhere has that name; or, as a folder of one name, a tracked folder
 # anywhere has that name.
 exists() {
   [ -e "$1" ] || [ -e "$2/$1" ] || git check-ignore -q -- "$1" 2> /dev/null ||
     case $1 in
-      */*) false ;;
+      */*/* | */?*) false ;;
+      */) printf '%s\n' "$folders" | grep -Fxq -- "${1%/}" ;;
       *) printf '%s\n' "$names" | grep -Fxq -- "$1" ;;
     esac
 }
@@ -438,10 +455,19 @@ EOF
   fi
 
   # The names of tracked files and the folders above them, and the
-  # extensions tracked files use, for code spans without a slash.
+  # extensions tracked files use, for code spans without a slash; the
+  # folders alone, and the types: line of CONTRIBUTING.md, "Names", for a
+  # folder of one name.
   tracked=$(git ls-files -z 2> /dev/null | tr '\000' '\n')
   names=$(printf '%s\n' "$tracked" | awk -F / '{ for (i = 1; i <= NF; i++) print $i }' |
     LC_ALL=C sort -u)
+  folders=$(printf '%s\n' "$tracked" | awk -F / '{ for (i = 1; i < NF; i++) print $i }' |
+    LC_ALL=C sort -u)
+  types=
+  if [ -f CONTRIBUTING.md ]; then
+    types=$(awk '/^## / { inside = ($0 == "## Names"); next }
+      inside && $1 == "types:" { for (i = 2; i <= NF; i++) print $i }' CONTRIBUTING.md)
+  fi
   extensions=$(printf '%s\n' "$tracked" |
     awk -F / 'match($NF, /.\.[^.]+$/) { print substr($NF, RSTART + 2) }' | LC_ALL=C sort -u)
   check_refs AGENTS.md

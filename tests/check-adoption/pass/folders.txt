@@ -1,0 +1,43 @@
+Folders of one name. A type from CONTRIBUTING.md, "Names", is a branch
+prefix and is not checked, even with no folder of that name; a folder that
+exists only below the root is found among the tracked folders.
+==> AGENTS.md <==
+# AGENTS.md — Example
+
+Example tool for testing the adoption check.
+
+## Where you may write
+
+| Path        | Tier         | Your role            |
+| ----------- | ------------ | -------------------- |
+| `src/core/` | Instrumented | Review and refactor. |
+
+## Git
+
+Branches start with `feat/`, `fix/`, or `docs/`; smoke tests live in
+`smoke/`.
+==> README.md <==
+# Example
+
+## AI assistance
+
+| Part        | Tier         | Checks or human review |
+| ----------- | ------------ | ---------------------- |
+| `src/core/` | Instrumented | Unit tests.            |
+==> CONTRIBUTING.md <==
+# Contributing
+
+## AI-assisted contributions
+
+Say which AI tools you used.
+
+## Names
+
+```text
+types: feat fix docs
+areas: core
+```
+==> src/core/model.py <==
+# model
+==> tests/smoke/run.sh <==
+# run

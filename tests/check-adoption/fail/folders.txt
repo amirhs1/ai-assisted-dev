@@ -1,0 +1,39 @@
+A folder of one name that is not a type in CONTRIBUTING.md, "Names", and
+that no tracked folder has. It does not set core.hooksPath.
+==> AGENTS.md <==
+# AGENTS.md — Example
+
+Example tool for testing the adoption check.
+
+## Where you may write
+
+| Path        | Tier         | Your role            |
+| ----------- | ------------ | -------------------- |
+| `src/core/` | Instrumented | Review and refactor. |
+
+## Git
+
+Branches start with `feat/`; smoke tests live in `smoke/`.
+==> README.md <==
+# Example
+
+## AI assistance
+
+| Part        | Tier         | Checks or human review |
+| ----------- | ------------ | ---------------------- |
+| `src/core/` | Instrumented | Unit tests.            |
+==> CONTRIBUTING.md <==
+# Contributing
+
+## AI-assisted contributions
+
+Say which AI tools you used.
+
+## Names
+
+```text
+types: feat fix docs
+areas: core
+```
+==> src/core/model.py <==
+# model
