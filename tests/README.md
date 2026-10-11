@@ -108,8 +108,8 @@ Each input is saved output of the script's `gh api --jq` filter.
 - `pass/paths.txt` — code spans that are not paths, such as branch prefixes
   and class names; file names without their folder, found among the tracked
   files; a section quoted from a file in the skill's own folder.
-- `pass/tiers.txt` — tier-table parts of any shape that exist or git ignores;
-  a part with a glob and a part outside a code span, not checked.
+- `pass/tiers.txt` — tier-table parts of any shape that exist at the root or
+  git ignores; a part with a glob and a part outside a code span, not checked.
 - `pass/folders.txt` — folders of one name: types from `CONTRIBUTING.md`,
   "Names", not checked; a folder found below the root.
 - `fail/repo.txt` — one of each fault, among them a "Skills" table that
@@ -121,8 +121,9 @@ Each input is saved output of the script's `gh api --jq` filter.
 - `fail/paths.txt` — a missing file at the root, in an existing folder, and
   named without its folder; a section missing from a file in the skill's own
   folder.
-- `fail/tiers.txt` — tier-table parts that do not exist: a top-level folder,
-  a dotfile, and a file without an extension.
+- `fail/tiers.txt` — tier-table parts that do not exist at the root: a
+  top-level folder, a dotfile, and a file without an extension, and a folder
+  and a file tracked only below the root.
 - `fail/folders.txt` — a folder of one name that is not a type and that no
   tracked folder has.
 

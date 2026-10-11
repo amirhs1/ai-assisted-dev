@@ -1,6 +1,7 @@
-The "Where you may write" table lists parts that do not exist: a top-level
-folder, a dotfile, and a file without an extension. A code span in another
-column of the table is read as any other code span. It does not set
+The "Where you may write" table lists parts that do not exist at the root: a
+top-level folder, a dotfile, and a file without an extension, none tracked
+anywhere, and a folder and a file tracked only below the root. A code span in
+another column of the table is read as any other code span. It does not set
 core.hooksPath.
 ==> AGENTS.md <==
 # AGENTS.md — Example
@@ -9,20 +10,26 @@ Example tool for testing the adoption check.
 
 ## Where you may write
 
-| Path                   | Tier         | Your role                  |
-| ---------------------- | ------------ | -------------------------- |
-| `src/core/`            | Instrumented | Review and refactor.       |
-| `docs/`, `.gitmessage` | Supervised   | Draft on a `feat/` branch. |
-| `Makefile`             | Delegated    | Generate.                  |
+| Path                    | Tier         | Your role                  |
+| ----------------------- | ------------ | -------------------------- |
+| `src/core/`             | Instrumented | Review and refactor.       |
+| `docs/`, `.gitmessage`  | Supervised   | Draft on a `feat/` branch. |
+| `Makefile`              | Delegated    | Generate.                  |
+| `guides/`, `setup.cfg`  | Delegated    | Generate.                  |
 ==> README.md <==
 # Example
 
 ## AI assistance
 
-| Part                   | Tier         | Checks or human review |
-| ---------------------- | ------------ | ---------------------- |
-| `src/core/`            | Instrumented | Unit tests.            |
-| `docs/`, `.gitmessage` | Supervised   | Line-by-line review.   |
-| `Makefile`             | Delegated    | Build checks.          |
+| Part                    | Tier         | Checks or human review |
+| ----------------------- | ------------ | ---------------------- |
+| `src/core/`             | Instrumented | Unit tests.            |
+| `docs/`, `.gitmessage`  | Supervised   | Line-by-line review.   |
+| `Makefile`              | Delegated    | Build checks.          |
+| `guides/`, `setup.cfg`  | Delegated    | Build checks.          |
 ==> src/core/model.py <==
 # model
+==> site/guides/intro.md <==
+# Intro
+==> pkg/setup.cfg <==
+[metadata]
