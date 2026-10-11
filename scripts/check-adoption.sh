@@ -24,8 +24,8 @@
 #   folder anywhere has that name, and a folder of one name when a tracked
 #   folder anywhere has it. A code span in the first column of the "Where
 #   you may write" table is a path whatever its shape, unless it holds a
-#   character such as * or a space, so a part listed there must exist, even
-#   one only planned;
+#   character such as * or a space, so a part listed there must exist from
+#   the root, or git must ignore it, even one only planned;
 # - core.hooksPath is not set.
 # When CLAUDE.md or .claude/ exists, it also fails when:
 # - CLAUDE.md is missing, does not start with the line @AGENTS.md, or holds
@@ -369,7 +369,11 @@ check_refs() {
           problem "$1: line $where: path $what does not exist"
         fi
         ;;
-      T) exists "$what" "$dir" || problem "$1: line $where: path $what does not exist" ;;
+      T)
+        # A tier-table part names a path from the root.
+        [ -e "$what" ] || git check-ignore -q -- "$what" 2> /dev/null ||
+          problem "$1: line $where: path $what does not exist"
+        ;;
       S)
         if [ ! -f "$where" ] && [ ! -f "$dir/$where" ]; then
           problem "$1: $where, \"$what\": $where does not exist"
