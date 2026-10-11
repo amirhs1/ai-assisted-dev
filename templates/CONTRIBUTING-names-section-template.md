@@ -4,6 +4,19 @@ below; drop a type you do not use, add an optional one (release, deps, style)
 if you need it, and rename none. Areas are the project's own: list them.
 AGENTS.md and the skills keep no copy of these lists; they cite this section.
 List every other file that applies the names, such as .github/dependabot.yml.
+In it, these keys of each update set the commits, branches, and labels; here
+for a type chore and an area deps:
+
+    # Commit, branch, and labels as CONTRIBUTING.md, "Names", sets them.
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps)"
+    pull-request-branch-name:
+      prefix: "chore"
+    labels:
+      - "type:chore"
+      - "area:deps"
+
 Fill every <...> or delete the line, and delete this comment.
 -->
 

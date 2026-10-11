@@ -1,0 +1,4 @@
+AGENTS.md: line 13: path smoke/ does not exist
+No CLAUDE.md or .claude/: Claude Code checks skipped.
+core.hooksPath is not set: run git config core.hooksPath .githooks
+Problems found: 2
