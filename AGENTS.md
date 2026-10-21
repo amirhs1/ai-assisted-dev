@@ -15,9 +15,10 @@ There is no build. Before calling a change complete, run:
 git diff --check main...HEAD
 # references to template files that do not exist
 for f in $(grep -rhoE '[A-Za-z.-]+-template\.(md|txt|json)' --exclude-dir=.git . | sort -u); do [ -e "templates/$f" ] || echo "missing: $f"; done
-# the tools: ShellCheck, then every tool against its fixtures
+# the tools: ShellCheck, then every tool against its fixtures, also in UTF-8
 shellcheck scripts/*.sh .githooks/commit-msg
 sh scripts/check-repo.sh
+LC_ALL=en_US.UTF-8 sh scripts/check-repo.sh
 # names against CONTRIBUTING.md, "Names", and the labels (reads them with gh)
 sh scripts/check-names.sh
 ```
@@ -65,7 +66,7 @@ diff you drafted is not the same as originating it.
 | Issues, pull requests, commit messages          | Instrumented | Draft when the maintainer asks.                                                                                                                                       |
 | `.gitmessage`, `.gitignore`, `.github/`         | Instrumented | Write when the maintainer asks, on a branch.                                                                                                                          |
 | `scripts/`, `.githooks/`, `tests/`              | Supervised   | Draft against the acceptance criteria in the issue; expect every line read. Every script is POSIX `sh`, passes ShellCheck, and has passing and failing fixtures.      |
-| `AGENTS.md`, `CLAUDE.md`, `.claude/`, `LICENSE` | Instrumented | Never edit. Draft the change in the pull request description or a comment instead.                                                                                    |
+| `AGENTS.md`, `CLAUDE.md`, `.claude/`, `LICENSE` | Instrumented | Never edit. Draft the change as a patch, first in the pull request body under `## Blocking: apply before merge`, or in a comment; the maintainer commits it.          |
 
 - A path not listed is treated like the stored templates.
 - The gate is the pull request: a ruleset on `main` requires one, and only the
