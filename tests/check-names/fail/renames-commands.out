@@ -1,0 +1,11 @@
+label type:feat is missing
+label type:fix is missing
+label area:core is missing
+label area:ui is missing
+label type:feature is in neither list in "Names"
+label area:frontend is in neither list in "Names"
+gh label edit "type:feature" --name "type:feat" --description "Type: feat"
+gh label edit "bug" --name "type:fix" --description "Type: fix"
+gh label create "area:core" --description "Area: core"
+gh label edit "area:frontend" --name "area:ui" --description "Area: ui"
+Problems found: 6
