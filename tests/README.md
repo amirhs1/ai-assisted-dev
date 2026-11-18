@@ -142,3 +142,7 @@ Each manifest holds a `labels.tsv`, saved output of the script's
   `docs/pull_request_template.txt` that uses a label.
 - `fail/repo-commands.out` — the same with `--print-label-commands`: one
   `gh label create` command.
+- `fail/renames.txt` — labels that built-in pairs and a `--rename` pair
+  rename. `fail/renames-commands.out`: with `--rename` pairs, three
+  `gh label edit --name` commands, and a `gh label create` for a pair whose
+  old label does not exist.

@@ -42,6 +42,9 @@ to `git commit -m`; check the final message for completed provenance trailers.
 [`scripts/check-names.sh`](scripts/check-names.sh) checks that an adopting
 repository's labels, `.gitmessage`, skills, and templates agree with its
 `CONTRIBUTING.md`, "Names"; it reads the labels with `gh` and changes nothing.
+With `--print-label-commands` it prints the `gh label` commands to run, and
+renames an old label such as `bug` to `type:fix` rather than creating a new
+one, which keeps it on its issues; `--rename <old>=<new>` adds a pair.
 
 ## Scope
 

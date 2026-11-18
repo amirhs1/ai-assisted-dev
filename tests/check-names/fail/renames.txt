@@ -1,0 +1,19 @@
+Labels to rename: GitHub's default bug and the long form type:feature, both
+built-in pairs, and area:frontend, which only a --rename pair renames. The
+self-check also passes a --rename pair whose old label does not exist, so
+area:core is created, and one whose old label type:docs is wanted, so the
+built-in pair renames type:feature instead.
+==> labels.tsv <==
+bug	Something isn't working
+type:feature	Type: feature
+type:docs	Type: docs
+area:frontend	Area: frontend
+==> CONTRIBUTING.md <==
+# Contributing
+
+## Names
+
+```text
+types: feat fix docs
+areas: core ui
+```

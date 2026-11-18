@@ -174,6 +174,12 @@ expect 0 tests/check-names/pass/repo-commands.out sh scripts/check-names.sh \
   --print-label-commands --labels "$tmp/names-pass-repo/labels.tsv" "$tmp/names-pass-repo"
 expect 1 tests/check-names/fail/repo-commands.out sh scripts/check-names.sh \
   --print-label-commands --labels "$tmp/names-fail-repo/labels.tsv" "$tmp/names-fail-repo"
+# --rename pairs: one whose old label is wanted, one used, one whose old
+# label does not exist.
+expect 1 tests/check-names/fail/renames-commands.out sh scripts/check-names.sh \
+  --print-label-commands --rename type:docs=type:feat --rename area:frontend=area:ui \
+  --rename area:gone=area:core --labels "$tmp/names-fail-renames/labels.tsv" \
+  "$tmp/names-fail-renames"
 
 if [ "$failures" -gt 0 ]; then
   echo "$failures of $checks checks failed." >&2

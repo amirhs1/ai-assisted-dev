@@ -23,7 +23,7 @@ areas: readme contributing tools agents git github license agents-template polic
 | Tag and release title         | `v<MAJOR>.<MINOR>.<PATCH>`              |
 
 Labels combine: one `type:` plus one or more `area:`. There are no
-combination labels. Status, priority, and release are not labels.
+combination labels.
 
 ### Where these names are used
 

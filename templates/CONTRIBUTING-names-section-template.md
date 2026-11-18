@@ -42,7 +42,7 @@ areas: <area> <area> <area>
 | Tag and release title         | `v<MAJOR>.<MINOR>.<PATCH>`              |
 
 Labels combine: one `type:` plus one or more `area:`. There are no
-combination labels. Status, priority, and release are not labels.
+combination labels.
 
 Issue templates set a default type: `type:fix` for a bug report, `type:feat`
 for a feature request<, ...>.

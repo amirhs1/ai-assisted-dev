@@ -15,22 +15,32 @@
 # It reads the labels with gh label list and never writes to GitHub.
 # --print-label-commands also prints, for a person to run, gh label create
 # for each missing label and gh label edit for each label whose description
-# is not "Type: <word>" or "Area: <word>".
+# is not "Type: <word>" or "Area: <word>". For a missing label that an
+# existing one can be renamed to, it prints gh label edit <old> --name <new>
+# instead, which keeps the label on its issues and pull requests. The
+# built-in pairs rename GitHub's defaults bug, enhancement, and
+# documentation to type:fix, type:feat, and type:docs, and type:feature and
+# type:bug to type:feat and type:fix. --rename <old>=<new>, repeatable, adds
+# a pair, tried before the built-in ones. A pair is used when its old label
+# exists, is not a label the section asks for, and is not renamed already.
 # --labels reads saved output of
 #   gh label list --limit 1000 --json name,description --jq '.[] | [.name, .description] | @tsv'
 # instead of calling gh, as the tests do.
-# Usage: sh scripts/check-names.sh [--print-label-commands] [--labels <file>] [directory]
+# Usage: sh scripts/check-names.sh [--print-label-commands]
+#   [--rename <old>=<new>]... [--labels <file>] [directory]
 # Exit status: 0 the names agree, 1 a difference, 2 usage or read error.
 
 set -eu
 
 usage() {
-  echo "Usage: sh scripts/check-names.sh [--print-label-commands] [--labels <file>] [directory]" >&2
+  echo "Usage: sh scripts/check-names.sh [--print-label-commands] [--rename <old>=<new>]... [--labels <file>] [directory]" >&2
   exit 2
 }
 
+tab=$(printf '\t')
 print=no
 labels_file=
+renames=
 while [ "$#" -gt 0 ]; do
   case $1 in
     --print-label-commands)
@@ -45,6 +55,16 @@ while [ "$#" -gt 0 ]; do
       esac
       shift 2
       ;;
+    --rename)
+      if [ "$#" -lt 2 ]; then usage; fi
+      case $2 in
+        ?*=?*) ;;
+        *) usage ;;
+      esac
+      renames="$renames${2%=*}$tab${2##*=}
+"
+      shift 2
+      ;;
     -*) usage ;;
     *) break ;;
   esac
@@ -53,7 +73,6 @@ done
 [ -d "${1:-.}" ] || usage
 cd "${1:-.}"
 
-tab=$(printf '\t')
 problems=0
 problem() {
   echo "$1" >&2
@@ -138,7 +157,36 @@ want=$(
   for t in $types; do printf 'type:%s\tType: %s\n' "$t" "$t"; done
   for a in $areas; do printf 'area:%s\tArea: %s\n' "$a" "$a"; done
 )
+# Rename pairs, old<TAB>new: those from --rename, then the built-in ones.
+renames="${renames}bug${tab}type:fix
+enhancement${tab}type:feat
+documentation${tab}type:docs
+type:feature${tab}type:feat
+type:bug${tab}type:fix"
+
+# has <name> <lines>: succeeds when a line's first tab-separated field is the
+# name.
+has() {
+  printf '%s\n' "$2" | awk -v name="$1" 'BEGIN { FS = "\t" } $1 == name { found = 1 } END { exit !found }'
+}
+
+# rename_from <label>: prints the old label of the first pair to the label
+# whose old label exists, is not wanted, and is not renamed already.
+rename_from() {
+  while IFS="$tab" read -r from to; do
+    [ "$to" = "$1" ] || continue
+    has "$from" "$labels" || continue
+    has "$from" "$want" && continue
+    printf '%s\n' "$renamed" | grep -Fxq -- "$from" && continue
+    printf '%s\n' "$from"
+    return 0
+  done << EOF
+$renames
+EOF
+}
+
 commands=
+renamed=
 while IFS="$tab" read -r name description; do
   if have=$(printf '%s\n' "$labels" |
     awk -v name="$name" 'BEGIN { FS = "\t" } $1 == name { print $2; found = 1 } END { exit !found }'); then
@@ -147,8 +195,16 @@ while IFS="$tab" read -r name description; do
 gh label edit \"$name\" --description \"$description\""
   else
     problem "label $name is missing"
-    commands="$commands
+    from=$(rename_from "$name")
+    if [ -n "$from" ]; then
+      renamed="$renamed$from
+"
+      commands="$commands
+gh label edit \"$from\" --name \"$name\" --description \"$description\""
+    else
+      commands="$commands
 gh label create \"$name\" --description \"$description\""
+    fi
   fi
 done << EOF
 $want
