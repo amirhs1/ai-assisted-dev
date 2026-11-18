@@ -28,6 +28,9 @@ Each fixture's name starts with its mode: `<mode>.md` or `<mode>.<case>.md`.
   three-backtick line, a `~~~` line, and a fence indented four spaces.
 - `pass/pr-body.trailer-72.md` — a 72-character trailer line with an em dash,
   74 bytes.
+- `pass/pr-body.wrapped-span.md` — code spans that the line wrap splits
+  across two lines, each holding a `<...>`, in a list after a span of two
+  backticks that holds an odd number of single ones.
 - `fail/chat-short.md` — a placeholder, no answer, an empty `Open:`.
 - `fail/chat-full.md` — bad, misplaced, and repeated verdicts; empty and
   out-of-order sections.
@@ -87,7 +90,7 @@ Each input is saved output of the script's `gh api --jq` filter.
 
 - `pass/repo.txt` — four valid skills, one user-invoked, and a user-invoked
   skill template; one skill holds a three-backtick block inside a
-  four-backtick one.
+  four-backtick one, and one a code span with a `<...>` across a line break.
 - `pass/no-skills.txt` — no skills at all: nothing to check, so it passes.
 - `fail/repo.txt` — one fault per skill, among them a
   `disable-model-invocation` that is neither true nor false, a placeholder

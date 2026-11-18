@@ -7,11 +7,12 @@
 # Assisted-by:, after a blank line, with no line over 72 characters: GitHub
 # wraps the body at about 72 when it builds the merge commit. Other sections
 # may sit between the listed ones and are not checked. A <...> placeholder
-# outside code spans and fenced blocks is rejected. A fenced block closes only
-# on a fence of its own character, at least as long, indented at most three
-# spaces and followed by nothing but spaces; a line indented four or more
-# spaces never opens or closes one. The full chat form has exactly one verdict
-# line, right after its title; the pull request body has none.
+# outside code spans and fenced blocks is rejected; a code span may cross a
+# line break within a paragraph. A fenced block closes only on a fence of its
+# own character, at least as long, indented at most three spaces and followed
+# by nothing but spaces; a line indented four or more spaces never opens or
+# closes one. The full chat form has exactly one verdict line, right after its
+# title; the pull request body has none.
 # Usage: sh scripts/validate-report.sh --chat-short|--chat-full|--pr-body report.md
 # Exit status: 0 valid, 1 invalid, 2 usage error.
 
@@ -43,12 +44,40 @@ esac
 LC_ALL=C awk -v mode="$mode" -v sections="$sections" -v file="$report" '
 function problem(msg) { print file ": " msg; bad = 1 }
 
-function placeholders(line,    s, p) {
-  s = line
-  gsub(/`[^`]*`/, "", s)
-  while (match(s, /<[^<>]*>/)) {
+# Returns text without its code spans. A run of backticks opens a span, and
+# the next run of the same length closes it, across a line break too; a run
+# with no such match is literal. A span leaves the newlines it holds.
+function unspan(text,    out, run, n, t, len, span) {
+  out = ""
+  while (match(text, /`+/)) {
+    n = RLENGTH
+    run = substr(text, RSTART, n)
+    out = out substr(text, 1, RSTART - 1)
+    text = substr(text, RSTART + n)
+    t = text
+    len = 0
+    while (match(t, /`+/) && RLENGTH != n) {
+      len += RSTART + RLENGTH - 1
+      t = substr(t, RSTART + RLENGTH)
+    }
+    if (!RSTART) { out = out run; continue }
+    span = substr(text, 1, len + RSTART - 1)
+    text = substr(t, RSTART + n)
+    gsub(/[^\n]/, "", span)
+    out = out span
+  }
+  return out text
+}
+
+# Reports each <...> in text, a paragraph whose lines are joined by newlines
+# and whose first line is line at, outside code spans.
+function placeholders(text, at,    s, p, pre) {
+  s = unspan(text)
+  while (match(s, /<[^<>\n]*>/)) {
     p = substr(s, RSTART, RLENGTH)
-    if (p !~ /^<(https?|mailto):/) problem("line " NR ": placeholder " p)
+    pre = substr(s, 1, RSTART - 1)
+    at += gsub(/\n/, "", pre)
+    if (p !~ /^<(https?|mailto):/) problem("line " at ": placeholder " p)
     s = substr(s, RSTART + RLENGTH)
   }
 }
@@ -119,7 +148,12 @@ BEGIN { n = split(sections, name, "|"); current = 0 }
     open_len = run
   } else if (fenced && run && fchar == open_char && run >= open_len && after ~ /^ *$/)
     fenced = 0
-  if (!code) placeholders(line)
+  # Collect a paragraph; check it once a blank or code line ends it.
+  if (code || line ~ /^[ \t]*$/) {
+    if (text_at) placeholders(text, text_at)
+    text_at = 0
+  } else if (text_at) text = text "\n" line
+  else { text = line; text_at = NR }
   if (line ~ /^[ \t]*$/) { blank = 1; next }
   # Track the last paragraph: its lines, whether every line is a trailer or
   # a continuation of one, and whether one is Assisted-by:.
@@ -158,6 +192,7 @@ BEGIN { n = split(sections, name, "|"); current = 0 }
 }
 
 END {
+  if (text_at) placeholders(text, text_at)
   if (mode == "chat-full") {
     if (first !~ /^## [^ ]/) problem("the first line must be the title, a ## heading")
     if (verdicts == 0) problem("no verdict line")
