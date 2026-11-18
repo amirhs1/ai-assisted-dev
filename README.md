@@ -48,7 +48,10 @@ one, which keeps it on its issues; `--rename <old>=<new>` adds a pair.
 
 ## Scope
 
-The skills and tools assume GitHub and the `gh` CLI. A GitLab project would
+The skills and tools assume GitHub and the `gh` CLI. The tools are POSIX `sh`
+scripts that call standard utilities and `git`; `check-names.sh` and
+`check-repo-settings.sh` call `gh` unless given `--labels` or `--file`.
+A GitLab project would
 change the commands (`glab`) and the terms (merge request), and the set does
 not cover that yet. The `draft-release` skill writes changelog sections in
 [Common Changelog](https://common-changelog.org) form: unlike Keep a
