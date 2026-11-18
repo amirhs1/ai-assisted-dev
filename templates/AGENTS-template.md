@@ -218,6 +218,7 @@ gives a commit message's subject and body.
 | ------------------- | ---------------------------------------- |
 | `create-branch`     | Starting a change                        |
 | `write-commit`      | Every commit                             |
+| `write-test`        | Adding or changing a test                |
 | `draft-release`     | Never on your own; a person invokes it   |
 | `<name>`            | <>                                       |
 
