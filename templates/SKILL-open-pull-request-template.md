@@ -28,6 +28,11 @@ this comment.
      not list the commits' trailers. Keep each trailer line within 72
      characters, since GitHub wraps the body into the merge commit; give a
      long check result in "Checks run" and a short one in the trailer.
+
+   Then check the trailer block, the body's last paragraph:
+   `awk -v RS= 'END { print }' <file> | awk 'length > 72'` prints nothing,
+   and `git interpret-trailers --parse <file>` prints every trailer. Fix the
+   body until both hold.
 4. Title and labels: follow "Names" in CONTRIBUTING.md. The type comes from
    the branch name; the areas, from the parts the diff changes. If the branch
    prefix, the title's type, and the `type:` label do not all agree, stop and
@@ -38,5 +43,6 @@ this comment.
 6. If the branch already has a pull request, update it. Before pushing, check
    that the pull request is open: `gh pr view <n> --json state --jq .state`.
    If it says `MERGED` or `CLOSED`, stop: the change needs a new branch.
-   Otherwise push, then replace its body and read it back:
+   Otherwise push, check the trailer block as in step 3, then replace its
+   body and read it back:
    `gh pr edit <n> --body-file <file>`.

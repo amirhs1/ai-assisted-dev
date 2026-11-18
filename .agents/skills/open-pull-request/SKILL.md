@@ -22,6 +22,11 @@ description: Open a draft pull request whose body is the full report. Use when a
      commits' trailers. Keep each trailer line within 72 characters, since
      GitHub wraps the body into the merge commit; give a long check result
      in "Checks run" and a short one in the trailer.
+
+   Then check the trailer block, the body's last paragraph:
+   `awk -v RS= 'END { print }' <file> | awk 'length > 72'` prints nothing,
+   and `git interpret-trailers --parse <file>` prints every trailer. Fix the
+   body until both hold.
 4. Title: in the commit subject format from CONTRIBUTING.md, "Names"; it
    becomes the merge commit's subject. Never put a closing keyword in the
    title.
@@ -36,5 +41,6 @@ description: Open a draft pull request whose body is the full report. Use when a
 7. If the branch already has a pull request, update it. Before pushing, check
    that the pull request is open: `gh pr view <n> --json state --jq .state`.
    If it says `MERGED` or `CLOSED`, stop: the change needs a new branch.
-   Otherwise push, then replace its body and read it back:
+   Otherwise push, check the trailer block as in step 3, then replace its
+   body and read it back:
    `gh pr edit <n> --body-file <file>`.
