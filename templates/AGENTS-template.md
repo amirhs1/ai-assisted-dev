@@ -102,8 +102,10 @@ in each tier. Change both in the same commit. -->
 - A path not listed is Supervised. Work that touches security, credentials,
   private data, or published results is never Delegated, whatever the table
   says.
-- Apply only wording the maintainer supplies: `AI-POLICY.md`,
-  `<other governing prose>`.
+- Governing prose (`AI-POLICY.md`, `AGENTS.md`, `<other governing prose>`):
+  draft wording, or improve a draft the maintainer wrote, only as a proposal.
+  Mark it in the pull request's "Notes for review". It stands once the
+  maintainer approves it.
 - A change listed under "Ask first" needs that approval in any tier; the tier
   then sets how closely it is reviewed.
 - Never edit these; draft a change for the maintainer instead:
