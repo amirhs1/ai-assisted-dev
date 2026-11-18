@@ -6,9 +6,9 @@
 # disable-model-invocation, which makes a skill user-invoked only, is true or
 # false where it is set, and no placeholder or template comment is left. A
 # placeholder is a <...> outside code, or a code span that holds only one,
-# such as `<main>`. A fenced block closes only on a fence of its own
-# character, at least as long; a line indented four or more spaces is never a
-# fence.
+# such as `<main>`; a code span may cross a line break within a paragraph. A
+# fenced block closes only on a fence of its own character, at least as long;
+# a line indented four or more spaces is never a fence.
 # Each templates/SKILL-<name>-template.md (in this repository): the same
 # frontmatter checks, with name equal to <name>.
 # Usage: sh scripts/check-skills.sh [directory]
@@ -64,18 +64,57 @@ check() {
         s = substr(s, 2, length(s) - 2)
       return s
     }
-    function placeholders(line,    s, span, p) {
-      s = line
-      while (match(s, /`[^`]*`/)) {
-        span = substr(s, RSTART + 1, RLENGTH - 2)
-        if (span ~ /^<[^<>]*>$/) problem("line " NR ": placeholder " span)
-        s = substr(s, 1, RSTART - 1) " " substr(s, RSTART + RLENGTH)
+    # unspan(text, at): text without its code spans; reports a span that
+    # holds only a placeholder. A run of backticks opens a span, and the next
+    # run of the same length closes it, across a line break too; a run with
+    # no such match is literal. A span leaves a space and its newlines. One
+    # space is trimmed from each end of a span that has both, as CommonMark.
+    function unspan(text, at,    out, run, n, t, len, span, pre) {
+      out = ""
+      while (match(text, /`+/)) {
+        n = RLENGTH
+        run = substr(text, RSTART, n)
+        out = out substr(text, 1, RSTART - 1)
+        text = substr(text, RSTART + n)
+        t = text
+        len = 0
+        while (match(t, /`+/) && RLENGTH != n) {
+          len += RSTART + RLENGTH - 1
+          t = substr(t, RSTART + RLENGTH)
+        }
+        if (!RSTART) { out = out run; continue }
+        span = substr(text, 1, len + RSTART - 1)
+        text = substr(t, RSTART + n)
+        pre = out
+        if (span ~ /^ .* $/ && span ~ /[^ ]/)
+          span = substr(span, 2, length(span) - 2)
+        if (span ~ /^<[^<>\n]*>$/)
+          problem("line " (at + gsub(/\n/, "", pre)) ": placeholder " span)
+        gsub(/[^\n]/, "", span)
+        out = out " " span
       }
-      while (match(s, /<[^<>]*>/)) {
+      return out text
+    }
+    # placeholders(text, at): text is a paragraph, its lines joined by
+    # newlines, from line at.
+    function placeholders(text, at,    s, p, pre) {
+      s = unspan(text, at)
+      while (match(s, /<[^<>\n]*>/)) {
         p = substr(s, RSTART, RLENGTH)
-        if (p !~ /^<(https?|mailto):/) problem("line " NR ": placeholder " p)
+        pre = substr(s, 1, RSTART - 1)
+        at += gsub(/\n/, "", pre)
+        if (p !~ /^<(https?|mailto):/) problem("line " at ": placeholder " p)
         s = substr(s, RSTART + RLENGTH)
       }
+    }
+    # paragraph(line, end): adds line to the paragraph, or, when end is set
+    # by a blank line or a code line, checks it.
+    function paragraph(line, end) {
+      if (end) {
+        if (text_at) placeholders(text, text_at)
+        text_at = 0
+      } else if (text_at) text = text "\n" line
+      else { text = line; text_at = NR }
     }
 
     NR == 1 {
@@ -98,11 +137,13 @@ check() {
     }
     body == "yes" {
       line = $0
-      if (in_code(line)) next
+      if (in_code(line)) { paragraph("", 1); next }
       if (comment) {
-        if (!index(line, "-->")) next
-        comment = 0
-        line = substr(line, index(line, "-->") + 3)
+        if (!index(line, "-->")) line = ""
+        else {
+          comment = 0
+          line = substr(line, index(line, "-->") + 3)
+        }
       }
       if (index(line, "<!--")) {
         problem("line " NR ": template comment")
@@ -111,11 +152,12 @@ check() {
         if (index(rest, "-->")) line = line substr(rest, index(rest, "-->") + 3)
         else comment = 1
       }
-      placeholders(line)
+      paragraph(line, $0 ~ /^[ \t]*$/)
     }
 
     END {
       if (skip) exit 1
+      paragraph("", 1)
       if (!closed) problem("the frontmatter is not closed with ---")
       if (name == "") problem("the frontmatter has no name")
       else if (name != want) problem("name is " name "; expected " want)

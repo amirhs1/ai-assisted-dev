@@ -12,6 +12,8 @@ description: Open an issue that states a problem. Use when asked to file an issu
 
 1. Search for a duplicate: `gh issue list --search "<terms>"`.
 2. Open it: `gh issue create --title "<title>" --body-file <file>`.
+3. Add labels: `gh issue edit <number>
+   --add-label <label>`.
 
 ```text
 <Answer in one or two sentences.>
