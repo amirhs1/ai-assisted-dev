@@ -24,9 +24,10 @@ description: Open a draft pull request whose body is the full report. Use when a
      in "Checks run" and a short one in the trailer.
 
    Then check the trailer block, the body's last paragraph:
-   `awk -v RS= 'END { print }' <file> | awk 'length > 72'` prints nothing,
-   and `git interpret-trailers --parse <file>` prints every trailer. Fix the
-   body until both hold.
+   `awk -v RS= 'END { print }' <file> | LC_ALL=C awk 'length > 72'` prints
+   nothing, and `git interpret-trailers --parse <file>` prints every trailer.
+   Fix the body until both hold. The check counts bytes, and an em dash is
+   three bytes, so it can flag a line of 72 characters or fewer; shorten it.
 4. Title: in the commit subject format from CONTRIBUTING.md, "Names"; it
    becomes the merge commit's subject. Never put a closing keyword in the
    title.
