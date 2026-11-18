@@ -109,6 +109,10 @@ Do these only with the maintainer's explicit approval for that change:
   this session. Otherwise say it is unverified.
 - Invent the reason for a change in a commit or pull request. Describe what
   changed; add a reason only if the maintainer gave one.
+- Attribute a change to someone's request or approval in a commit, pull
+  request, issue, or comment; state what changed. Credit whoever reported a
+  problem or found a bug by linking their issue, pull request, or comment,
+  not by @-mentioning them.
 - Substitute an easier approach for the one requested without saying so.
 - Write American or British spellings; this repository uses Canadian English
   ("licence" as a noun, "behaviour").
