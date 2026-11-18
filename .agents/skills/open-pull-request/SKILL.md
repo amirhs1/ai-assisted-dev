@@ -23,14 +23,18 @@ description: Open a draft pull request whose body is the full report. Use when a
      GitHub wraps the body into the merge commit; give a long check result
      in "Checks run" and a short one in the trailer.
 4. Title: in the commit subject format from CONTRIBUTING.md, "Names"; it
-   becomes the merge commit's subject.
+   becomes the merge commit's subject. Never put a closing keyword in the
+   title.
 5. Labels, from "Names": one `type:` label, the branch's type, and an `area:`
    label for each area the diff changes. If a label does not exist, give the
-   maintainer the `gh label create` command; do not run it.
+   maintainer the `gh label create` command; do not run it. If the branch
+   prefix, the title's type, and the `type:` label do not all agree, stop and
+   ask the maintainer.
 6. Push the branch, open a draft, then read it back with `gh pr view`:
    `gh pr create --draft --base main --title "<title>" --label <labels> --body-file <file>`.
    Never mark it ready or merge it.
-7. If the branch already has a pull request, check it is open
-   (`gh pr view <n> --json state`); if it merged, start a new branch
-   (create-branch). Push, then replace its body and read it back:
+7. If the branch already has a pull request, update it. Before pushing, check
+   that the pull request is open: `gh pr view <n> --json state --jq .state`.
+   If it says `MERGED` or `CLOSED`, stop: the change needs a new branch.
+   Otherwise push, then replace its body and read it back:
    `gh pr edit <n> --body-file <file>`.

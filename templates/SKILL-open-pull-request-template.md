@@ -29,9 +29,14 @@ this comment.
      characters, since GitHub wraps the body into the merge commit; give a
      long check result in "Checks run" and a short one in the trailer.
 4. Title and labels: follow "Names" in CONTRIBUTING.md. The type comes from
-   the branch name; the areas, from the parts the diff changes.
+   the branch name; the areas, from the parts the diff changes. If the branch
+   prefix, the title's type, and the `type:` label do not all agree, stop and
+   ask the person running you. Never put a closing keyword in the title.
 5. Push the branch, open a draft, then read it back with `gh pr view`:
    `gh pr create --draft --base <main> --title "<title>" --label <labels> --body-file <file>`.
    Never mark it ready or merge it.
-6. If the branch already has an open pull request, push, then replace its
-   body and read it back: `gh pr edit <n> --body-file <file>`.
+6. If the branch already has a pull request, update it. Before pushing, check
+   that the pull request is open: `gh pr view <n> --json state --jq .state`.
+   If it says `MERGED` or `CLOSED`, stop: the change needs a new branch.
+   Otherwise push, then replace its body and read it back:
+   `gh pr edit <n> --body-file <file>`.
