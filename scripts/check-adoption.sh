@@ -31,8 +31,10 @@
 # - CLAUDE.md is missing, does not start with the line @AGENTS.md, or holds
 #   anything but "## " sections after it;
 # - .claude/settings.json lacks the attribution block.
-# It warns, without failing, when AGENTS.md has more than 200 lines, the
-# budget the AGENTS template's design rule 1 recommends.
+# It warns, without failing, when AGENTS.md has more than 3,500 words, and
+# prints the count and the budget of about 3,000 words that the AGENTS
+# template's design rule 1 recommends. A word is a run of characters between
+# spaces, tabs, and line ends, counted the same way in every locale.
 # Governance files: AGENTS.md, CLAUDE.md, AI-POLICY.md, the pull request
 # templates, and the AI sections of README.md and CONTRIBUTING.md. A pull
 # request template, .md or .txt, in .github/, docs/, or the root, under any
@@ -424,9 +426,9 @@ EOF
 fi
 
 if [ -f AGENTS.md ]; then
-  lines=$(awk 'END { print NR }' AGENTS.md)
-  if [ "$lines" -gt 200 ]; then
-    echo "warning: AGENTS.md has $lines lines; design rule 1 of the AGENTS template recommends at most 200" >&2
+  words=$(LC_ALL=C awk '{ n += NF } END { print n + 0 }' AGENTS.md)
+  if [ "$words" -gt 3500 ]; then
+    echo "warning: AGENTS.md has $words words, over 3500; design rule 1 of the AGENTS template recommends about 3000" >&2
   fi
 
   # The skill names in the first column of the "Skills" table, and the

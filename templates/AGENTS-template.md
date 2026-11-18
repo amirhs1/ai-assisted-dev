@@ -5,9 +5,10 @@ the optional sections that don't apply, and delete every comment before
 committing.
 
 Design rules:
-  1. Short: a budget of 200 lines, counted once filled in and stripped of
-     the optional sections that don't apply. The budget is a recommendation,
-     not a hard limit: never cut a safety or verification rule to meet it.
+  1. Short: a budget of about 3,000 words, counted once filled in and
+     stripped of the optional sections that don't apply. The budget is a
+     recommendation, not a hard limit: never cut a safety or verification
+     rule to meet it.
      This file is loaded every session and competes for context with the
      work. Link out for detail.
   2. Non-obvious only. Don't restate what the agent can read from the code,
@@ -15,7 +16,9 @@ Design rules:
   3. Executable over descriptive. Commands beat prose.
   4. Self-contained. A rule every task needs is written here in full; a rule
      one task needs lives in that task's skill or in the section it cites.
-     Name other files only as further reading.
+     Reference material, such as a file listing, the long form of a command,
+     or the record of a decision, goes in a document this file links. Name
+     other files only as further reading.
   5. One real file. Tool-specific facts go in CLAUDE.md (or another tool's
      file), which imports this one (`@AGENTS.md`); machine-specific ones in a
      gitignored AGENTS.local.md, imported by CLAUDE.local.md; module-specific

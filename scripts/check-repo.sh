@@ -146,16 +146,27 @@ for f in tests/check-adoption/fail/*.txt; do
   git -C "$dir" add -A
   expect 1 "${f%.txt}.out" in_dir "$dir" sh "$adoption"
 done
-# An AGENTS.md over 200 lines draws a warning, not a failure. The copy is
-# padded to 201 lines, whatever the fixture holds.
-dir=$tmp/adoption-long
-unpack tests/check-adoption/pass/repo.txt "$dir"
-lines=$(awk 'END { print NR }' "$dir/AGENTS.md")
-awk -v n="$lines" 'BEGIN { for (i = n + 1; i <= 201; i++) print "- Rule " i "." }' >> "$dir/AGENTS.md"
-git init -q -b main "$dir"
-git -C "$dir" add -A
-git -C "$dir" config core.hooksPath .githooks
-expect 0 tests/check-adoption/pass/long-agents.out in_dir "$dir" sh "$adoption"
+# An AGENTS.md over 3,500 words draws a warning, not a failure. Copies are
+# padded to 3,500 words, which pass without one, and to 3,501, whatever the
+# fixture holds.
+for words in 3500 3501; do
+  dir=$tmp/adoption-words-$words
+  unpack tests/check-adoption/pass/repo.txt "$dir"
+  have=$(LC_ALL=C awk '{ n += NF } END { print n + 0 }' "$dir/AGENTS.md")
+  LC_ALL=C awk -v n="$((words - have))" 'BEGIN {
+    for (; n > 0; n -= 10) {
+      s = "word"
+      for (i = 2; i <= 10 && i <= n; i++) s = s " word"
+      print s
+    }
+  }' >> "$dir/AGENTS.md"
+  git init -q -b main "$dir"
+  git -C "$dir" add -A
+  git -C "$dir" config core.hooksPath .githooks
+  out=tests/check-adoption/pass/budget-agents.out
+  [ "$words" -le 3500 ] || out=tests/check-adoption/pass/long-agents.out
+  expect 0 "$out" in_dir "$dir" sh "$adoption"
+done
 
 # check-names.sh runs on fixture repositories with saved labels; it never
 # calls gh here.

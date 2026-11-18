@@ -104,8 +104,10 @@ Each input is saved output of the script's `gh api --jq` filter.
   documented `<...>` format; its skill quotes a section across a line break;
   its `AGENTS.md` nests a fenced block, with a placeholder and a missing path
   inside.
-- `pass/long-agents.out` — the same repository with `AGENTS.md` padded to 201
-  lines, which the self-check writes out: a warning, and a pass.
+- `pass/budget-agents.out` — the same repository with `AGENTS.md` padded to
+  3,500 words, which the self-check writes out: a pass, with no warning.
+- `pass/long-agents.out` — the same, padded to 3,501 words: a warning, and a
+  pass.
 - `pass/no-claude.txt` — no `CLAUDE.md` or `.claude/`: the Claude checks are
   skipped.
 - `pass/paths.txt` — code spans that are not paths, such as branch prefixes
