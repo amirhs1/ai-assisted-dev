@@ -5,8 +5,8 @@ description: Open a draft pull request whose body is the full report. Use when a
 
 # Open a pull request
 
-1. Check the branch, the working tree, and `HEAD`. Run the checks in
-   AGENTS.md, "Commands".
+1. Check the branch, the working tree, and `HEAD`. Run the pull request gate:
+   the checks in AGENTS.md, "Commands".
 2. Before the push, review the diff: `git status --short`, then the whole
    branch diff, `git diff main...HEAD`, for unrelated files, secrets, private
    details, local paths, and accidental deletions. A change on the list in

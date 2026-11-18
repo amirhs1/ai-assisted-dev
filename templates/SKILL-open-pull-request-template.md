@@ -11,8 +11,8 @@ this comment.
 
 # Open a pull request
 
-1. Check the branch, the working tree, and `HEAD`. Run the full gate in
-   AGENTS.md, "Commands".
+1. Check the branch, the working tree, and `HEAD`. Run the pull request gate
+   in AGENTS.md, "Commands".
 2. Before the push, review the diff: `git status --short`, then the whole
    branch diff, `git diff <main>...HEAD`, for unrelated files, secrets,
    private data, and accidental deletions. A change on the list in AGENTS.md,

@@ -34,18 +34,19 @@ Stack: <languages and toolchain, with the versions the code must stay within>.
 
 ## Commands
 
-| Purpose              | Command |
-| -------------------- | ------- |
-| Install              | `<>`    |
-| Build                | `<>`    |
-| Run all tests        | `<>`    |
-| Run one test         | `<>`    |
-| Lint / format        | `<>`    |
-| Full pre-commit gate | `<>`    |
+| Purpose              | Command                                   |
+| -------------------- | ----------------------------------------- |
+| Install              | `<>`                                      |
+| Build                | `<>`                                      |
+| Run all tests        | `<>`                                      |
+| Run one test         | `<>`                                      |
+| Lint / format        | `<>`                                      |
+| Full pre-commit gate | `<>`                                      |
+| Pull request gate    | The full gate, or CI; locally: `<checks>` |
 
 Run the full gate before calling a change complete, and report the actual
 output, not the expected output. Do not describe a change as working because it
-reads correctly.
+reads correctly. When CI is the gate, cite its run in "Checks run".
 
 <!-- Optional. Keep only if it states ownership or a boundary the code does
 not make obvious. -->
