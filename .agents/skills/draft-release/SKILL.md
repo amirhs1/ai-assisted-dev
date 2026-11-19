@@ -22,8 +22,12 @@ changelog.
    when there is one; no Unreleased section, and no version heading, since
    the release title carries the version. End with your trailer block
    (AGENTS.md, "Provenance").
-5. Write them to a file outside the repository. Give the maintainer the
+5. Record the release commit, the `HEAD` that step 1 checked:
+   `git rev-parse HEAD`.
+6. Write the notes to a file outside the repository. Give the maintainer the
    command that creates the draft, and do not run it:
-   `gh release create v<version> --draft --title v<version> --notes-file <file>`.
-6. To revise the draft, give the maintainer
+   `gh release create v<version> --draft --target <full SHA> --title v<version> --notes-file <file>`.
+   Check the target before publishing; where tags are protected, a published
+   tag cannot be moved.
+7. To revise the draft, give the maintainer
    `gh release edit v<version> --notes-file <file>`.

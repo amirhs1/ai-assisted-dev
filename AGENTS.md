@@ -2,7 +2,7 @@
 
 Public templates (MIT) for projects that use AI in software development or
 research: an `AGENTS.md`, an AI policy, a disclosure, README and CONTRIBUTING
-sections, a pull request template, six agent skills, a commit-message
+sections, a pull request template, seven agent skills, a commit-message
 template, and a Claude Code settings file. They accompany a
 guideline published separately; adopters copy and adapt them.
 

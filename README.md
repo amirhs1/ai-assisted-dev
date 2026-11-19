@@ -18,6 +18,7 @@ added here when available.
 | [`CONTRIBUTING-names-section-template.md`](templates/CONTRIBUTING-names-section-template.md) | Add a "Names" section to `CONTRIBUTING.md`: the type and area lists.               |
 | [`pull-request-template.md`](templates/pull-request-template.md)                             | Use as a complete `.github/pull_request_template.md` when needed.                  |
 | [`SKILL-create-branch-template.md`](templates/SKILL-create-branch-template.md)               | Copy to `.agents/skills/create-branch/SKILL.md`.                                   |
+| [`SKILL-write-test-template.md`](templates/SKILL-write-test-template.md)                     | Copy to `.agents/skills/write-test/SKILL.md`; add the framework's rules.           |
 | [`SKILL-write-commit-template.md`](templates/SKILL-write-commit-template.md)                 | Copy to `.agents/skills/write-commit/SKILL.md`.                                    |
 | [`SKILL-open-pull-request-template.md`](templates/SKILL-open-pull-request-template.md)       | Copy to `.agents/skills/open-pull-request/SKILL.md`.                               |
 | [`SKILL-open-issue-template.md`](templates/SKILL-open-issue-template.md)                     | Copy to `.agents/skills/open-issue/SKILL.md`.                                      |

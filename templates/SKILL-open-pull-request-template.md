@@ -11,8 +11,8 @@ this comment.
 
 # Open a pull request
 
-1. Check the branch, the working tree, and `HEAD`. Run the full gate in
-   AGENTS.md, "Commands".
+1. Check the branch, the working tree, and `HEAD`. Run the pull request gate
+   in AGENTS.md, "Commands".
 2. Before the push, review the diff: `git status --short`, then the whole
    branch diff, `git diff <main>...HEAD`, for unrelated files, secrets,
    private data, and accidental deletions. A change on the list in AGENTS.md,
@@ -28,10 +28,22 @@ this comment.
      not list the commits' trailers. Keep each trailer line within 72
      characters, since GitHub wraps the body into the merge commit; give a
      long check result in "Checks run" and a short one in the trailer.
+
+   Then check the trailer block, the body's last paragraph:
+   `awk -v RS= 'END { print }' <file> | LC_ALL=C awk 'length > 72'` prints
+   nothing, and `git interpret-trailers --parse <file>` prints every trailer.
+   Fix the body until both hold. The check counts bytes, and an em dash is
+   three bytes, so it can flag a line of 72 characters or fewer; shorten it.
 4. Title and labels: follow "Names" in CONTRIBUTING.md. The type comes from
-   the branch name; the areas, from the parts the diff changes.
+   the branch name; the areas, from the parts the diff changes. If the branch
+   prefix, the title's type, and the `type:` label do not all agree, stop and
+   ask the person running you. Never put a closing keyword in the title.
 5. Push the branch, open a draft, then read it back with `gh pr view`:
    `gh pr create --draft --base <main> --title "<title>" --label <labels> --body-file <file>`.
    Never mark it ready or merge it.
-6. If the branch already has an open pull request, push, then replace its
-   body and read it back: `gh pr edit <n> --body-file <file>`.
+6. If the branch already has a pull request, update it. Before pushing, check
+   that the pull request is open: `gh pr view <n> --json state --jq .state`.
+   If it says `MERGED` or `CLOSED`, stop: the change needs a new branch.
+   Otherwise push, check the trailer block as in step 3, then replace its
+   body and read it back:
+   `gh pr edit <n> --body-file <file>`.
