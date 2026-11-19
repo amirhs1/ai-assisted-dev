@@ -65,7 +65,7 @@ diff you drafted is not the same as originating it.
 | Issues, pull requests, commit messages          | Instrumented | Draft when the maintainer asks.                                                                                                                                       |
 | `.gitmessage`, `.gitignore`, `.github/`         | Instrumented | Write when the maintainer asks, on a branch.                                                                                                                          |
 | `scripts/`, `.githooks/`, `tests/`              | Supervised   | Draft against the acceptance criteria in the issue; expect every line read. Every script is POSIX `sh`, passes ShellCheck, and has passing and failing fixtures.      |
-| `AGENTS.md`, `CLAUDE.md`, `.claude/`, `LICENSE` | Instrumented | Never edit. Draft the change in the pull request description or a comment instead.                                                                                    |
+| `AGENTS.md`, `CLAUDE.md`, `.claude/`, `LICENSE` | Instrumented | Never edit. Draft the change as a patch, first in the pull request body under `## Blocking: apply before merge`, or in a comment; the maintainer commits it.          |
 
 - A path not listed is treated like the stored templates.
 - The gate is the pull request: a ruleset on `main` requires one, and only the
