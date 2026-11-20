@@ -45,6 +45,9 @@ Each fixture's name starts with its mode: `<mode>.md` or `<mode>.<case>.md`.
   of "Notes for review".
 - `fail/pr-body.trailer-73.md` — a 73-character trailer line with an em dash,
   after one within the limit.
+- `fail/pr-body.comment.md` — a placeholder after a comment on one line,
+  across two lines, across a blank line, and around a fenced block, and
+  after a `<!--` in a code span; a `<...>` inside a comment is skipped.
 
 ## `commit-msg/` — `.githooks/commit-msg`
 
