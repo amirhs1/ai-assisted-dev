@@ -1,0 +1,5 @@
+tests/validate-report/fail/pr-body.comment.md: line 3: placeholder <reported 1>
+tests/validate-report/fail/pr-body.comment.md: line 11: placeholder <reported 2>
+tests/validate-report/fail/pr-body.comment.md: line 18: placeholder <reported 3>
+tests/validate-report/fail/pr-body.comment.md: line 23: placeholder <reported 4>
+tests/validate-report/fail/pr-body.comment.md: line 33: placeholder <reported 5>
