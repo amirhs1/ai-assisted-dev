@@ -141,6 +141,10 @@ person running you:
   issue, the maintainer (recorded as `Why:`), or the outside report the change
   answers, such as a bug report or CI failure; otherwise describe only what
   changed.
+- Attribute a change to someone's request or approval in a commit, pull
+  request, issue, or comment; state what changed. Credit whoever reported a
+  problem or found a bug by linking their issue, pull request, or comment,
+  not by @-mentioning them.
 - Decide <domain choices, e.g. what to measure, which method or model to use,
   which data to include>. Propose options; the maintainer decides.
 - Take an action listed under "Ask first" without that approval.

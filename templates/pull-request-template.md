@@ -26,9 +26,9 @@ Files as `path:line`, plus reasoning the diff does not show.
 
 ## Checks run
 
-Each check actually run, as `command → result`, and any human review or
-independent reference used to judge correctness. Then a `Not verified:` line
-for anything not checked, and why.
+Each check actually run, as `command → result`, and any human review (what
+was reviewed, not who) or independent reference used to judge correctness.
+Then a `Not verified:` line for anything not checked, and why.
 
 ## Decisions and risks
 
