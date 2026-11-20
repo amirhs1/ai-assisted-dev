@@ -13,6 +13,11 @@
 # by nothing but spaces; a line indented four or more spaces never opens or
 # closes one. The full chat form has exactly one verdict line, right after its
 # title; the pull request body has none.
+# An HTML comment, <!-- ... -->, on one line or across lines, blank ones too,
+# is skipped like a code span, whichever of the two opens first, so a body may
+# keep the pull request template's comments. check-skills.sh still rejects a
+# comment in a skill: a skill template's comment says to delete it, and the
+# pull request template's comments do not.
 # Usage: sh scripts/validate-report.sh --chat-short|--chat-full|--pr-body report.md
 # Exit status: 0 valid, 1 invalid, 2 usage error.
 
@@ -44,16 +49,29 @@ esac
 LC_ALL=C awk -v mode="$mode" -v sections="$sections" -v file="$report" '
 function problem(msg) { print file ": " msg; bad = 1 }
 
-# Returns text without its code spans. A run of backticks opens a span, and
-# the next run of the same length closes it, across a line break too; a run
-# with no such match is literal. A span leaves the newlines it holds.
+# Returns text without its code spans and HTML comments, whichever opens
+# first. A run of backticks opens a span, and the next run of the same length
+# closes it, across a line break too; a run with no such match is literal. A
+# comment runs from <!-- to the next -->; one that text leaves open sets
+# comment, and the next text starts inside it. A span or a comment leaves the
+# newlines it holds.
 function unspan(text,    out, run, n, t, len, span) {
   out = ""
-  while (match(text, /`+/)) {
+  if (comment) text = "<!--" text
+  while (match(text, /`+|<!--/)) {
     n = RLENGTH
     run = substr(text, RSTART, n)
     out = out substr(text, 1, RSTART - 1)
     text = substr(text, RSTART + n)
+    if (run == "<!--") {
+      len = index(text, "-->")
+      comment = !len
+      span = len ? substr(text, 1, len - 1) : text
+      text = len ? substr(text, len + 3) : ""
+      gsub(/[^\n]/, "", span)
+      out = out span
+      continue
+    }
     t = text
     len = 0
     while (match(t, /`+/) && RLENGTH != n) {
@@ -70,7 +88,7 @@ function unspan(text,    out, run, n, t, len, span) {
 }
 
 # Reports each <...> in text, a paragraph whose lines are joined by newlines
-# and whose first line is line at, outside code spans.
+# and whose first line is line at, outside code spans and comments.
 function placeholders(text, at,    s, p, pre) {
   s = unspan(text)
   while (match(s, /<[^<>\n]*>/)) {

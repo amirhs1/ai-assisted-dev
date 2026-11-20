@@ -31,6 +31,8 @@ Each fixture's name starts with its mode: `<mode>.md` or `<mode>.<case>.md`.
 - `pass/pr-body.wrapped-span.md` — code spans that the line wrap splits
   across two lines, each holding a `<...>`, in a list after a span of two
   backticks that holds an odd number of single ones.
+- `pass/pr-body.title-comment.md` — a body that keeps the three comments of
+  the pull request template, among them its one-line title comment.
 - `fail/chat-short.md` — a placeholder, no answer, an empty `Open:`.
 - `fail/chat-full.md` — bad, misplaced, and repeated verdicts; empty and
   out-of-order sections.
